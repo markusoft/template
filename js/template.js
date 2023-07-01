@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function (){
          */
         
         let init = function() {
-            initializeServiceWorker();
+			initializeServiceWorker();
             bindings();
         };
         

@@ -262,6 +262,74 @@ section:target ~ #banner strong {
  * -----------------------------------------------------------------------------
  */
 
+
+
+/* 
+ * -----------------------------------------------------------------------------
+ * Carousel
+ * -----------------------------------------------------------------------------
+ */
+
+#carousel {
+    gap: 1rem;
+}
+
+
+#carousel > section {
+    flex: 1;
+}
+
+#carousel-controls {
+    display: flex;
+    flex-flow: column;
+    min-width: 300px;
+    max-width: 250px;
+}
+
+#carousel-controls button {
+    text-transform: none;
+    margin-bottom: 4px;
+}
+
+#carousel,
+#carousel-banners {
+    width: 100%;
+}
+
+#carousel-banners h3 {
+    display: none;
+}
+
+#list-carousel li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 250px;
+    overflow-y: hidden;
+}
+
+#list-carousel li img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+#list-carousel li strong {
+    color: white;
+    font-family: 'Century Gothic Bold';
+    font-weight: bold;
+    font-size: clamp(3.3rem, 10vw, 2rem);
+    text-align: center;
+    text-shadow: 0px 3px 10px rgba(76, 76, 76, 1);
+    z-index: 2;
+}
+
 /* 
  * -----------------------------------------------------------------------------
  * Menus

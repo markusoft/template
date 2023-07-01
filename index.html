@@ -57,18 +57,73 @@
             <nav id="navigation">
                 <h2><span>Main Navigation</span></h2>
                 <ul id="list-navigation" class="tpl-menu single-down">
-                    <li><div><a href="#menus" class="active"><span>Menu</span></a></div></li>
-                    <li><div><a href="#forms"><span>Form</span></a></div></li>
-                    <li><div><a href="#modals"><span>Modal</span></a></div></li>
-                    <li><div><a href="#ssf"><span>SSF</span></a></div></li>
-                    <li><div><a href="#custom-ui-elements"><span>UI</span></a></div></li>
-                    <li><div><a href="#blockers"><span>Block</span></a></div></li>
-                    <li><div><a href="#svg-maps"><span>SVG</span></a></div></li>
-                    <li><div><a href="#infinite-scroll"><span>IS</span></a></div></li>
+                    <li>
+                        <div><a href="#custom-ui-elements"><span>UI</span></a></div>
+                        <ul>
+                            <li><div><a href="#carousel"><span>Carousel</span></a></div></li>
+                            <li><div><a href="#menus" class="active"><span>Menu</span></a></div></li>
+                            <li><div><a href="#modals"><span>Modal</span></a></div></li>
+                            <li><div><a href="#svg-maps"><span>SVG</span></a></div></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div><a href="#"><span>UX</span></a></div>
+                        <ul>
+                            <li><div><a href="#blockers"><span>Block</span></a></div></li>
+                            <li><div><a href="#forms"><span>Form</span></a></div></li>
+                            <li><div><a href="#ssf"><span>SSF</span></a></div></li>
+                            <li><div><a href="#infinite-scroll"><span>IS</span></a></div></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             
             <main>
+                
+                <section id="carousel">
+                    <h2><span>Carousels</span></h2>
+                    
+                    <section id="carousel-controls">
+                        <h3><span>Carousel Controls</span></h3>
+                        <button id="btn-carousel-play" class="tpl-btn"><span>play()</span></button>
+                        <button id="btn-carousel-stop" class="tpl-btn"><span>stop()</span></button>
+                        <button id="btn-carousel-next" class="tpl-btn"><span>next()</span></button>
+                        <button id="btn-carousel-previous" class="tpl-btn"><span>previous()</span></button>
+                        <button id="btn-carousel-goto" class="tpl-btn"><span>goto(3)</span></button>
+                        <button id="btn-carousel-destroy" class="tpl-btn"><span>destory()</span></button>
+                        <button id="btn-carousel-redraw" class="tpl-btn"><span>redraw()</span></button>
+                    </section>
+                    
+                    <section id="carousel-banners">
+                        <h3><span>Banners</span></h3>
+                        
+                        <div class="tpl-carousel">
+                            <ul id="list-carousel">
+                                <li>
+                                    <img src="./assets/img/placeholders/rectangle.svg" alt="Banner" width="200" height="100" />
+                                    <strong>Banner 1</strong>
+                                </li>
+                                <li>
+                                    <img src="./assets/img/placeholders/rectangle.svg" alt="Banner" width="200" height="100" />
+                                    <strong>Banner 2</strong>
+                                </li>
+                                <li>
+                                    <img src="./assets/img/placeholders/rectangle.svg" alt="Banner" width="200" height="100" />
+                                    <strong>Banner 3</strong>
+                                </li>
+                                <li>
+                                    <img src="./assets/img/placeholders/rectangle.svg" alt="Banner" width="200" height="100" />
+                                    <strong>Banner 4</strong>
+                                </li>
+                                <li>
+                                    <img src="./assets/img/placeholders/rectangle.svg" alt="Banner" width="200" height="100" />
+                                    <strong>Banner 5</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                </section>
                 
                 <section id="menus">
                     <h2><span>Menus</span></h2>

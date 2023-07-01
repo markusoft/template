@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function (){
 
     TemplateUi = (function() {
         
-        const RESOURCES = '../../resources/module-assets/template/';
+        const ASSETS = './assets/';
+        const MODULE_ASSETS = './';
         const MOBILE = window.matchMedia("(max-width: 767px)");
 //        const PREFIX = Lazy.getConfig('prefix');
         const PREFIX = 'tpl-';
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function (){
             ssf();
             initInfiniteScroll();
             initSvgs();
+            initCarousels();
             changeColor();
         };
         
@@ -36,7 +38,87 @@ document.addEventListener('DOMContentLoaded', function (){
             Lazy.don('click', '#btn-clear-json-text', e => {
                 document.querySelector('#json-text').value = '';
             });
+            
+        };
+        
+        let initCarousels = function(){
+            let carousel = Lazy.carousel('#list-carousel', {
+               slides: 'li'
+            });
+            
+            Lazy.don('click', '#btn-carousel-play', () => {
+                Lazy.modal({
+                    closable: false,
+                    closeButton: false,
+                    title: 'Auto Play',
+                    content: 'Auto play in 5 seconds',
+                    bodyStyles: {
+                        padding: '1rem'
+                    },
+                    footer: 'ok',
+                    onOk: function() {
+                        carousel.play(5000);
+                        this.close();
+                    }
+                }).open();
+            });
+            
+            Lazy.don('click', '#btn-carousel-stop', () => {
+                Lazy.modal({
+                    closable: false,
+                    closeButton: false,
+                    title: 'Stop Auto Play',
+                    content: 'Turn off auto play',
+                    bodyStyles: {
+                        padding: '1rem'
+                    },
+                    footer: 'ok',
+                    onOk: function() {
+                        carousel.stop();
+                        this.close();
+                    }
+                }).open();
+            });
+            
+            Lazy.don('click', '#btn-carousel-next', () => {
+                carousel.next();
+            });
+            
+            Lazy.don('click', '#btn-carousel-previous', () => {
+                carousel.previous();
+            });
+            
+            Lazy.don('click', '#btn-carousel-goto', () => {
+                carousel.goto(3);
+            });
+            
+            Lazy.don('click', '#btn-carousel-destroy', () => {
+                carousel.destroy();
+            });
+            
+            Lazy.don('click', '#btn-carousel-redraw', () => {
+                
+                let li = document.createElement('li');
+                let img = document.createElement('img');
+                img.src = ASSETS + "img/placeholders/rectangle.svg";
+                img.height = 100;
+                img.width = 200;
+                img.alt = 'Banner';
+                let strong = document.createElement('strong');
+                li.append(strong);
+                li.append(img);
+                let ul = document.querySelector('#list-carousel');
+                let length = document.querySelectorAll('#list-carousel > li').length;
+                
+                for( let i=0; i<2; i++) {
+                    length++;
+                    let newBanner = li.cloneNode(true);
+                    newBanner.querySelector('strong').innerText = 'Banner ' + length;
+                    ul.append(newBanner);
+                }
 
+                carousel.redraw();
+            });
         };
         
         let initSvgs = function(){
@@ -547,7 +629,9 @@ document.addEventListener('DOMContentLoaded', function (){
             
             setTimeout(function(){
                 let siteColorPicker = document.querySelector('#site-color-picker');
-                siteColorPicker.animate({ opacity: [1, 0]}, { duration: 1000 });
+                siteColorPicker.animate({ opacity: [1, 0]}, { duration: 1000 }).onfinish = function(e) {
+                    siteColorPicker.style.display = 'none';
+                };
                 siteColorPicker.style.opacity = 0;
             }, 6000);
             
