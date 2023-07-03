@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function (){
             Lazy.don('click', '#btn-clear-json-text', e => {
                 document.querySelector('#json-text').value = '';
             });
-            
+
         };
         
         let initCarousels = function(){
@@ -357,20 +357,8 @@ document.addEventListener('DOMContentLoaded', function (){
                     rename: 'Date',
                     rules: 'required'
                 },
-                'datetime-local': {
-                    rename: 'Datetime',
-                    rules: 'required'
-                },
                 time: {
                     rename: 'Time',
-                    rules: 'required|'
-                },
-                week: {
-                    rename: 'Week',
-                    rules: 'required'
-                },
-                month: {
-                    rename: 'Month',
                     rules: 'required'
                 },
                 textarea: {
@@ -388,14 +376,63 @@ document.addEventListener('DOMContentLoaded', function (){
                 list: {
                     rename: 'List',
                     rules: 'required'
+                },
+                gender: {
+                    rename: 'Gender',
+                    rules: 'required'
+                },
+                shift: {
+                    rename: 'Shift',
+                    rules: 'required'
                 }
             };
+
+            
+            // submit validator
             let validator = buildValidation('#form-basic', rules);
             
             Lazy.don('click', '#btn-tpl-form', e => {
                 let form = document.querySelector('#form-basic');
                 form.classList.remove('tpl-form-top');
                 form.classList.add('tpl-form');
+            });
+            
+            // live validation
+            Lazy.don('click', '#btn-live-validation', e => {
+                Lazy.liveValidation('#form-basic', rules, {
+                    onValid: function(input) {
+                        let formItem = input.closest(`.${PREFIX}form-item`);
+                        [].forEach.call(formItem.querySelectorAll(`.${PREFIX}form-input-success`), successDivs => {
+                           successDivs.remove(); 
+                        });
+                        [].forEach.call(formItem.querySelectorAll(`.${PREFIX}form-input-error`), errorDivs => {
+                           errorDivs.remove(); 
+                        });
+
+                        formItem.classList.remove(`${PREFIX}form-success`);
+                        formItem.classList.remove(`${PREFIX}form-error`);
+                    },
+                    onError: function(input, errors) {
+                        var message = Object.values(errors)[0] ;
+
+                        let error = document.createElement('div');
+                        error.innerText = message;
+                        error.className = `${PREFIX}form-input-error`;
+
+                        let formItem = input.closest(`.${PREFIX}form-item`);
+                        [].forEach.call(formItem.querySelectorAll(`.${PREFIX}form-input-success`), successDivs => {
+                           successDivs.remove(); 
+                        });
+                        [].forEach.call(formItem.querySelectorAll(`.${PREFIX}form-input-error`), errorDivs => {
+                           errorDivs.remove(); 
+                        });
+
+                        formItem.classList.remove(`${PREFIX}form-success`);
+                        formItem.classList.remove(`${PREFIX}form-error`);
+                        formItem.classList.add(`${PREFIX}form-error`);
+                        input.closest(`.${PREFIX}form-input`).append(error);
+                    }
+                });
             });
             
             Lazy.don('click', '#btn-validate', e => {

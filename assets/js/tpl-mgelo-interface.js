@@ -60,9 +60,10 @@ Template.modal();                          // open modal
 // carousel
 Template.carousel(id, settings);           // creates a carousel            // Template.carousel('#ul', {slides: 'li'});
 
-Template.valid(value, rule);                    // check if a value is valid
+Template.valid(value, validations);             // check if a value is valid
 Template.validate(json, validationObject);      // form validation
 Template.validate('#form', validationObject);   // json validation  
+Template.liveValidation('#form', rules, callbacks);     // form live validation
 Template.getValidationErrors();                 // retrieve validation errors
 
 Template.getStatus();                      // retrieve status success or failed                     // {message: 'Failed', errors{attribute1: 'Error Message'}}
@@ -412,10 +413,23 @@ Template.dialogOrModalOrOverlay({           // dialog|modal|overlay complete set
 });
 
 Template.fake('email');
-['email', 'text', 'firstName', 'lastName', 'domain', 'mobile', 'password', 'lorem']; // create your own on config
+['email', 'text', 'firstName', 'lastName', 'domain', 'mobile', 'password', 'lorem', 'date', 'time', 'color']; // create your own on config
 
 
-Template.valid('sample', ['alpha', 'min:3', 'max:54'], {} = {
+//Template.valid('sample', ['alpha', 'min:3', 'max:54'], {} = {
+Template.valid('mark@email.com', {
+        rename: 'Username',
+        rules: ['required', 'email', 'min:8'],
+        custom: {
+            pci: function(val){ return val.match(/^(?=^.{6,99}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%*-_=+.])(?!.*?(.)\1{1,})^.*$/) ? true : false; }
+        },
+        messages: {
+            required: function(val){ return `${val} is a must!`; },
+            min: function(val, min){ return `${val} should be atleast ${min} characters`; },
+            pci: function(val){ return `${val} must contain atleast 8 characters, an uppercase a number and a special character`; }
+        }
+    },
+{} = {
     alpha: 'alpha',                         // returns false if not alphabetical characters
     alphadash: 'alphadash',                 // returns false if not alphabetical characters, dash or underscore
     alphanum: 'alphanum',                   // returns false if not alphabetical characters or numbers
@@ -460,6 +474,24 @@ Template.validate('#form', {
             min: function(val, min){ return `${val} should be atleast ${min} characters`; },
             pci: function(val){ return `${val} must contain atleast 8 characters, an uppercase a number and a special character`; }
         }
+    }
+});
+
+Template.liveValidation('#form', {
+        email: {
+            rename: 'Username',
+            rules: ['required', 'email', 'min:8']
+        }
+    },
+    {
+        onValid: function(input) {
+            input.style.border = '4px solid yellow';
+        },
+        onError: function(input, errors) {
+            input.style.border = '4px solid red';
+        },
+        onNoValidation: function(elem) {
+            input.style.border = '';
     }
 });
 

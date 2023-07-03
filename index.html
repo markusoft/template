@@ -27,7 +27,11 @@
         <link rel="stylesheet" href="./plugins/fontello/css/animation.css">
         <!-- template -->
         <link rel="stylesheet" href="./assets/css/template.css">
-
+        <!-- dependencies -->
+        <link rel="stylesheet" href="./assets/css/dependencies.css">
+        
+        <!-- dependecies -->
+        <script defer src="./assets/js/dependencies.js"></script>
         <!-- template -->
         <script defer src="./assets/js/tpl-config.js"></script>
         <script defer src="./assets/js/tpl-mgelo.js"></script>
@@ -379,6 +383,7 @@
                         <h3><span>Form Controls</span></h3>
                         <button id="btn-tpl-form-top" class="tpl-btn"><span>.tpl-form-top</span></button>
                         <button id="btn-tpl-form" class="tpl-btn"><span>.tpl-form</span></button>
+                        <button id="btn-live-validation" class="tpl-btn"><span>liveValidation()</span></button>
                         <button id="btn-validate" class="tpl-btn"><span>validate()</span></button>
                         <button id="btn-json-to-form" class="tpl-btn"><span>jsonToForm()</span></button>
                         <button id="btn-form-to-json" class="tpl-btn"><span>formToJson()</span></button>
@@ -398,7 +403,7 @@
                                         <input type="text" id="form-basic-text" name="text" class="tpl-input" placeholder="Sample Text" />
                                     </div>
                                 </li>
-                                
+
                                 <!-- number -->
                                 <li class="tpl-form-item">
                                     <div class="tpl-form-label">
@@ -439,7 +444,6 @@
                                     </div>
                                 </li>
 
-
                                 <!-- tel -->
                                 <li class="tpl-form-item">
                                     <div class="tpl-form-label">
@@ -470,16 +474,6 @@
                                     </div>
                                 </li>
 
-                                <!-- datetime-local -->
-                                <li class="tpl-form-item">
-                                    <div class="tpl-form-label">
-                                        <label for="form-basic-datetime-local">Datetime Local</label>
-                                    </div>
-                                    <div class="tpl-form-input">
-                                        <input type="datetime-local" id="form-basic-datetime-local" name="datetime-local" class="tpl-input" />
-                                    </div>
-                                </li>
-
                                 <!-- time -->
                                 <li class="tpl-form-item">
                                     <div class="tpl-form-label">
@@ -487,36 +481,6 @@
                                     </div>
                                     <div class="tpl-form-input">
                                         <input type="time" id="form-basic-time" name="time" class="tpl-input" />
-                                    </div>
-                                </li>
-
-                                <!-- week -->
-                                <li class="tpl-form-item">
-                                    <div class="tpl-form-label">
-                                        <label for="form-basic-week">Week</label>
-                                    </div>
-                                    <div class="tpl-form-input">
-                                        <input type="week" id="form-basic-week" name="week" class="tpl-input" />
-                                    </div>
-                                </li>
-
-                                <!-- month -->
-                                <li class="tpl-form-item">
-                                    <div class="tpl-form-label">
-                                        <label for="form-basic-month">Month</label>
-                                    </div>
-                                    <div class="tpl-form-input">
-                                        <input type="month" id="form-basic-month" name="month" class="tpl-input" />
-                                    </div>
-                                </li>
-
-                                <!-- file -->
-                                <li class="tpl-form-item">
-                                    <div class="tpl-form-label">
-                                        <label for="form-basic-file">File</label>
-                                    </div>
-                                    <div class="tpl-form-input">
-                                        <input type="file" id="form-basic-file" name="file" class="tpl-input" />
                                     </div>
                                 </li>
 
@@ -603,6 +567,30 @@
                                             <option value="9">option 9</option>
                                             <option value="10">option 10</option>
                                         </datalist>
+                                    </div>
+                                </li>
+                                
+                                <!-- radio -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label>Radio</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <label><input type="radio" id="form-basic-radio-1" name="gender" value="Male" /> <span>Male</span></label>
+                                        <label><input type="radio" id="form-basic-radio-2" name="gender" value="Female" /> <span>Female</span></label>
+                                    </div>
+                                </li>
+                                
+                                <!-- checkbox -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label>Checkbox</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <label><input type="checkbox" id="form-basic-checkbox-1" name="shift" value="Morning" /> <span>Morning</span></label>
+                                        <label><input type="checkbox" id="form-basic-checkbox-2" name="shift" value="Lunch" /> <span>Lunch</span></label>
+                                        <label><input type="checkbox" id="form-basic-checkbox-3" name="shift" value="Afternoon" /> <span>Afternoon</span></label>
+                                        <label><input type="checkbox" id="form-basic-checkbox-4" name="shift" value="Dinner" /> <span>Dinner</span></label>
                                     </div>
                                 </li>
 
@@ -1288,6 +1276,7 @@
                 <div id="banner">
                     <strong>Lazy Template</strong>
                     <img src="./img/banner.webp" alt="banner" height="600" width="1400" />
+                    <img src="./img/banner-dark.webp" alt="banner" height="600" width="1400" />
                 </div>
                 
             </main>
