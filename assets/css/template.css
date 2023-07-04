@@ -115,11 +115,11 @@
 
 @keyframes fade-in {
     from {opacity: 0; visibility: hidden;}
-    to {opacity: 1; visibility: visibile;}
+    to {opacity: 1; visibility: visible;}
 }
 
 @keyframes fade-out {
-    from {opacity: 1; visibility: visibile;}
+    from {opacity: 1; visibility: visible;}
     to {opacity: 0; visibility: hidden;}
 }
 
@@ -233,6 +233,14 @@
     to {opacity: 0; visibility: hidden; transform: translateX(30%);}
 }
 
+@keyframes tada {
+    0% { transform: scale(1); }
+    10%, 20% { transform: scale(0.9) rotate(-3deg); }
+    30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
+    40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
 /* ============================================================ Simple Resets */
 
 html {
@@ -290,6 +298,25 @@ label {
  *  Forms
  * -----------------------------------------------------------------------------
  */
+
+/* ============================================================== Multi Form  */
+
+.tpl-form-header {
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 1rem;
+}
+
+.tpl-form-previous,
+.tpl-form-navigations,
+.tpl-form-next {
+    display: inline-block;
+}
+
+.tpl-form-navigations,
+.tpl-form-next {
+    margin-left: auto;
+}
 
 /* ============================================================ Default Form  */
 

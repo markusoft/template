@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function (){
             initMenus();
             initModals();
             initBlockers();
+            initAnimations();
             initForm();
             ssf();
             initInfiniteScroll();
@@ -34,16 +35,31 @@ document.addEventListener('DOMContentLoaded', function (){
         };
         
         let bindings = function() {
-            
             Lazy.don('click', '#btn-clear-json-text', e => {
                 document.querySelector('#json-text').value = '';
             });
-
+        };
+        
+        let initAnimations = function() {
+            
+            [].forEach.call(document.querySelectorAll('#animation-controls > button'), button => {
+                button.addEventListener('click', () => {
+                    let animation = button.querySelector(':scope > span').innerText;
+                    Lazy.animate('#animate', {
+                        animation: animation,
+                        duration: 800
+                    });
+                });
+            });
+            
+//            Lazy.don('click', '#btn-fade-in', () => {
+//                Lazy.animate('#animate', {animation: 'disappear-right'});
+//            });
         };
         
         let initCarousels = function(){
             let carousel = Lazy.carousel('#list-carousel', {
-               slides: 'li'
+                slides: 'li'
             });
             
             Lazy.don('click', '#btn-carousel-play', () => {
@@ -317,13 +333,12 @@ document.addEventListener('DOMContentLoaded', function (){
                     addToArticle();
                 }
             });
-            
-            
-            
         };
         
         let initForm = function() {
-            
+
+            let multiform;
+
             let rules = {
                 text: {
                     rename: 'Text',
@@ -492,6 +507,64 @@ document.addEventListener('DOMContentLoaded', function (){
                     }
                 }).open();
             });
+            
+            Lazy.don('click', '#btn-multiform', () => {
+                multiform = Lazy.multiform('#form-basic', {
+                    items: 'li',
+                    header: 'Bazooka!',
+                    beforeChange: function(){
+                        console.log('beforeChange');
+                    },
+                    parts: [{
+                        title: 'Part 1',
+                        items: [0, 1, 2, 3, 4],
+                        enterAnimation: false,
+                        exitAnimation: false,
+                        animationDuration: 200,
+                        styles: {},
+                        headerStyles: {},
+                        footerStyles: {},
+                        next: 'Next',
+                        previous: 'Previous',
+                    },{
+                        title: 'Part 2',
+                        items: [5, 6, 7, 8, 9],
+                    },{
+                        title: 'Part 3',
+                        items: [10, 11, 12, 13, 14],
+                    },{
+                        title: 'Part 4',
+                        items: [15, 16],
+                        next: 'Submit'
+                    }]
+                });
+            });
+            
+            Lazy.don('click', '#btn-multiform-previous', () => {
+                if(multiform) {
+                    multiform.previous();
+                }
+            });
+            
+            Lazy.don('click', '#btn-multiform-next', () => {
+               if(multiform) {
+                    multiform.next();
+               }
+            });
+            
+            Lazy.don('click', '#btn-multiform-goto', () => {
+               if(multiform) {
+                    multiform.goto(2);
+               }
+            });
+            
+            Lazy.don('click', '#btn-multiform-destroy', () => {
+                if(multiform) {
+                    multiform.destroy();
+                    multiform = null;
+               }
+            });
+            
         };
         
         let ssf = function() {

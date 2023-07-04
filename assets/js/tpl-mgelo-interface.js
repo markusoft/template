@@ -525,6 +525,11 @@ let carousel = Template.carousel('#div', {
     autoPlayDuration: 5000,                 // auto next in milliseconds
     buttons: true,                          // add previous and next buttons
     navigation: true,                       // add navigation buttons
+    styles: {},                             // carousel styles
+    previousButtonStyles: {},               // previous button styles
+    nextButtonStyles: {},                   // next button styles
+    navigationStyles: {},                   // navigation styles
+    navigationButtonStyles: {},             // navigation buttons styles
     nextEnterAnimation: function(slide) {
         slide.animate({                     // nex slide enter animation
             opacity: [0, 1], 
@@ -575,34 +580,76 @@ Template.hierarchy(json, {
     }
 });
 
-/*
-Lazy.multiform('#form-contact',
+Lazy.animate('#div', {
+    animation: 'fadeIn',
+    duration: 1000,
+    iterations: 1,
+    easing: 'ease-in-out',
+    beforeAnimate: function(elem) {
+        console.log(elem);
+        return false;
+    },
+    afterAnimate: function(elem) {
+        console.log(elem);
+    }
+});
+
+Lazy.multiform('#form',
 {
-    header: 'bazooka',
-    footer: 'Bayabas',
+    items: `li`,
+    addClass: false,
+    header: true,
+    buttons: true,
+    navigations: true,
+    enterAnimation: false,
+    exitAnimation: false,
+    animationDuration: 200,
+    styles: {},
+    headerStyles: {},
+    previousButtonStyles: {},
+    nextButtonStyles: {},
+    navigationStyles: {},
+    navigationButtonStyles: {},
+    next: 'Next',
+    previous: 'Previous',
+    submit: 'Submit',
+    beforeNext: function(){},
+    onNext: function(){},
+    beforePrevious: function(){},
+    onPrevious: function(){},
+    beforeChange: function(){},
+    onChange: function(){},
+    onSubmit: function(){},
     parts: [
         {
-            title: 'Baka',
-            items: [0, 1],
+            title: 'Part 1',
+            items: [0,1,2,3,4],
             enterAnimation: false,
             exitAnimation: false,
             animationDuration: 200,
             styles: {},
             headerStyles: {},
-            footerStyles:{},
+            previousButtonStyles:{},
+            nextButtonStyles:{},
+            navigationStyles: {},
+            navigationButtonStyles:{},
             next: 'Next',
             previous: 'Previous',
-            onNext: function(){},
-            onPrevious: function(){}
+            beforeNext: function (){},
+            onNext: function (){},
+            beforePrevious: function (){},
+            onPrevious: function (){},
+            onShow: function (){},
+            onHide: function (){}
         },
         {
-            title: 'Manok',
-            items: [2]
+            title: 'Part 2',
+            items: [5,6,7,8,9]
         },
         {
-            title: 'Mangga',
-            items: [3]
+            title: 'Part 3',
+            items: [10,11,12,13,14],
+            next: 'Submit'
         }
     ]
 });
-*/
