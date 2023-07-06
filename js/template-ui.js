@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function (){
             ssf();
             initInfiniteScroll();
             initSvgs();
-            initCarousels();
+            initPaginations();
             changeColor();
         };
         
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function (){
         };
         
         let initAnimations = function() {
-            
             [].forEach.call(document.querySelectorAll('#animation-controls > button'), button => {
                 button.addEventListener('click', () => {
                     let animation = button.querySelector(':scope > span').innerText;
@@ -51,18 +50,60 @@ document.addEventListener('DOMContentLoaded', function (){
                     });
                 });
             });
-            
-//            Lazy.don('click', '#btn-fade-in', () => {
-//                Lazy.animate('#animate', {animation: 'disappear-right'});
-//            });
         };
         
-        let initCarousels = function(){
-            let carousel = Lazy.carousel('#list-carousel', {
-                slides: 'li'
+        let initPaginations = function(){
+            
+            
+            let carousel = Lazy.paginate('#list-carousel', {
+               items: 'li',
+               loop: true
             });
             
-            Lazy.don('click', '#btn-carousel-play', () => {
+            let list = Lazy.paginate('#list-paginate', {
+               items: 'li',
+               itemsPerPage: 5,
+               loop: true
+            });
+            
+            let table = Lazy.paginate('#table-paginate', {
+               items: ':scope > tbody > tr',
+               itemsPerPage: 5,
+               header: false,
+               loop: true
+            });
+            
+            let grid = Lazy.paginate('#paginate-gallery', {
+               items: 'img',
+               itemsPerPage: 9,
+               loop: true
+            });
+            
+            let multiform = Lazy.paginate('#form-paginate', {
+                items: 'li',
+                header: 'Multiform',
+                pages: [{
+                    title: 'User Info',
+                    items: [0, 1],
+                    enterAnimation: false,
+                    exitAnimation: false,
+                    animationDuration: 200,
+                    styles: {},
+                    headerStyles: {},
+                    footerStyles: {},
+                    next: 'Next',
+                    previous: 'Previous'
+                },{
+                    title: 'Account Info',
+                    items: [2, 3]
+                },{
+                    title: 'Personal Info',
+                    items: [4, 5],
+                    next: 'Submit'
+                }]
+            });
+            
+            Lazy.don('click', '#btn-paginate-play', () => {
                 Lazy.modal({
                     closable: false,
                     closeButton: false,
@@ -73,13 +114,17 @@ document.addEventListener('DOMContentLoaded', function (){
                     },
                     footer: 'ok',
                     onOk: function() {
-                        carousel.play(5000);
+                        carousel.play(3000);
+                        multiform.play(3000);
+                        list.play(3000);
+                        table.play(3000);
+                        grid.play(3000);
                         this.close();
                     }
                 }).open();
             });
             
-            Lazy.don('click', '#btn-carousel-stop', () => {
+            Lazy.don('click', '#btn-paginate-stop', () => {
                 Lazy.modal({
                     closable: false,
                     closeButton: false,
@@ -91,28 +136,48 @@ document.addEventListener('DOMContentLoaded', function (){
                     footer: 'ok',
                     onOk: function() {
                         carousel.stop();
+                        multiform.stop();
+                        list.stop();
+                        table.stop();
+                        grid.stop();
                         this.close();
                     }
                 }).open();
             });
             
-            Lazy.don('click', '#btn-carousel-next', () => {
+            Lazy.don('click', '#btn-paginate-next', () => {
                 carousel.next();
+                multiform.next();
+                list.next();
+                table.next();
+                grid.next();
             });
             
-            Lazy.don('click', '#btn-carousel-previous', () => {
+            Lazy.don('click', '#btn-paginate-previous', () => {
                 carousel.previous();
+                multiform.previous();
+                list.previous();
+                table.previous();
+                grid.previous();
             });
             
-            Lazy.don('click', '#btn-carousel-goto', () => {
-                carousel.goto(3);
+            Lazy.don('click', '#btn-paginate-goto', () => {
+                carousel.goto(2);
+                multiform.goto(2);
+                list.goto(2);
+                table.goto(2);
+                grid.goto(2);
             });
             
-            Lazy.don('click', '#btn-carousel-destroy', () => {
+            Lazy.don('click', '#btn-paginate-destroy', () => {
                 carousel.destroy();
+                multiform.destroy();
+                list.destroy();
+                table.destroy();
+                grid.destroy();
             });
             
-            Lazy.don('click', '#btn-carousel-redraw', () => {
+            Lazy.don('click', '#btn-paginate-redraw', () => {
                 
                 let li = document.createElement('li');
                 let img = document.createElement('img');
@@ -134,6 +199,10 @@ document.addEventListener('DOMContentLoaded', function (){
                 }
 
                 carousel.redraw();
+                multiform.redraw();
+                list.redraw();
+                table.redraw();
+                grid.redraw();
             });
         };
         
@@ -509,13 +578,14 @@ document.addEventListener('DOMContentLoaded', function (){
             });
             
             Lazy.don('click', '#btn-multiform', () => {
-                multiform = Lazy.multiform('#form-basic', {
+                
+                multiform = Lazy.paginate('#form-basic', {
                     items: 'li',
                     header: 'Bazooka!',
                     beforeChange: function(){
                         console.log('beforeChange');
                     },
-                    parts: [{
+                    pages: [{
                         title: 'Part 1',
                         items: [0, 1, 2, 3, 4],
                         enterAnimation: false,
@@ -538,6 +608,36 @@ document.addEventListener('DOMContentLoaded', function (){
                         next: 'Submit'
                     }]
                 });
+                
+//                multiform = Lazy.multiform('#form-basic', {
+//                    items: 'li',
+//                    header: 'Bazooka!',
+//                    beforeChange: function(){
+//                        console.log('beforeChange');
+//                    },
+//                    parts: [{
+//                        title: 'Part 1',
+//                        items: [0, 1, 2, 3, 4],
+//                        enterAnimation: false,
+//                        exitAnimation: false,
+//                        animationDuration: 200,
+//                        styles: {},
+//                        headerStyles: {},
+//                        footerStyles: {},
+//                        next: 'Next',
+//                        previous: 'Previous',
+//                    },{
+//                        title: 'Part 2',
+//                        items: [5, 6, 7, 8, 9],
+//                    },{
+//                        title: 'Part 3',
+//                        items: [10, 11, 12, 13, 14],
+//                    },{
+//                        title: 'Part 4',
+//                        items: [15, 16],
+//                        next: 'Submit'
+//                    }]
+//                });
             });
             
             Lazy.don('click', '#btn-multiform-previous', () => {

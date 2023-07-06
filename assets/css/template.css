@@ -124,13 +124,13 @@
 }
 
 @keyframes collapse {
-    from {max-height: 400px;}
-    to {max-height: 0px;}
+    from {max-height: 400px; visibility: visible;}
+    to {max-height: 0px; visibility: hidden;}
 }
 
 @keyframes expand {
-    from {max-height: 0px;}
-    to {max-height: 400px;}
+    from {max-height: 0px; visibility: hidden;}
+    to {max-height: 400px; visibility: visible;}
 }
 
 @keyframes scale-to-large {
@@ -1395,6 +1395,25 @@ body > .tpl-loader {
     order: -1; /* place the selected item first */
 }
 
+/*
+.tpl-menu.stack,
+.tpl-menu.stack ul {
+    flex-wrap: wrap;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.tpl-menu.stack li {
+    width: 100%;
+    border: 1px solid blue;
+}
+
+.tpl-menu.stack li.collapsed {
+    width: 200%;
+    border: 1px solid yellow;
+}
+*/
+
 .tpl-menu.stack li.collapsed a,
 .tpl-menu.stack-up ul li.collapsed a,
 .tpl-menu.stack-down ul li.collapsed a,
@@ -1492,6 +1511,12 @@ body > .tpl-loader {
     animation: disappear-right .4s forwards;
 }
 
+.tpl-menu.single-up ul li.collapsed,
+.tpl-menu.single-down ul li.collapsed {
+    /*order: -1;*/
+    /*margin: 0 100%;*/
+}
+
 .tpl-menu.single-up ul li.collapsed > ul,
 .tpl-menu.single-down ul li.collapsed > ul {
     animation: appear-right .4s forwards;
@@ -1510,6 +1535,13 @@ body > .tpl-loader {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
 }
+
+.tpl-menu.single-up ul ul:focus::before,
+.tpl-menu.single-up ul ul:focus-visible::before,
+.tpl-menu.single-down ul ul:focus::before,
+.tpl-menu.single-down ul ul:focus-visible::before{
+    outline: 2px solid blue;
+} 
 
 .tpl-menu.stack-up > li:last-child > ul,
 .tpl-menu.stack-down > li:last-child > ul,
@@ -1572,3 +1604,4 @@ body > .tpl-loader {
 .tpl-carousel-navigations > button {
     margin: .2rem;
 }
+

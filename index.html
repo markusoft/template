@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="./plugins/fontello/css/animation.css">
         <!-- template -->
         <link rel="stylesheet" href="./assets/css/template.css">
-		
+
         <!-- template -->
         <script defer src="./assets/js/tpl-config.js"></script>
         <script defer src="./assets/js/tpl-mgelo.js"></script>
@@ -45,7 +45,7 @@
         <script defer src="./js/template-proto.js"></script>
 	
     </head>
-    <body>
+    <body class="">
         <!--[if IE]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
@@ -60,7 +60,6 @@
                     <li>
                         <div><a href="#custom-ui-elements"><span>UI</span></a></div>
                         <ul>
-                            <li><div><a href="#carousel"><span>Carousel</span></a></div></li>
                             <li><div><a href="#menus" class="active"><span>Menu</span></a></div></li>
                             <li><div><a href="#modals"><span>Modal</span></a></div></li>
                             <li><div><a href="#svg-maps"><span>SVG</span></a></div></li>
@@ -73,6 +72,7 @@
                             <li><div><a href="#blockers"><span>Block</span></a></div></li>
                             <li><div><a href="#forms"><span>Form</span></a></div></li>
                             <li><div><a href="#ssf"><span>SSF</span></a></div></li>
+                            <li><div><a href="#paginate"><span>Paginate</span></a></div></li>
                             <li><div><a href="#infinite-scroll"><span>IS</span></a></div></li>
                         </ul>
                     </li>
@@ -81,22 +81,22 @@
             
             <main>
                 
-                <section id="carousel">
-                    <h2><span>Carousels</span></h2>
+                <section id="paginate">
+                    <h2><span>Paginate</span></h2>
                     
-                    <section id="carousel-controls">
-                        <h3><span>Carousel Controls</span></h3>
-                        <button id="btn-carousel-play" class="tpl-btn"><span>play()</span></button>
-                        <button id="btn-carousel-stop" class="tpl-btn"><span>stop()</span></button>
-                        <button id="btn-carousel-next" class="tpl-btn"><span>next()</span></button>
-                        <button id="btn-carousel-previous" class="tpl-btn"><span>previous()</span></button>
-                        <button id="btn-carousel-goto" class="tpl-btn"><span>goto(3)</span></button>
-                        <button id="btn-carousel-destroy" class="tpl-btn"><span>destory()</span></button>
-                        <button id="btn-carousel-redraw" class="tpl-btn"><span>redraw()</span></button>
+                    <section id="paginate-controls">
+                        <h3><span>Pagination Controls</span></h3>
+                        <button id="btn-paginate-play" class="tpl-btn"><span>play()</span></button>
+                        <button id="btn-paginate-stop" class="tpl-btn"><span>stop()</span></button>
+                        <button id="btn-paginate-next" class="tpl-btn"><span>next()</span></button>
+                        <button id="btn-paginate-previous" class="tpl-btn"><span>previous()</span></button>
+                        <button id="btn-paginate-goto" class="tpl-btn"><span>goto(2)</span></button>
+                        <button id="btn-paginate-destroy" class="tpl-btn"><span>destory()</span></button>
+                        <button id="btn-paginate-redraw" class="tpl-btn"><span>redraw()</span></button>
                     </section>
                     
                     <section id="carousel-banners">
-                        <h3><span>Banners</span></h3>
+                        <h3><span>Carousel</span></h3>
                         
                         <div class="tpl-carousel">
                             <ul id="list-carousel">
@@ -122,6 +122,233 @@
                                 </li>
                             </ul>
                         </div>
+                    </section>
+
+                    <section id="paginate-list">
+                        <h3><span>Paginate List</span></h3>
+                        <ul id="list-paginate" class="tpl-list">
+                            <li>Benjamin Mitchell</li>
+                            <li>Ethan Reynolds</li>
+                            <li>Samuel Thompson</li>
+                            <li>Jackson Carter</li>
+                            <li>Daniel Hughes</li>
+                            <li>William Morgan</li>
+                            <li>Oliver Myers</li>
+                            <li>Henry Sullivan</li>
+                            <li>Alexander Foster</li>
+                            <li>Matthew Peterson</li>
+                            <li>Sophia Evans</li>
+                            <li>Emma Richardson</li>
+                            <li>Olivia Roberts</li>
+                            <li>Isabella Hayes</li>
+                            <li>Ava Davis</li>
+                            <li>Mia Nelson</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="paginate-table">
+                        <h3><span>Paginate Table</span></h3>
+                        <table id="table-paginate" class="tpl-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Occupation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Liam Johnson</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>Engineer</td>
+                                </tr>
+                                <tr>
+                                    <td>Ava Brown</td>
+                                    <td>39</td>
+                                    <td>Female</td>
+                                    <td>Doctor</td>
+                                </tr>
+                                <tr>
+                                    <td>Ethan Williams</td>
+                                    <td>27</td>
+                                    <td>Male</td>
+                                    <td>Teacher</td>
+                                </tr>
+                                <tr>
+                                    <td>Isabella Smith</td>
+                                    <td>32</td>
+                                    <td>Female</td>
+                                    <td>Lawyer</td>
+                                </tr>
+                                <tr>
+                                    <td>Olivia Davis</td>
+                                    <td>28</td>
+                                    <td>Female</td>
+                                    <td>Software Developer</td>
+                                </tr>
+                                <tr>
+                                    <td>Mason Martinez</td>
+                                    <td>41</td>
+                                    <td>Male</td>
+                                    <td>Architect</td>
+                                </tr>
+                                <tr>
+                                    <td>Sophia Thompson</td>
+                                    <td>36</td>
+                                    <td>Female</td>
+                                    <td>Marketing Manager</td>
+                                </tr>
+                                <tr>
+                                    <td>William Anderson</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>Financial Analyst</td>
+                                </tr>
+                                <tr>
+                                    <td>Emma Garcia</td>
+                                    <td>35</td>
+                                    <td>Female</td>
+                                    <td>Journalist</td>
+                                </tr>
+                                <tr>
+                                    <td>James Rodriguez</td>
+                                    <td>42</td>
+                                    <td>Male</td>
+                                    <td>Consultant</td>
+                                </tr>
+                                <tr>
+                                    <td>Sophia Thomas</td>
+                                    <td>29</td>
+                                    <td>Female</td>
+                                    <td>Graphic Designer</td>
+                                </tr>
+                                <tr>
+                                    <td>Benjamin Wilson</td>
+                                    <td>37</td>
+                                    <td>Male</td>
+                                    <td>Entrepreneur</td>
+                                </tr>
+                                <tr>
+                                    <td>Charlotte Clark</td>
+                                    <td>31</td>
+                                    <td>Female</td>
+                                    <td>Human Resources Manager</td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Turner</td>
+                                    <td>34</td>
+                                    <td>Male</td>
+                                    <td>Product Manager</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    <section id="paginate-grid">
+                        <h3><span>Paginate Grid</span></h3>
+                        
+                        <div id="paginate-gallery">
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                            <img src="./assets/img/placeholders/square.svg" alt="Banner" width="60" height="60" />
+                        </div>
+                    </section>
+                    
+                    <section id="paginate-form">
+                        <h3><span>Paginate Form</span></h3>
+                        <form id="form-paginate" class="tpl-form" method="post">
+                            <ul class="tpl-form-list">
+                                <!-- text -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label for="form-paginate-first-name">First Name</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <input type="text" id="form-paginate-first-name" name="first-name" class="tpl-input" placeholder="Sample Text" />
+                                    </div>
+                                </li>
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label for="form-paginate-last-name">Last Name</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <input type="text" id="form-paginate-last-name" name="last-name" class="tpl-input" placeholder="Sample Text" />
+                                    </div>
+                                </li>
+                                <!-- email -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label for="form-paginate-email">Email</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <input type="email" id="form-paginate-email" name="email" class="tpl-input" placeholder="layzeedev@gmail.com" />
+                                    </div>
+                                </li>
+                                <!-- password -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label for="form-paginate-password">Password</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <input type="password" id="form-paginate-password" name="password" class="tpl-input" placeholder="Password">
+                                    </div>
+                                </li>
+
+                                <!-- radio -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label>Gender</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <label><input type="radio" id="form-paginate-radio-1" name="gender" value="Male" /> <span>Male</span></label>
+                                        <label><input type="radio" id="form-paginate-radio-2" name="gender" value="Female" /> <span>Female</span></label>
+                                    </div>
+                                </li>
+                                
+                                <!-- select -->
+                                <li class="tpl-form-item">
+                                    <div class="tpl-form-label">
+                                        <label for="form-paginate-select">Nationality</label>
+                                    </div>
+                                    <div class="tpl-form-input">
+                                        <select id="form-paginate-select" name="select" class="tpl-input">
+                                            <option value="">- select one -</option>
+                                            <option value="American">American</option>
+                                            <option value="Filipino">Filipino</option>
+                                            <option value="Spanish">Spanish</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <!-- submit -->
+                                <li class="tpl-form-submit">
+                                    <input type="reset" class="tpl-btn" value="reset" />
+                                    <input type="submit" class="tpl-btn" value="submit" />
+                                </li>
+                            </ul>
+                        </form>
                     </section>
                     
                 </section>
