@@ -38,13 +38,13 @@ Template.getCssVar('--css-var');                        // retrieve css variable
 Template.draggable(dom);                                // make dom element draggable                   
 
 Template.sort(parent, children, sortAndOrder);          // sort elements                            // Template.sort('#tbody", 'tr', {'innerText': 'asc', 'data.id': 'desc'});
-Template.filter(parent, children, settings);            // filter elements                          // Template.filter('#tboyd', 'tr', {search: 'John', searchAttributes: ['innerText', 'data.first-name']}
+Template.filter(parent, settings);                      // filter elements                          // Template.filter('#tbody', {filter:'tr', search: 'John', searchAttributes: ['innerText', 'data.first-name']}
 
 Template.flattenJson(json, 'underscore');               // flatten JSON to single array with dot notation keys
 Template.formToJson(form);                              // convert form to json
 Template.jsonToForm(json, form);                        // populate form with json
 
-Template.fake(anything);                                    // generates fake content                   // Template.fake('email');
+Template.fake('anything');                                    // generates fake content                   // Template.fake('email');
 Template.faker();                                            // hold alt + shift then click form to populate
 
 // block and loader
@@ -165,7 +165,8 @@ Template.jsonToForm(json, form, 'snake', {  // populate form with json
 });
 
 // filter
-Template.filter('#tbody', 'tr', {
+Template.filter('#tbody', {
+    filter = 'tr',                          // filter elements
     caseSensitiveSearch = false,            // toggle search case sensitive
     caseSensitiveFilter = false,            // toggle filter case sensitive
     caseSensitiveLike = false,              // toggle like case sensitive
@@ -189,7 +190,7 @@ Template.filter('#tbody', 'tr', {
             'active',
             'pending'
         ],
-        'data.status': 'pending',
+        'data.status': 'pending'
     },
     likes = {},                             // Object finds in string LIKE
     andLikes = {                            // Object finds in string LIKE using AND
@@ -215,7 +216,7 @@ Template.filter('#tbody', 'tr', {
         },
         'data.last-name': function(attribute) {
             return attribute.startsWith('A');       // last name starts with "A"
-        },
+        }
     },
     orCustom: {                                     // Function custom function using OR
         'data.first-name': function(attribute) {    // attribute = attribute value
@@ -223,7 +224,7 @@ Template.filter('#tbody', 'tr', {
         },
         'data.last-name': function(attribute) {
             return attribute.startsWith('A');       // last name starts with "A"
-        },
+        }
     },
     custom: function(child) {                       // Function custom function
         const text = child.innerText;               // child will be the element being filtered
@@ -251,7 +252,7 @@ Template.block({
         color: 'white'
     }
 });
-Templage.unblock('#element-id');
+Template.unblock('#element-id');
 
 Template.loader({
     block: '#element-id',                           // id or dom element to block
@@ -270,16 +271,16 @@ Template.loader({
     spinnerStyles: {}                               // any css, will be applied to the spinner element
 });
 Template.loader().changeMessage('New Message').open();  // chaining
-Templage.unblock('#element-id');
+Template.unblock('#element-id');
 
 Template.blockOrLoader({
     block: '#some-id',                  // id or dom element to block
-    id = 'additional-id',               // add id to the blocking element
-    addClass = 'my-block',              // add class the blocking element
+    id: 'additional-id',               // add id to the blocking element
+    addClass:'my-block',              // add class the blocking element
     addClass: ['block-1', 'block-2'],   // array classes
     autoClose: 2000,                    // auto-close in milliseconds
-    enterAnimation = 'fadeIn',          // predefined|custom animation
-    exitAnimation = function(){         // predefined|custom animation
+    enterAnimation: 'fadeIn',          // predefined|custom animation
+    exitAnimation: function(){         // predefined|custom animation
         this.backdrop
             .animate({
                 opacity: [1, 0]
@@ -289,7 +290,7 @@ Template.blockOrLoader({
                 easing: 'ease-out'
             });
     },
-    animationDuration = 200,            // animation duration in milliseconds
+    animationDuration: 200,            // animation duration in milliseconds
     styles: {                           // any css, will be applied to blocking element
         color: 'white',
         backgroundColor: 'blue' 
@@ -490,7 +491,7 @@ Template.liveValidation('#form', {
         onError: function(input, errors) {
             input.style.border = '4px solid red';
         },
-        onNoValidation: function(elem) {
+        onNoValidation: function(input) {
             input.style.border = '';
     }
 });
@@ -518,59 +519,6 @@ Template.liveValidation('#form', {
 svgMap.getValues();             // retrieve selected path ids
 svgMap.getSelectedPaths();      // retrieve selected paths
 
-let carousel = Template.carousel('#div', {
-    slides: 'li',                           // child elements to be slides
-    display: 1,                             // number of slides shown per page
-    autoPlay: false,                        // auto next
-    autoPlayDuration: 5000,                 // auto next in milliseconds
-    buttons: true,                          // add previous and next buttons
-    navigation: true,                       // add navigation buttons
-    styles: {},                             // carousel styles
-    previousButtonStyles: {},               // previous button styles
-    nextButtonStyles: {},                   // next button styles
-    navigationStyles: {},                   // navigation styles
-    navigationButtonStyles: {},             // navigation buttons styles
-    nextEnterAnimation: function(slide) {
-        slide.animate({                     // nex slide enter animation
-            opacity: [0, 1], 
-            transform: ['translateX(100%)', 'translateX(0%)']}, 
-        {
-            duration: duration, 
-            iterations: 1, 
-            easing: 'ease-out'
-        });
-    },
-    nextExitAnimation: function(slide) {    // next slide exit animation
-        slide.animate({
-            opacity: [1, 0], 
-            transform: ['translateX(0%)', 'translateX(-100%)']}, 
-        {
-            duration: duration, 
-            iterations: 1, 
-            easing: 'ease-out'
-        }).onfinish = function(e) {
-            slide.style.display = 'none';
-            slide.style.position = '';
-        };
-    },
-    previousEnterAnimation: false,          // previous slide enter animation
-    previousExitAnimation: false,           // previous slide exit animation
-    animationDuration: 400,                 // animation duration
-    onFirst: function(carousel, slide){},   // callback for first slide
-    onNext: function(){},                   // callback for next operation
-    onPrevious: function(){},               // callback for previous operation
-    onGoto: function(){},                   // callback on goto operation
-    onChange: function(){},                 // callback on change operation
-    onLast: function(carousel, slide){      // callback for last slide
-        carousel.append('new slides');
-        this.redraw();
-    }
-});
-carousel.play(5000);                        // auto play carousel
-carousel.stop();                            // stop auto play
-carousel.redraw();                          // redraws buttons and navigations
-carousel.destroy();                         // destroys buttons and navigations
-
 Template.hierarchy(json, {
     root: 'ul',
     child: 'li',
@@ -594,33 +542,62 @@ Lazy.animate('#div', {
     }
 });
 
-Lazy.multiform('#form',
+Lazy.paginate('#form',
 {
-    items: `li`,
-    addClass: false,
-    header: true,
-    buttons: true,
-    navigations: true,
-    enterAnimation: false,
-    exitAnimation: false,
-    animationDuration: 200,
-    styles: {},
-    headerStyles: {},
-    previousButtonStyles: {},
-    nextButtonStyles: {},
-    navigationStyles: {},
-    navigationButtonStyles: {},
-    next: 'Next',
-    previous: 'Previous',
-    submit: 'Submit',
-    beforeNext: function(){},
-    onNext: function(){},
-    beforePrevious: function(){},
-    onPrevious: function(){},
-    beforeChange: function(){},
-    onChange: function(){},
-    onSubmit: function(){},
-    parts: [
+    items: 'li',                            // page items
+    addClass: false,                        // add class to pagination
+    itemsPerPage: 1,                        // items to be shown per page
+    loop: false,                            // loop pages
+    header: false,                          // header per page
+    autoPlay: false,                        // auto play pages
+    autoPlayDuration: 5000,                 // auto play interval
+    navigation: true,                       // navigation buttons
+    submit: false,                          // show last next button
+    styles: {},                             // additional pagination styles
+    headerStyles: {},                       // header styles
+    previousButtonStyles: {},               // previous button styles
+    nextButtonStyles: {},                   // next button styles
+    navigationStyles: {},                   // navigation styles
+    navigationButtonStyles: {},             // navigation button styles
+    enterAnimation: function(item){         // page enter animation
+        item.style.display = '';
+        item.animate({
+            opacity: [0, 1]
+        }, {
+            duration: 400,
+            iterations: 1,
+            direction:'normal',
+            easing: "ease-in-out"
+        });
+    },
+    exitAnimation: function(item){          // page exit animation
+        item.style.display = 'none';
+        item.animate({
+            opacity: [1, 0]
+        }, {
+            duration: 400,
+            iterations: 1,
+            direction:'normal',
+            easing: "ease-in-out"
+        });
+    },
+    nextEnterAnimation: false,              // next enter animation override enter animation
+    nextExitAnimation: false,               // next exit animation override exit animation
+    previousEnterAnimation: false,          // previous enter animation override enter animation
+    previousExitAnimation: false,           // previous exit animation override exit animation
+    animationDuration: 400,                 // animation durations
+    next: 'Next',                           // next button text
+    previous: 'Previous',                   // previous button text
+    onFirst: function(){},                  // callback for first page
+    beforeNext: function(){},               // callback before next
+    onNext: function(){},                   // callback on next
+    beforePrevious: function(){},           // callback before previous
+    onPrevious: function(){},               // callback on previous
+    beforeChange: function(){},             // callback before page change
+    onChange: function(){},                 // callback on page change
+    onScroll: function(){},                 // callback on scroll
+    onLast: function(){},                   // callback for last page
+    pages: [                                // control items per page
         {
             title: 'Part 1',
             items: [0,1,2,3,4],
@@ -649,7 +626,14 @@ Lazy.multiform('#form',
         {
             title: 'Part 3',
             items: [10,11,12,13,14],
-            next: 'Submit'
+            next: 'Submit',
+            onNext: function() {
+                console.log('Submit Form');
+            }
         }
     ]
-});
+})
+.play(5000)                         // auto play pages
+.stop()                             // stop auto play
+.redraw()                           // redraws buttons and navigations
+.destroy();                         // removes pagination

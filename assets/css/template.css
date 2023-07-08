@@ -1552,56 +1552,20 @@ body > .tpl-loader {
 
 /* 
  * -----------------------------------------------------------------------------
- *  Carousel
+ *  Paginate
  * -----------------------------------------------------------------------------
  */
 
-.tpl-carousel {
-    position: relative;
-    overflow: hidden;
+.tpl-page-header {
+    padding: 1rem;
 }
 
-.tpl-carousel-previous:first-child {
-    display: none;
+.tpl-page-previous,
+.tpl-page-navigations,
+.tpl-page-next {
+    display: inline-block;
 }
 
-.tpl-carousel-previous:first-child + * {
-    display: flex;
+.tpl-page-navigations .active {
+    background-color: var(--accent-1-500);
 }
-
-.tpl-carousel-previous,
-.tpl-carousel-navigations,
-.tpl-carousel-next {
-    position: absolute;
-    z-index: 3;
-}
-
-.tpl-carousel-previous:active,
-.tpl-carousel-next:active {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.tpl-carousel-previous {
-    top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
-}
-
-.tpl-carousel-next {
-    top: 50%;
-    right: 1rem;
-    transform: translateY(-50%);
-}
-
-.tpl-carousel-navigations {
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.tpl-carousel-navigations > button {
-    margin: .2rem;
-}
-

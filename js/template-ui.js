@@ -38,6 +38,14 @@ document.addEventListener('DOMContentLoaded', function (){
             Lazy.don('click', '#btn-clear-json-text', e => {
                 document.querySelector('#json-text').value = '';
             });
+            
+//            let par = document.querySelector('#scroll-me');
+//            par.scrollTo({
+//                top: document.querySelector('#gg').offsetLeft,
+//                left: document.querySelector('#gg').offsetLeft,
+//                behavior: 'smooth'
+//            });
+            
         };
         
         let initAnimations = function() {
@@ -54,34 +62,62 @@ document.addEventListener('DOMContentLoaded', function (){
         
         let initPaginations = function(){
             
-            
             let carousel = Lazy.paginate('#list-carousel', {
-               items: 'li',
-               loop: true
+                items: 'li',
+                loop: true,
+                previousEnterAnimation: function(item) {
+                    item.style.display = '';
+                    item.animate({opacity: [0, 1], transform: ['translateX(-100%)', 'translateX(0%)']}, {duration: 400, iterations: 1, easing: 'ease-out'});
+                },
+                previousExitAnimation: function(item) {
+                    item.style.display = 'none';
+ //                   item.animate({opacity: [1, 0], transform: ['translateX(0%)', 'translateX(100%)']}, {duration: 400, iterations: 1, easing: 'ease-out'});
+                },
+                nextEnterAnimation: function(item) {
+                    item.style.display = '';
+                    item.animate({opacity: [0, 1], transform: ['translateX(100%)', 'translateX(0%)']}, {duration: 400, iterations: 1, easing: 'ease-out'});
+                },
+                nexExitAnimation: function(item) {
+                    item.style.display = 'none';
+ //                   item.animate({opacity: [1, 0], transform: ['translateX(0%)', 'translateX(-100%)']}, {duration: 400, iterations: 1, easing: 'ease-out'});
+                }
+            });
+            
+            let vertical = Lazy.paginate('#vertical-pagination', {
+                items: 'div',
+                itemsPerPage: 3,
+                navigation: false,
+                enterAnimation: function(){},
+                exitAnimation: function(){}
+            });
+            
+            let horizontal = Lazy.paginate('#horizontal-pagination', {
+                items: 'div',
+                itemsPerPage: 3,
+                navigation: false,
+                enterAnimation: function(){},
+                exitAnimation: function(){}
             });
             
             let list = Lazy.paginate('#list-paginate', {
                items: 'li',
-               itemsPerPage: 5,
-               loop: true
+               itemsPerPage: 5
             });
             
             let table = Lazy.paginate('#table-paginate', {
-               items: ':scope > tbody > tr',
-               itemsPerPage: 5,
-               header: false,
-               loop: true
+                items: ':scope > tbody > tr',
+                itemsPerPage: 5
             });
             
             let grid = Lazy.paginate('#paginate-gallery', {
                items: 'img',
-               itemsPerPage: 9,
-               loop: true
+               itemsPerPage: 9
             });
             
             let multiform = Lazy.paginate('#form-paginate', {
                 items: 'li',
                 header: 'Multiform',
+                submit: true,
                 pages: [{
                     title: 'User Info',
                     items: [0, 1],
@@ -119,6 +155,8 @@ document.addEventListener('DOMContentLoaded', function (){
                         list.play(3000);
                         table.play(3000);
                         grid.play(3000);
+                        vertical.play(3000);
+                        horizontal.play(3000);
                         this.close();
                     }
                 }).open();
@@ -140,6 +178,8 @@ document.addEventListener('DOMContentLoaded', function (){
                         list.stop();
                         table.stop();
                         grid.stop();
+                        vertical.stop();
+                        horizontal.stop();
                         this.close();
                     }
                 }).open();
@@ -151,6 +191,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 list.next();
                 table.next();
                 grid.next();
+                vertical.next();
+                horizontal.next();
             });
             
             Lazy.don('click', '#btn-paginate-previous', () => {
@@ -159,6 +201,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 list.previous();
                 table.previous();
                 grid.previous();
+                vertical.previous();
+                horizontal.previous();
             });
             
             Lazy.don('click', '#btn-paginate-goto', () => {
@@ -167,6 +211,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 list.goto(2);
                 table.goto(2);
                 grid.goto(2);
+                vertical.goto(2);
+                horizontal.goto(2);
             });
             
             Lazy.don('click', '#btn-paginate-destroy', () => {
@@ -175,6 +221,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 list.destroy();
                 table.destroy();
                 grid.destroy();
+                vertical.destroy();
+                horizontal.destroy();
             });
             
             Lazy.don('click', '#btn-paginate-redraw', () => {
@@ -203,6 +251,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 list.redraw();
                 table.redraw();
                 grid.redraw();
+                vertical.redraw();
+                horizontal.redraw();
             });
         };
         
@@ -578,13 +628,13 @@ document.addEventListener('DOMContentLoaded', function (){
             });
             
             Lazy.don('click', '#btn-multiform', () => {
-                
+                if(multiform) {
+                    multiform.destroy();
+                }
                 multiform = Lazy.paginate('#form-basic', {
                     items: 'li',
-                    header: 'Bazooka!',
-                    beforeChange: function(){
-                        console.log('beforeChange');
-                    },
+                    header: true,
+                    submit: true,
                     pages: [{
                         title: 'Part 1',
                         items: [0, 1, 2, 3, 4],
@@ -598,46 +648,19 @@ document.addEventListener('DOMContentLoaded', function (){
                         previous: 'Previous',
                     },{
                         title: 'Part 2',
-                        items: [5, 6, 7, 8, 9],
+                        items: [5, 6, 7, 8, 9]
                     },{
                         title: 'Part 3',
-                        items: [10, 11, 12, 13, 14],
+                        items: [10, 11, 12, 13, 14]
                     },{
                         title: 'Part 4',
                         items: [15, 16],
-                        next: 'Submit'
+                        next: 'Submit',
+//                        onNext: function() {
+//                            console.log('submit');
+//                        }
                     }]
                 });
-                
-//                multiform = Lazy.multiform('#form-basic', {
-//                    items: 'li',
-//                    header: 'Bazooka!',
-//                    beforeChange: function(){
-//                        console.log('beforeChange');
-//                    },
-//                    parts: [{
-//                        title: 'Part 1',
-//                        items: [0, 1, 2, 3, 4],
-//                        enterAnimation: false,
-//                        exitAnimation: false,
-//                        animationDuration: 200,
-//                        styles: {},
-//                        headerStyles: {},
-//                        footerStyles: {},
-//                        next: 'Next',
-//                        previous: 'Previous',
-//                    },{
-//                        title: 'Part 2',
-//                        items: [5, 6, 7, 8, 9],
-//                    },{
-//                        title: 'Part 3',
-//                        items: [10, 11, 12, 13, 14],
-//                    },{
-//                        title: 'Part 4',
-//                        items: [15, 16],
-//                        next: 'Submit'
-//                    }]
-//                });
             });
             
             Lazy.don('click', '#btn-multiform-previous', () => {
@@ -699,9 +722,9 @@ document.addEventListener('DOMContentLoaded', function (){
                 }
                 this.timer = window.setTimeout(function() {
                     let search = e.target.value;
-                    Lazy.filter('#list-ssf', 'li', {search: search, searchAttributes: ['innerText']});
-                    Lazy.filter('#table-ssf > tbody', 'tr', {search: search, searchAttributes: ['innerText']});
-                    Lazy.filter('#articles-ssf', 'article', {search: search, searchAttributes: ['innerText']});
+                    Lazy.filter('#list-ssf', {filter:'li', search: search, searchAttributes: ['innerText']});
+                    Lazy.filter('#table-ssf > tbody', {filter:'tr', search: search, searchAttributes: ['innerText']});
+                    Lazy.filter('#articles-ssf', {filter:'article', search: search, searchAttributes: ['innerText']});
                 }, 500);
             });
             
