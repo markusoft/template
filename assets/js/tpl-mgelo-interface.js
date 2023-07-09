@@ -588,15 +588,15 @@ Lazy.paginate('#form',
     animationDuration: 400,                 // animation durations
     next: 'Next',                           // next button text
     previous: 'Previous',                   // previous button text
-    onFirst: function(){},                  // callback for first page
-    beforeNext: function(){},               // callback before next
-    onNext: function(){},                   // callback on next
-    beforePrevious: function(){},           // callback before previous
-    onPrevious: function(){},               // callback on previous
-    beforeChange: function(){},             // callback before page change
-    onChange: function(){},                 // callback on page change
-    onScroll: function(){},                 // callback on scroll
-    onLast: function(){},                   // callback for last page
+    onFirst: function(event, data){},                  // callback for first page
+    beforeNext: function(event, data){},               // callback before next
+    onNext: function(event, data){},                   // callback on next
+    beforePrevious: function(event, data){},           // callback before previous
+    onPrevious: function(event, data){},               // callback on previous
+    beforeChange: function(event, data){},             // callback before page change
+    onChange: function(event, data){},                 // callback on page change
+    onScroll: function(event, data){},                 // callback on scroll
+    onLast: function(event, data){},                   // callback for last page
     pages: [                                // control items per page
         {
             title: 'Part 1',
@@ -612,12 +612,12 @@ Lazy.paginate('#form',
             navigationButtonStyles:{},
             next: 'Next',
             previous: 'Previous',
-            beforeNext: function (){},
-            onNext: function (){},
-            beforePrevious: function (){},
-            onPrevious: function (){},
-            onShow: function (){},
-            onHide: function (){}
+            beforeNext: function (event, data){},
+            onNext: function (event, data){},
+            beforePrevious: function (event, data){},
+            onPrevious: function (event, data){},
+            onShow: function (event, data){},
+            onHide: function (event, data){}
         },
         {
             title: 'Part 2',
@@ -627,7 +627,7 @@ Lazy.paginate('#form',
             title: 'Part 3',
             items: [10,11,12,13,14],
             next: 'Submit',
-            onNext: function() {
+            onNext: function(event, data) {
                 console.log('Submit Form');
             }
         }
