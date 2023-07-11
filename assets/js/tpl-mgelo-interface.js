@@ -393,7 +393,6 @@ Template.dialogOrModalOrOverlay({           // dialog|modal|overlay complete set
     },
     onOpen = function(){
         // called when modal opens
-        // return false to cancel opening modal
     },
     beforeClose = function(){
         // called before modal closes
@@ -401,7 +400,6 @@ Template.dialogOrModalOrOverlay({           // dialog|modal|overlay complete set
     },
     onClose = function(){
         // called when modal closes
-        // return false to cancel closing modal
     },
     onOk  = function(){
         // called when modal-ok is clicked
