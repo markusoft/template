@@ -5,11 +5,10 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 
 | Function | Usage | Output | Description |
 |----------|-------|--------|-------------|
-| Constants||||
-| BASE_URL | BASE_URL | http://your-domain.com | Retrieves base URL of your website |
-|-------------|-----------|-----|
+| Constants|
+| BASE_URL | BASE_URL | http://your-domain.com | Base URL of your website |
 | Number Helpers ||||
-| Number.pad(size) | 3.pad(3) | 0003 | Adds zero padding to numbers |
+| Number.pad(size) | Number(3).pad(3) | 003 | Adds zero padding to numbers |
 | String Helpers ||||
 | String.trim() | ' Sample Text '.trim() | Sample Text | Removes trailing and leading white spaces |
 | String.trimAll() | ' Sample Text '.trimAll() | SampleText | Removes all white spaces  |
@@ -45,7 +44,7 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 | Template.sort(parent, children, sortAndOrder) | Template.sort('#tbody", 'tr', {'innerText': 'asc'}) | ascending table rows | Sort table rows |
 | Template.sort(parent, children, sortAndOrder) | Template.sort('#ul", 'li', {'innerText': 'desc'}) | descending list items | Sort list elements |
 | JSON and Forms ||||
-| Template.flattenJson(json, 'underscore') | {'a': {'b': 'c'}} | {'a.b': 'c'} | Flatten JSON to single array with dot notation keys |
+| Template.flattenJson(json) | Template.flattenJson({'a': {'b': 'c'}}) | {'a.b': 'c'} | Flatten JSON to single array with dot notation keys |
 | Template.formToJson(form) | Template.formToJson('#form') | {'form': 'value'} | Convert form values to JSON |
 | Template.jsonToForm(json, form) | Template.jsonToForm(json, '#form') | populated form | Populate form with json values |
 | Form Validations ||||
