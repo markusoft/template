@@ -3,8 +3,8 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 
 # Easy Peasy Summary
 
-| Function | Usage | Output | Description 
-|-------------|-----------|-----|
+| Function | Usage | Output | Description |
+|----------|-------|--------|-------------|
 | Constants||||
 | BASE_URL | BASE_URL | http://your-domain.com | Retrieves base URL of your website |
 |-------------|-----------|-----|
