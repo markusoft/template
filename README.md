@@ -5,7 +5,7 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 
 | Function | Usage | Output | Description |
 |----------|-------|--------|-------------|
-| Constants|
+| Constants||||
 | BASE_URL | BASE_URL | http://your-domain.com | Base URL of your website |
 | Number Helpers ||||
 | Number.pad(size) | Number(3).pad(3) | 003 | Adds zero padding to numbers |
@@ -53,7 +53,7 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 | Template.liveValidation('#form', rules, callbacks) | Template.liveValidation('#form', rules, {onError: function()}) |  | Live form validation |
 | Template.getValidationErrors() | Template.getValidationErrors() | {username: {'email': 'Must be valid email'}} | Retrieve validation errors |
 | Fakers ||||
-| Template.fake('anything') | Template.fake('email') | markangelo.gmail.com | Generate fake email |
+| Template.fake('anything') | Template.fake('email') | markangelo@gmail.com | Generate fake email |
 | Template.fake('anything') | Template.fake('lorem') | lorem ipsum dolor | Generate lorem ipsum text |
 | Template.faker() | Template.faker() | Populate a form with fake contents | Hold alt + shift and click |
 | Blockers and Loaders ||||
@@ -64,6 +64,8 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 | Template.dialog(settings) | Template.dialog({'message': 'Are you sure?'}).open() |  | Open confirm dialog modal |
 | Template.overlay('#id', settings) | Template.overlay('#login').open() |  | Overlays a dom element |
 | Template.modal(settings) | Template.modal({'content': 'Any Content'}).open() |  | Opens a custom modal |
+| Lazy Loading ||||
+| Template.lazyLoad(img) | Template.lazyLoad('.tpl-img') |  | Only loads images when shown also known as lazy loading  |
 | Reveal ||||
 | Template.reveal(id, settings) | Template.reveal('#id', {animation: 'fade-in'}) |  | Animate object on reveal |
 | Template.childrenReveal(id, settings) | Template.childrenReveal('#ul") |  | Animate children on reveal |
@@ -72,9 +74,17 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 | SVG Map ||||
 | Template.svgMap(selector, settings) | Template.svgMap('#svg', {max: 1}) |  | Creates an SVG map |
 
+# Table of Contents
+- [What is Template](#what-is-template)
+- [Easy Peasy Summary](#easy-peasy-summary)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Constants](#constants)
+
 # Installation
+Download the library and add it to your hmtl file
 
-
+	<script src="template.js"></script>
 
 # Configuration
 
@@ -130,7 +140,27 @@ Template is a collection of useful UI/UX and helper functions accumulated throug
 		}
 	};
 	
+| Config | Value |  Description |
+|--------|-------|--------------|
+| license |  | A license is subjected for a single domain |
+| name | Lazy | You can use your company name as the template name |
+| prefix | tpl- | Prefix use for classes |
+| animations | animations: {fadeIn: {opacity: [0, 1]}} | Built-in animations |
+| block | {'content': 'Loading'} | Default block configurations |
+| loader | {'message': 'Loading' } | Default loader configurations |
+| dialog | {'message': 'Are you sure?'} | Default dialog configurations |
+| modal | {'content': 'Modal Content'} | Default modal configurations |
+| overlay | {'closeButton': false} | Default overlay configurations |
+| modalHeaders | {default: '<div>Modal Header</div>'} | Custom modal headers |
+| modalFooters | {custom: function(opt){`<button class="${opt.prefix}modal-ok">Ok</button>`}} | Custom modal footers |
+| paginate | {itemsPerPage: 5} | Default pagination configurations |
+| validationRules | {max: function(val, max){ return val.length <= max; }} | Validation rules |
+| validationMessages | {max: function(val, max){ return `${val} should not exceed ${max} characters`; }} | Validation messages |
+| fake | {mobile: function(){ return Math.floor(Math.random() * 1000000000); }} | Fake generators |
+| fakers | {firstNames: ['Mark', 'Angelo']} | Fake values |
+	
 # Constants
+The base URL is the starting point or root of a website's address
 
 	BASE_URL
 	
@@ -140,3 +170,305 @@ Add zero padding to a number
 	Number.pad(size);
 	
 # String Helpers
+
+# On
+Add event listener to a dom element
+	
+	Template.on('click', '#my-button', function(event){
+		event.preventDefault();
+	});
+	
+# Don
+Add event listener to the document
+	
+	// add custom event
+	Template.don('custom-event', '.new-buttons', function(e){
+		console.log(e.currentTarget);
+	});
+	
+	// catch custom event
+	Template.don('custom-event', function(e){                           
+		console.log(e.target);
+	});
+
+# Lazy Loading
+Load images only when shown also known as lazy loading
+
+	<img class="tpl-lazy" src="placeholder.webp" data-src="actual-image.webp" alt="lazy-load-image />
+
+	Template.lazyLoad('.tpl-lazy',{                                     // lazy load images
+		beforeLoad: function(){                                         // callback before loading
+			return false;                                               // return false to cancel loading
+		},
+		onLoad: function(){},                                           // callback when loading
+		onFinishLoading: function(){}                                   // callback after loading
+	});
+	
+| Config | Value |  Description |
+|--------|-------|--------------|
+| beforeLoad | function(){ return false; } | Callback before loading, return false to cancel lazy loading |
+| onLoad | function(){} | Callback on load |
+| onFinishLoading | function(){} | Callback on loading finish |
+
+# Infinite Scroll
+Load items indefinitely
+
+	Template.infiniteScroll(selector, settings);
+
+	Template.infiniteScroll('ul', {
+		children: 'li',
+		observerSettings: {},
+		onTop: function(ul){},
+		onBottom: function(ul){
+			ul.append(li);
+		}
+	});
+	
+	Template.infiniteScroll('tbody', {
+		children: 'tr',
+		observerSettings: {},
+		onTop: function(ul){},
+		onBottom: function(tbody){
+			tbody.append(tr);
+		}
+	});
+	
+| Config | Value |  Description |
+|--------|-------|--------------|
+| selector | #id | Target element |
+| children | li | Scrollable child elements |
+| observerSettings | {rootMargin: '10px', threshold: [0.25, 0.5, 0.75]} | IntersectionObserver additional settings |
+| onTop | function(){} | Callback when top child is shown |
+| onBottom | function(target){ target.append(newChild) } | Callback when bottom child is shown |
+
+# Reveal
+Animate a dom element when revealed
+
+	Template.reveal(selector, settings);
+
+	Template.reveal('#section', {
+		animation: function(section) {
+			section.animate({
+				opacity: [0, 1],
+				transform: ['translateY(2rem)', 'translateY(0rem)']
+			}, { 
+				duration: 1000,
+				iterations: 1,
+				easing: "ease-out"
+			});
+		},
+		beforeShow: function(section) {               
+			console.log(section);
+		},
+		onShow: function(section){
+			console.log(section);
+		},
+		onHide: function(section){
+			console.log(section);
+		}
+	});
+	
+| Config | Value |  Description |
+|--------|-------|--------------|
+| selector | #id | Target element |
+| animation | fade-in | Custom animation |
+| beforeShow | function(target){} | Callback before the target shows |
+| onShow | function(target){} | Callback when the target shows |
+| onHide | function(target){} | Callback when the target is hidden |
+
+# Children Reveal
+Animate the children of a dom element when revealed
+
+	Template.childrenReveal(selector, settings);
+
+	Template.childrenReveal('#section', {
+		children: 'li',
+		duration: 100,
+		animation: function(section) {
+			section.animate({
+				opacity: [0, 1],
+				transform: ['translateY(2rem)', 'translateY(0rem)']
+			}, { 
+				duration: 1000,
+				iterations: 1,
+				easing: "ease-out"
+			});
+		},
+		beforeShow: function(parent) {},
+		onShow: function(parent){},
+		onChildShow: function(child) {
+			console.log(child);
+		},
+		onHide: function(parent){}
+	});
+
+| Config | Value |  Description |
+|--------|-------|--------------|
+| selector | #id | Target element |
+| children | li | Children selector |
+| animation | fade-in | Custom animation |
+| beforeShow | function(target){} | Callback before the target shows |
+| onShow | function(target){} | Callback when the target shows |
+| onChildShow | function(child){} | Callback when a child is shown |
+| onHide | function(target){} | Callback when the target is hidden |
+
+# Form to JSON
+Saves form values to a json file
+
+	Template.formToJson(selector, case, mutator);
+
+	Template.formToJson('#form', 'camel', {
+		firstName: function(value) {
+			return value.capitalizeAll();
+		}
+	});
+
+| Config | Value |  Description |
+|--------|-------|--------------|
+| selector | #id | Target element |
+| case | dash,underscore,camel,pascal | Form name cases |
+| mutator | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before retrieving |
+
+# JSON to Form
+Populate a form with json values
+
+	Template.jsonToForm(json, selector, case, mutator);
+
+	Template.jsonToForm(json, form, 'snake', {
+		phone: function(value) {
+			return Template.phoneFormat(value);
+		}
+	});
+
+| Config | Value |  Description |
+|--------|-------|--------------|
+| json | {username: 'Username'} | JSON object |
+| selector | #form | Target form |
+| case | dash,underscore,camel,pascal | Form name cases |
+| mutator | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before inserting |
+
+# Search and Filter
+Search and Filter any dom elements
+
+	Template.filter(selector, settings);
+
+	Template.filter('#tbody', {
+		filter = 'tr',                          // filter elements
+		caseSensitiveSearch = false,            // toggle search case sensitive
+		caseSensitiveFilter = false,            // toggle filter case sensitive
+		caseSensitiveLike = false,              // toggle like case sensitive
+		search = false,                         // String|Array search term
+		andSearch = 'Mark',                     // String|Array search term using AND
+		orSearch = [                            // String|Array search term using OR
+			'Angelo',                           // first name OR last name LIKE "Mark" OR "Angelo" OR "Anthony"
+			'Anthony'
+		],
+		searchAttributes = [                    // String|Array attributes to be searched
+			'innerText',                        // Search innerText
+			'data.first-name',                  // Search first name
+			'data.last-name'                    // Search last name
+		],
+		filters = {},                           // Object filters
+		andFilters = {                          // Object filters using AND
+			'data.status': 'active'             // String|Array key = attribute, value = filter value
+		},
+		orFilters = {                           // Object filters using OR
+			'data.status': [                    // String|Array key = attribute, value = filter value
+				'active',
+				'pending'
+			],
+			'data.status': 'pending'
+		},
+		likes = {},                             // Object finds in string LIKE
+		andLikes = {                            // Object finds in string LIKE using AND
+			'data.first-name': 'ar',            // String|Array LIKE filters
+			'data.last-name': 'ma'              // first name LIKE "ar" and last name LIKE "ma"
+		},
+		orLikes = {                             // Object finds in string LIKE using OR
+			'data.first-name': ['ar', 'ma'],    // String|Array LIKE filters
+			'data.last-name': 'an'              // first name LIKE "ar" OR "ma", OR last name LIKE "an"                      
+		},
+		matches = {},                           // Object match string regex
+		andMatches = {                          // Object match string regex using AND
+			'data.first-name': /^M[\w]+/gi,     // first name starts with "M" case insensitive AND
+			'data.last-name': /^A[\w]+/gi       // last name starts with "A" case insensitive
+		},
+		orMatches = {                           // Object match string regex using AND
+			'data.first-name': /^M[\w]+/gi,     // first name starts with "M" case insensitive OR
+			'data.last-name': /^A[\w]+/gi       // last name starts with "A" case insensitive
+		},
+		andCustom = {                                   // Function custom function using AND
+			'data.first-name': function(attribute) {    // attribute = attribute value
+				return attribute.startsWith('M');       // first name starts with "M" AND
+			},
+			'data.last-name': function(attribute) {
+				return attribute.startsWith('A');       // last name starts with "A"
+			}
+		},
+		orCustom: {                                     // Function custom function using OR
+			'data.first-name': function(attribute) {    // attribute = attribute value
+				return attribute.startsWith('M');       // first name starts with "M" OR
+			},
+			'data.last-name': function(attribute) {
+				return attribute.startsWith('A');       // last name starts with "A"
+			}
+		},
+		custom: function(child) {                       // Function custom function
+			const text = child.innerText;               // child will be the element being filtered
+			return text === 'Your Text';                // return true = show element, false = hide element
+		}
+	});
+
+
+| Config | Value |  Description |
+|--------|-------|--------------|
+| selector | #ul | Target element |
+| filter | li | Child elements to be filtered |
+| caseSensitiveSearch | false | Case sensitive search |
+| caseSensitiveFilter | false | Case sensitive filter |
+| caseSensitiveLike | false | Case sensitive like |
+| search | string or array | Search strings |
+| andSearch | string or array | And search strings |
+| orSearch | string or array | Or search strings |
+| searchAttributes | [innerText', 'data.first-name'] | Child attributes to be searched |
+| filters | {data.status: 'active'} | Object filters key = attribute, value = filter value|
+| andFilters | {data.status: 'active'} | And filters |
+| orFilters | {data.status: 'active'} | Or filters |
+| likes | { 'data.first-name': 'ar'} | Object finds in string LIKE |
+| andLikes | 'data.first-name': 'ar'} | And likes |
+| orLikes | 'data.first-name': 'ar'} | Or likes |
+| matches | {'data.first-name': /^M[\w]+/gi} | Regex match |
+| andMatches | {'data.first-name': /^M[\w]+/gi} | And matches |
+| orMatches | {'data.first-name': /^M[\w]+/gi} | Or matches |
+| andCustom | {'data.first-name': function(attribute) {return attribute.startsWith('M');} | And custom |
+| orCustom | {'data.first-name': function(attribute) {return attribute.startsWith('M');} | Or custom |
+| custom | function(child) { const text = child.innerText; return text === 'Your Text';} | Create your own filter return true = show element, false = hide element |
+
+# Block
+Block the UI
+
+	Template.block();							// blocks the document body
+	Template.block(settings);					
+	
+	Template.block({
+		block: '#element-id',                   // id or dom element to block
+		content: 'Text/HTML',                   // additional content
+		addClass: {                             // individual classes
+			block: 'my-blocker',
+			content: ['my-content', 'nice-content']
+		},
+		styles: {                               // any css, will be applied to blocking element
+			backgroundColor: 'blue'
+		},
+		contentStyles: {                        // any css, will be applied to the content element
+			color: 'white'
+		}
+	});
+	
+| Config | Value |  Description |
+|--------|-------|--------------|
+| block | #id | Block a target element |
+| content | 'Loading' | Add content to block |
+| addClass | {block: 'my-blocker'} | Add classes to the blocker |
+| styles | {backgroundColor: 'blue'} | Add styles to the blocker |
+| contentStyles | {color: white} | Add styles to the content |
