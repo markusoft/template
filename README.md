@@ -6,14 +6,12 @@
 [Constants](#constants)
 | Constant           | Output                 | Description              |
 |--------------------|------------------------|--------------------------|
-| BASE_URL           | http://your-domain.com | Base URL of your website |
-|
+| **BASE_URL**           | http://your-domain.com | Base URL of your website |
 
 [Number Helpers](#number-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Number.pad(size)](#pad)        | Number(3).pad(3)                                            | 003             | Adds zero padding to numbers                      |
-|
 
 [String Helpers](#string-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
@@ -32,7 +30,6 @@
 | [String.toPascalCase()](#to-pascal)           | 'sample text'.toPascalCase()                                | SampleText      | Converts string to Pascal case                    |
 | [String.toCamelCase()](#to-camel-case)            | 'sample text'.toCamelCase()                                 | sampleText      | Converts string to camel case                     |
 | [String.changeCase('camel')](#change-case)      | 'Sample Text'.changeCase('dash')                            | sample-text     | Converts string to specified case                 |
-|
 
 [Array Helpers](#array-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
@@ -40,109 +37,109 @@
 | [Array.random()](#random)                  | ['a','b','c','d','e'].random()                              | 'a'             | Retrieves a random element from an array          |
 | [Array.random(items)](#random)             | ['a','b','c','d','e'].random(2)                             | ['b','e']       | Retrieves random elements from an array           |
 | [Array.joinLast(', ', 'and')](#join-last)     | ['a','b','c'].joinLast(', ', 'and')                         | a, b and c      | Joins array with a custom last conjunction        |
-|
 
 [Local Storage](#local-storage)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Storage.setObject('key', value)](#set-object) | Storage.setObject('key', json)                              |                 | Stores a JSON object in local storage             |
 | [Storage.getObject('key')](#get-object)        | Storage.getObject('key')                                    | {'json': 'object'} | Retrieves a JSON object from local storage     |
-|
 
 [Getters](#getters)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.getConfig('item')](#get-config)      | Template.getConfig('prefix')                                | -tpl            | Retrieves a configuration item                    |
 | [Template.getCssVar('--css-var')](#get-css-var) | Template.getCssVar('--font-size')                           | 14px            | Retrieves a CSS variable                          |
-|
 
-[Event Listeners](#event-listeners)
+[Event Handlers](#event-handlers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.on(type, selector, callback, options)](#on)               |                                                             |                 | Adds an event listener to an element              |
 | [Template.don(type, selector, callback, options)](#don)              |                                                             |                 | Adds an event listener to the document            |
 | [Template.addEventListener(type, selector, callback, options)](#add-event-listener) |                                                             |                 | Adds an event listener                            |
-|
 
-## Search, Sort and Filter
+[Animate](#animate)
+| Constant           | Output                 | Description              |
+|--------------------|------------------------|--------------------------|
+| [Template.animate(selector, settings)](#animate) | Template.animate('#id', {animation: 'tada'}) | Animate elements |
+
+[Sort](#sort)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.filter(parent, settings)                             | Template.filter('#tbody', {filter:'tr', search: 'Mark', searchAttributes: ['innerText']} | searched rows | Searches table rows                              |
-| Template.filter(parent, settings)                             | Template.filter('#ul', {filter:'li', search: 'Mark', searchAttributes: ['innerText']} | searched lists | Searches list items                              |
-| Template.sort(parent, children, sortAndOrder)                 | Template.sort('#tbody', 'tr', {'innerText': 'asc'})        | ascending table rows | Sorts table rows                               |
-| Template.sort(parent, children, sortAndOrder)                 | Template.sort('#ul', 'li', {'innerText': 'desc'})           | descending list items | Sorts list elements                              |
-|
+| [Template.sort(parent, children, sortAndOrder)](#sort)                 | Template.sort('#tbody', 'tr', {'innerText': 'asc'})        | ascending table rows | Sorts table rows                               |
+| [Template.sort(parent, children, sortAndOrder)](#sort)                 | Template.sort('#ul', 'li', {'innerText': 'desc'})           | descending list items | Sorts list elements                              |
 
-## JSON and Forms
+[Search and Filter](#search-and-filter)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.flattenJson(json)         | Template.flattenJson({'a': {'b': 'c'}})                               | {'a.b': 'c'}               | Flatten JSON to a single array with dot notation keys |
-| Template.formToJson(form)          | Template.formToJson('#form')                                           | {'form': 'value'}          | Convert form values to JSON                          |
-| Template.jsonToForm(json, form)    | Template.jsonToForm(json, '#form')                                     | Populated form             | Populate form with JSON values                       |
-| Template.formToSerialized(form)          | Template.formToSerialized('#form')                                           | 'form=value'         | Convert form values to serialized text                          |
-| Template.serializedToForm(json, form)    | Template.serializedToForm(serialized, '#form')                                     | Populated form             | Populate form with serialized text                       |
-| <strong>Form Validations</strong>  ||||
-| Template.valid(value, validations) | Template.valid(3, 'integer')                                           | true                       | Check if a value is valid                            |
-| Template.validate('#form', rules)  | Template.validate('#form', {username: {'rules': ['required', 'email']}}) | true                       | Form validation                                     |
-| Template.liveValidation('#form', rules, callbacks) | Template.liveValidation('#form', rules, {onError: function()}) |                            | Live form validation                                |
-| Template.getValidationErrors()     | Template.getValidationErrors()                                         | {username: {'email': 'Must be a valid email'}} | Retrieve validation errors                           |
-|
+| [Template.filter(parent, settings)](#search-and-filter)          | Template.filter('#tbody', {filter:'tr', search: 'Mark', searchAttributes: ['innerText']} | searched rows | Searches table rows                              |
+| [Template.filter(parent, settings)](#search-and-filter)          | Template.filter('#ul', {filter:'li', search: 'Mark', searchAttributes: ['innerText']} | searched lists | Searches list items                              |
 
-## Fakers
+[JSON and Forms](#json-and-forms)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.fake('anything')          | Template.fake('email')                                                 | markangelo@gmail.com       | Generate a fake email                                |
-| Template.fake('anything')          | Template.fake('lorem')                                                 | lorem ipsum dolor          | Generate lorem ipsum text                            |
-| Template.faker()                   | Template.faker()                                                        | Populate a form with fake contents | Hold Alt + Shift and click              |
+| [Template.flattenJson(json)](#flatten-json)         | Template.flattenJson({'a': {'b': 'c'}})                               | {'a.b': 'c'}               | Flatten JSON to a single layer with dot notation keys |
+| [Template.unflattenJson(json)](#unflatten-json)         | Template.flattenJson({'a.b': 'c'})                               | {'a': {'b': 'c'}}               | Unflatten JSON from single to multiple layers |
+| [Template.formToJson(form)](#form-to-json)           | Template.formToJson('#form')                                           | {'form': 'value'}          | Convert form values to JSON                          |
+| [Template.jsonToForm(json, form)](#json-to-form)     | Template.jsonToForm(json, '#form')                                     | Populated form             | Populate form with JSON values                       |
+| [Template.formToSerialized(form)](#form-to-serialized)           | Template.formToSerialized('#form')                                           | 'form=value'         | Convert form values to serialized text                          |
+| [Template.serializedToForm(json, form)](#serialized-to-form)     | Template.serializedToForm(serialized, '#form')                                     | Populated form             | Populate form with serialized text                       |
+| [<strong>Form Validations</strong>](#form-validations)   ||||
+| [Template.valid(value, validations)](#valid)  | Template.valid(3, 'integer')                                           | true                       | Check if a value is valid                            |
+| [Template.validate('#form', rules)](#validate)   | Template.validate('#form', {username: {'rules': ['required', 'email']}}) | true                       | Form validation                                     |
+| [Template.liveValidation('#form', rules, callbacks)](#live-validation)  | Template.liveValidation('#form', rules, {onError: function()}) |                            | Live form validation                                |
+| [Template.getValidationErrors()](#get-validation-errors)      | Template.getValidationErrors()                                         | {username: {'email': 'Must be a valid email'}} | Retrieve validation errors                           |
 
-## Blockers
+[Fakers](#fakers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Blockers and Loaders               ||||
-| Template.block(settings)           | Template.block()                                                        |                            | Blocks the UI                                       |
-| Template.loader(settings)          | Template.loader()                                                       |                            | Blocks the UI with a loader                          |
-| Template.unblock('#id')            | Template.unblock()                                                      |                            | Unblocks the UI                                     |
+| [Template.fake('anything')](#faker)          | Template.fake('email')                                                 | markangelo@gmail.com       | Generate a fake email                                |
+| [Template.fake('anything')](#faker)          | Template.fake('lorem')                                                 | lorem ipsum dolor          | Generate lorem ipsum text                            |
+| [Template.faker()](#faker)                   | Template.faker()                                                        | Populate a form with fake contents | Hold Alt + Shift and click              |
 
-## Modals and Dialogs
+[Blockers](#blockers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.dialog(settings)          | Template.dialog({'message': 'Are you sure?'}).open()                   |                            | Open a confirm dialog modal                          |
-| Template.overlay('#id', settings)  | Template.overlay('#login').open()                                       |                            | Overlay a DOM element                                |
-| Template.modal(settings)           | Template.modal({'content': 'Any Content'}).open()                       |                            | Open a custom modal                                  |
+| [Template.block(settings)](#block)           | Template.block()                                                        |                            | Blocks the UI                                       |
+| [Template.loader(settings)](#loader)          | Template.loader()                                                       |                            | Blocks the UI with a loader                          |
+| [Template.unblock('#id')](#unblock)            | Template.unblock()                                                      |                            | Unblocks the UI                                     |
 
-## Lazy Loading
+[Modals and Dialogs](#modals-and-dialogs)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.lazyLoad(img)          | Template.lazyLoad('.tpl-img')                               |                 | Only loads images when shown, also known as Template loading |
-|
+| [Template.dialog(settings)](#dialog)          | Template.dialog({'message': 'Are you sure?'}).open()                   |                            | Open a confirm dialog modal                          |
+| [Template.overlay('#id', settings)](#overlay)  | Template.overlay('#login').open()                                       |                            | Overlay a DOM element                                |
+| [Template.modal(settings)](#modal)           | Template.modal({'content': 'Any Content'}).open()                       |                            | Open a custom modal                                  |
 
-## Reveal
+[Lazy Loading](#lazy-loading)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.reveal(id, settings)      | Template.reveal('#id', {animation: 'fade-in'})                          |                            | Animate object on reveal                             |
-| Template.childrenReveal(id, settings) | Template.childrenReveal('#ul')                                       |                            | Animate children on reveal                           |
+| [Template.lazyLoad(img)](#lazy-load)          | Template.lazyLoad('.tpl-img')                               |                 | Only loads images when shown, also known as Template loading |
+
+[Reveals](#reveals)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Template.reveal(id, settings)](#reveal)      | Template.reveal('#id', {animation: 'fade-in'})                          |                            | Animate object on reveal                             |
+| [Template.childrenReveal(id, settings)](#reveal) | Template.childrenReveal('#ul')                                       |                            | Animate children on reveal                           |
 
 [Infinite Scroll](#infinite-scroll)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.infiniteScroll(selector, settings) | Template.infiniteScroll('#ul', {onBottom: function()})          |                            | Add items when the bottom is reached for infinite scroll |
+| [Template.infiniteScroll(selector, settings)](#infinite-scroll) | Template.infiniteScroll('#ul', {onBottom: function()})          |                            | Add items when the bottom is reached for infinite scroll |
+
+[Paginate](#paginate)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Template.paginate(selector, settings)](#paginate) | Template.paginate('#ul', {items: 'li', itemsPerPage: 20})  | | Paginate DOM element |
+
 
 [SVG Map](#svg-map)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Template.svgMap(selector, settings) | Template.svgMap('#svg', {max: 1})  | | Add events to SVG Map |
-
+| [Template.svgMap(selector, settings)](#svg-map) | Template.svgMap('#svg', {max: 1})  | | Add events to SVG Map |
 
 # Table of Contents
 - [What is Template](#what-is-template)
 - [Easy Peasy Summary](#easy-peasy-summary)
-	- [Search, Sort and Filter](#search-sort-and-filter)
-	- [JSON and Forms](#json-and-forms)
-	- [Fakers](#fakers)
-	- [Blockers](#blockers)
-	- [Modals and Dialogs](#modals-and-dialogs)
-	- [Lazy Loading](#lazy-loading)
-	- [Reveal](#reveal)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -177,33 +174,45 @@
 	- [On](#on)
 	- [Don](#don)
 	- [Add Event Listener](#add-event-listener)
-- [Lazy Loading](#lazy-loading-1)
-- [Infinite Scroll](#infinite-scroll)
-- [Reveal](#reveal-1)
-- [Children Reveal](#children-reveal)
-- [Form to JSON](#form-to-json)
-- [JSON to Form](#json-to-form)
+- [Animate](#animate)
+- [Sort](#sort)
 - [Search and Filter](#search-and-filter)
-- [Block](#block)
-- [Loader](#loader)
-- [Block and Loader](#block-and-loader)
-- [Unblock](#unblock)
-- [Dialogs](#dialogs)
-- [Overlay](#overlay)
-- [Modal](#modal)
-- [Fake](#fake)
-- [Faker](#faker)
-- [Validations](#validations)
+	- [Search](#search-and-filter)
+	- [Filter](#search-and-filter)
+- [JSON and Forms](#json-and-forms)
+	- [Flatten JSON](#flatten-json)
+	- [Form to JSON](#form-to-json)
+	- [JSON to Form](#json-to-form)
+	- [Form to Serialized](#form-to-serialized)
+	- [Serialized to Form](#serialized-to-form)
+- [Form Validations](#form-validations)
 	- [Valid](#valid)
-- [Validate](#validate)
+	- [Validate](#validate)
 	- [Live Validation](#live-validation)
 	- [Validation Rules](#validation-rules)
-- [Animate](#animate)
+	- [Get Validation Errors](#get-validation-errors)
+- [Fakers](#fakers)
+	- [Fake](#fake)
+	- [Faker](#faker)
+- [Blockers](#blockers)
+	- [Block](#block)
+	- [Loader](#loader)
+	- [Block and Loader](#block-and-loader)
+	- [Unblock](#unblock)
+- [Modals and Dialogs](#modals-and-dialogs)
+	- [Dialog](#dialog)
+	- [Overlay](#overlay)
+	- [Modal](#modal)
+- [Lazy Loading](#lazy-loading)
+- [Reveals](#reveals)
+	- [Reveal](#reveal)
+	- [Children Reveal](#children-reveal)
+- [Infinite Scroll](#infinite-scroll)
 - [Paginate](#paginate)
 - [SVG Map](#svg-map)
 
 # Installation
-Download the library and add it to your hmtl file
+Download the [library](#) and add it to your hmtl file
 
   ```
   <script src="template.js"></script>
@@ -497,9 +506,6 @@ Sample Usage
 	Template.getCssVar('--font-size');
 	'14px' // output
 
-
-
-
 # Event Handlers
 
 ## On
@@ -533,161 +539,76 @@ Sample Usage
 		e.preventDefault();
 	}, {bubbles: true});
 
-# Lazy Loading
-Load images only when shown also known as lazy loading
+# Animate
+Animate an element
 
-	<img class="tpl-lazy" src="placeholder.webp" data-src="actual-image.webp" alt="lazy-load-image />
-
-	Template.lazyLoad('.tpl-lazy', {  // lazy load images
-	  beforeLoad: function() {        // callback before loading
-		return false;                 // return false to cancel loading
-	  },
-	  onLoad: function() {},          // callback when loading
-	  onFinishLoading: function() {}  // callback after loading
-	});
+	Template.animate(selector, settings);
 	
-| Config           | Value                             | Description                                   |
-|------------------|-----------------------------------|-----------------------------------------------|
-| beforeLoad       | function(){ return false; }       | Callback before loading, return false to cancel Template loading |
-| onLoad           | function(){}                      | Callback on load                              |
-| onFinishLoading  | function(){}                      | Callback on loading finish                    |
-
-# Infinite Scroll
-Load items indefinitely
-
-	Template.infiniteScroll(selector, settings);
-
-	Template.infiniteScroll('ul', {
-	  children: 'li',           // children to be observed
-	  observerSettings: {},     // intersection observer settings
-	  onTop: function(ul) {},   // callback when scrolling to first item
-	  onBottom: function(ul) {  // callback when scrolling to last item
-		ul.append();            // append new elements
+	Template.animate('#div', {
+	  animation: 'fadeIn',
+	  duration: 1000,
+	  iterations: 1,
+	  easing: 'ease-in-out',
+	  beforeAnimate: function(elem) {
+		console.log(elem);
+		return false;
+	  },
+	  afterAnimate: function(elem) {
+		console.log(elem);
 	  }
 	});
 	
-	Template.infiniteScroll('tbody', {
-	  children: 'tr',              // children to be observed
-	  observerSettings: {},        // intersection observer settings
-	  onTop: function(tbody) {},   // callback when scrolling to first item
-	  onBottom: function(tbody) {  // callback when scrolling to last item
-		ul.append(tr);             // append new elements
-	  }
-	});
-	
-| Config             | Value                                                                 | Description                                   |
-|--------------------|-----------------------------------------------------------------------|-----------------------------------------------|
-| selector           | #id                                                                   | Target element                                |
-| children           | li                                                                    | Scrollable child elements                     |
-| observerSettings   | {rootMargin: '10px', threshold: [0.25, 0.5, 0.75]}                    | IntersectionObserver additional settings      |
-| onTop              | function(){}                                                          | Callback when top child is shown              |
-| onBottom           | function(target){ target.append(newChild) }                           | Callback when bottom child is shown           |
+| Config          | Value                               | Description                        |
+|-----------------|-------------------------------------|------------------------------------|
+| selector        | #id                                 | Target selector                    |
+| animation       | fadeIn                              | Built-in animations                |
+| duration        | 200                                 | Animation duration in milliseconds |
+| iterations      | 1                                   | Animation iterations               |
+| easing          | 'ease-in-out'                       | Animation easing                   |
+| beforeAnimate   | function(elem){return false;}       | Callback before animation          |
+| afterAnimate    | function(elem){}                    | Callback after animation           |
 
-# Reveal
-Animate a dom element when revealed
+## Built-in Animations
 
-	Template.reveal(selector, settings);
+| Name |
+|------|
+| appear-top |
+| disappear-top |
+| appear-bottom |
+| disappear-bottom |
+| appear-left |
+| disappear-left |
+| appear-right |
+| disappear-right |
+| fade-in |
+| fade-out |
+| collapse |
+| expand |
+| scale-to-large |
+| large-to-scale |
+| small-to-scale |
+| scale-to-small |
+| slide-fromm-top |
+| slide-to-top |
+| slide-fromm-left |
+| slide-to-left |
+| slide-fromm-right |
+| slide-to-right |
+| slide-fromm-bottom |
+| slide-to-bottom |
+| flip |
+| tada |
 
-	Template.reveal('#section', {
-	  animation: function(section) {                      // animate function
-		section.animate({
-		  opacity: [0, 1],
-		  transform: ['translateY(2rem)', 'translateY(0rem)']
-		}, {
-		  duration: 1000,
-		  iterations: 1,
-		  easing: "ease-out"
-		});
-	  },
-	  beforeShow: function(section) {                     // callback before showing element (called once)
-		console.log(section);
-	  },
-	  onShow: function(section) {                         // callback when element is shown (called every time the element shows)
-		console.log(section);
-	  },
-	  onHide: function(section) {                         // callback when element is hidden (called every time the element is hidden)
-		console.log(section);
-	  }
-	});
-	
-| Config       | Value                          | Description                                  |
-|--------------|--------------------------------|----------------------------------------------|
-| selector     | #id                            | Target element                               |
-| animation    | fade-in                        | Custom animation                             |
-| beforeShow   | function(target){}             | Callback before the target shows             |
-| onShow       | function(target){}             | Callback when the target shows               |
-| onHide       | function(target){}             | Callback when the target is hidden           |
+# Sort
+Sort any DOM element
 
-# Children Reveal
-Animate the children of a dom element when revealed
+	Template.sort(parent, children, sortAndOrder);
+	Template.sort(parent, children, sortAndOrder);
 
-	Template.childrenReveal(selector, settings);
+Sample Usage
 
-	Template.childrenReveal('#section', {
-	  children: 'li',                           // child element to be animated
-	  duration: 100,                            // interval for every child animation
-	  animation: function(section) {            // animate function
-		section.animate({
-		  opacity: [0, 1],
-		  transform: ['translateY(2rem)', 'translateY(0rem)']
-		}, {
-		  duration: 1000,
-		  iterations: 1,
-		  easing: "ease-out"
-		});
-	  },
-	  beforeShow: function(parent) {},          // callback before showing element (called once)
-	  onShow: function(parent) {},              // callback when element is shown (called every time the element shows)
-	  onChildShow: function(child) {            // callback when a child is shown (called every time a child is shown)
-		console.log(child);
-	  },
-	  onHide: function(parent) {}               // callback when element is hidden (called every time the element is hidden)
-	});
-
-| Config       | Value                          | Description                                  |
-|--------------|--------------------------------|----------------------------------------------|
-| selector     | #id                            | Target element                               |
-| children     | li                             | Children selector                            |
-| animation    | fade-in                        | Custom animation                             |
-| beforeShow   | function(target){}             | Callback before the target shows             |
-| onShow       | function(target){}             | Callback when the target shows               |
-| onChildShow  | function(child){}              | Callback when a child is shown               |
-| onHide       | function(target){}             | Callback when the target is hidden           |
-
-# Form to JSON
-Saves form values to a json file
-
-	Template.formToJson(selector, case, mutator);
-
-	Template.formToJson('#form', 'camel', {
-	  firstName: function(value) {
-	    return value.capitalizeAll();
-	  }
-	});
-
-| Config   | Value                                  | Description                                  |
-|----------|----------------------------------------|----------------------------------------------|
-| selector | #id                                    | Target element                               |
-| case     | dash, underscore, camel, pascal        | Form name cases                              |
-| mutator  | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before retrieving |
-
-# JSON to Form
-Populate a form with json values
-
-	Template.jsonToForm(json, selector, case, mutator);
-
-	Template.jsonToForm(json, form, 'snake', {
-	  phone: function(value) {
-	    return Template.phoneFormat(value);
-	  }
-	});
-
-| Config   | Value                                  | Description                                  |
-|----------|----------------------------------------|----------------------------------------------|
-| json     | {username: 'Username'}                 | JSON object                                  |
-| selector | #form                                  | Target form                                  |
-| case     | dash, underscore, camel, pascal        | Form name cases                              |
-| mutator   | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before inserting |
+	Template.sort('#tbody', 'tr', {'innerText': 'asc'});
+	Template.sort('#ul', 'li', {'innerText': 'desc'});
 
 # Search and Filter
 Search and Filter any dom elements
@@ -785,7 +706,226 @@ Search and Filter any dom elements
 | orCustom              | {'data.first-name': function(attribute) {return attribute.startsWith('M');}} | Or custom filters                             |
 | custom                | function(child) { const text = child.innerText; return text === 'Your Text';} | Custom filter function                         |
 
-# Block
+# JSON and Forms
+
+## Flatten JSON
+Flatten JSON to single layer with dot notation keys
+
+	Template.flattenJSON(json);
+
+## Unflatten JSON
+Convert single layer object with dot nation keys to multilayer object
+
+	Template.unflattenJSON(json);
+
+## Form to JSON
+Saves form values to a json file
+
+	Template.formToJson(selector, case, mutator);
+
+	Template.formToJson('#form', 'camel', {
+	  firstName: function(value) {
+	    return value.capitalizeAll();
+	  }
+	});
+
+| Config   | Value                                  | Description                                  |
+|----------|----------------------------------------|----------------------------------------------|
+| selector | #id                                    | Target element                               |
+| case     | dash, underscore, camel, pascal        | Form name cases                              |
+| mutator  | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before retrieving |
+
+## JSON to Form
+Populate a form with json values
+
+	Template.jsonToForm(json, selector, case, mutator);
+
+	Template.jsonToForm(json, form, 'snake', {
+	  phone: function(value) {
+	    return Template.phoneFormat(value);
+	  }
+	});
+
+| Config   | Value                                  | Description                                  |
+|----------|----------------------------------------|----------------------------------------------|
+| json     | {username: 'Username'}                 | JSON object                                  |
+| selector | #form                                  | Target form                                  |
+| case     | dash, underscore, camel, pascal        | Form name cases                              |
+| mutator   | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before inserting |
+
+## Form to Serialized
+Saves form values to serialized text
+
+	Template.formToSerialized(form);
+
+## Serialized to Form
+Populate a form with serialized text
+
+	Template.serializedToForm(serialized, form);
+
+# Form Validations
+	
+## Valid
+Checks if a record is valid
+
+	Template.valid(value, rules);
+	
+	Template.valid('mark@email.com', {
+	  rename: 'Username',
+	  rules: ['required', 'email', 'min:8'],
+	  custom: {
+		pci: function(val) {
+		  return val.match(/^(?=^.{6,99}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%*-_=+.])(?!.*?(.)\1{1,})^.*$/)
+			? true
+			: false;
+		}
+	  },
+	  messages: {
+		required: function(val) {
+		  return `${val} is a must!`;
+		},
+		min: function(val, min) {
+		  return `${val} should be at least ${min} characters`;
+		},
+		pci: function(val) {
+		  return `${val} must contain at least 8 characters, an uppercase letter, a number, and a special character`;
+		}
+	  }
+	});
+	
+| Config   | Value                                                    | Description                                |
+|----------|----------------------------------------------------------|--------------------------------------------|
+| rename   | 'Username'                                               | Rename to human readable name              |
+| rules    | ['required', 'email']                                    | Validation rules (see table below)         |
+| custom   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
+| messages | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
+
+## Validate
+Validate a form
+	
+	Template.validate(selector, rules);
+	
+	Template.validate('#form', {
+	  email: {
+		rename: 'Username',
+		rules: ['required', 'email', 'min:8']
+	  },
+	  password: {
+		rename: 'Password',
+		rules: 'required|min:8|pci',
+		custom: {
+		  pci: function(val) {
+			return val.match(/^(?=^.{6,99}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%*-_=+.])(?!.*?(.)\1{1,})^.*$/)
+			  ? true
+			  : false;
+		  }
+		},
+		messages: {
+		  required: function(val) {
+			return `${val} is a must!`;
+		  },
+		  min: function(val, min) {
+			return `${val} should be at least ${min} characters`;
+		  },
+		  pci: function(val) {
+			return `${val} must contain at least 8 characters, an uppercase letter, a number, and a special character`;
+		  }
+		}
+	  }
+	});
+	
+| Config   | Value                                                    | Description                                |
+|----------|----------------------------------------------------------|--------------------------------------------|
+| selector | #id                                                      | Target form selector                       |
+| rename   | 'Username'                                               | Rename to human readable name              |
+| rules    | ['required', 'email']                                    | Validation rules (see table below)         |
+| custom   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
+| messages | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
+	
+## Live Validation
+Form live validation
+
+	Template.liveValidation(selector, rules, callbacks);
+	
+	Template.liveValidation('#form', {
+	  email: {
+		rename: 'Username',
+		rules: ['required', 'email', 'min:8']
+	  }
+	},
+	{
+	  onValid: function(input) {
+		input.style.border = '4px solid yellow';
+	  },
+	  onError: function(input, errors) {
+		input.style.border = '4px solid red';
+	  },
+	  onNoValidation: function(input) {
+		input.style.border = '';
+	  }
+	});
+	
+| Config   | Value                                                        | Description                                  |
+|----------|--------------------------------------------------------------|----------------------------------------------|
+| selector | #id                                                          | Target form selector                         |
+| rename   | 'Username'                                                   | Rename to human readable name                |
+| rules    | ['required', 'email']                                        | Validation rules (see table below)           |
+| custom   | {custom: function(value){ return value ? true : false; }}    | Create your custom validation                |
+| messages | {custom: function(value){ return `${value} is invalid`; }}   | Create your custom error message             |
+	
+## Validation Rules
+
+| Rule       | Sample               | Description                                            |
+|------------|----------------------|--------------------------------------------------------|
+| alpha      | 'alpha'              | Returns false if not alphabetical characters           |
+| alphadash  | 'alphadash'          | Returns false if not alphabetical characters, dash or underscore |
+| alphanum   | 'alphanum'           | Returns false if not alphabetical characters or numbers |
+| array      | 'array'              | Returns false if not an array                          |
+| base64     | 'base64'             | Returns false if not base64 format                     |
+| boolean    | 'boolean'            | Returns false if not true or false                     |
+| decimal    | 'decimal'            | Returns false if not a decimal number                  |
+| differs    | 'differs:password'   | Returns false if same value with or same value as the string itself |
+| email      | 'email'              | Returns false if not a valid email                     |
+| greater    | 'greater:8'          | Returns false if less than the given value              |
+| in         | 'in:Apple,Banana,Orange' | Returns false if the value is not within the array   |
+| integer    | 'integer'            | Returns false if not an integer                        |
+| lesser     | 'lesser:8'           | Returns false if greater than the given value           |
+| matches    | 'matches:password'   | Returns false if not same value with or not same as the string itself |
+| max        | 'max:8'              | Returns false if number of characters are less than the given value |
+| min        | 'min:8'              | Returns false if number of characters are more than the given value |
+| natural    | 'natural'            | Returns false if not a natural number                  |
+| not        | 'not:username'       | Returns false if the same value or same as the string itself |
+| number     | 'number'             | Returns false if not a number                          |
+| phone      | 'phone'              | Returns false if not a valid phone number              |
+| regex      | 'regex'              | Returns false if patterns don't match                  |
+| required   | 'required'           | Returns false if value is empty                        |
+| sometimes  | 'sometimes'          | Validate when present                                  |
+| url        | 'url'                | Returns false if not a valid URL                       |
+| with       | 'with:username,email' | Required with another field                            |
+| without    | 'without:phone,email' | Required without the other field                       |
+
+## Get Validation Errors
+Retrieves validation errors
+
+	Template.getValidationErrors();
+
+# Fakers
+
+## Fake
+Generate fake content. You can modify the config file to add your own
+
+	Template.fake(any);
+	Template.fake('email');
+	['email', 'text', 'firstName', 'lastName', 'domain', 'mobile', 'password', 'lorem', 'date', 'time', 'color'];
+	
+## Faker
+Populate form with fake contents. Hold alt + shift and click the form to populate
+
+	Template.faker();
+
+# Blockers
+
+## Block
 Block the UI
 
 	Template.block();							// blocks the document body
@@ -815,7 +955,7 @@ Block the UI
 | styles          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
 | contentStyles   | {color: 'white'}               | Add styles to the content              |
 
-# Loader
+## Loader
 Block the UI with a loader
 
 	Template.loader({
@@ -844,7 +984,7 @@ Block the UI with a loader
 | spinnerStyles   | {color: 'white'}               | Add styles to the spinner              |
 | messageStyles   | {color: 'white'}               | Add styles to the message              |
 
-# Block and Loader
+## Block and Loader
 
 	Template.blockOrLoader({
 	  block: '#some-id',                            // id or DOM element to block
@@ -897,16 +1037,17 @@ Block the UI with a loader
 | styles          | {backgroundColor: 'blue'}        | Add styles to the blocker               |
 | spinnerStyles   | {color: 'white'}                 | Add styles to the spinner               |
 | messageStyles   | {color: 'white'}                 | Add styles to the message               |
-
 	
-# Unblock
+## Unblock
 Unblocks the UI
 
 	Template.unblock();
 	Template.unblock('#id');
-	
-# Dialogs
-Create a modal dialog
+
+# Modals and Dialogs
+
+## Dialogs
+Create a dialog modal
 
 	Template.dialog({
 	  closable: false,                         // closable
@@ -934,8 +1075,8 @@ Create a modal dialog
 | onOk         | function(){}                   | Callback function for ok                  |
 | onCancel     | function(){this.close();}      | Callback function for cancel              |
 
-# Overlay
-Overlay a dom element as modal
+## Overlay
+Overlay DOM element as modal
 
 	Template.overlay(selector, settings);
 	
@@ -949,7 +1090,7 @@ Overlay a dom element as modal
 | selector | #login | Target overlay element          |
 | display  | flex  | Target display when shown        |
 
-# Modal
+## Modal
 Create a modal
 
 	Template.modal({        // open a modal
@@ -1061,187 +1202,128 @@ Create a modal
 | onOk             | function(){}                          | Callback when the ok button is pressed          |
 | onCancel         | function(){this.close();}             | Callback when the cancel button is pressed      |
 
-# Fake
-Generate fake content. You can modify the config file to add your own
+# Lazy Loading
+Load images only when shown also known as lazy loading
 
-	Template.fake(any);
-	Template.fake('email');
-	['email', 'text', 'firstName', 'lastName', 'domain', 'mobile', 'password', 'lorem', 'date', 'time', 'color'];
-	
-# Faker
-Populate form with fake contents. Hold alt + shift and click the form to populate
+	<img class="tpl-lazy" src="placeholder.webp" data-src="actual-image.webp" alt="lazy-load-image />
 
-	Template.faker();
-	
-# Validations
-	
-## Valid
-Checks if a record is valid
-
-	Template.valid(value, rules);
-	
-	Template.valid('mark@email.com', {
-	  rename: 'Username',
-	  rules: ['required', 'email', 'min:8'],
-	  custom: {
-		pci: function(val) {
-		  return val.match(/^(?=^.{6,99}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%*-_=+.])(?!.*?(.)\1{1,})^.*$/)
-			? true
-			: false;
-		}
+	Template.lazyLoad('.tpl-lazy', {  // lazy load images
+	  beforeLoad: function() {        // callback before loading
+		return false;                 // return false to cancel loading
 	  },
-	  messages: {
-		required: function(val) {
-		  return `${val} is a must!`;
-		},
-		min: function(val, min) {
-		  return `${val} should be at least ${min} characters`;
-		},
-		pci: function(val) {
-		  return `${val} must contain at least 8 characters, an uppercase letter, a number, and a special character`;
-		}
+	  onLoad: function() {},          // callback when loading
+	  onFinishLoading: function() {}  // callback after loading
+	});
+	
+| Config           | Value                             | Description                                   |
+|------------------|-----------------------------------|-----------------------------------------------|
+| beforeLoad       | function(){ return false; }       | Callback before loading, return false to cancel Template loading |
+| onLoad           | function(){}                      | Callback on load                              |
+| onFinishLoading  | function(){}                      | Callback on loading finish                    |
+
+# Reveals
+
+## Reveal
+Animate a dom element when revealed
+
+	Template.reveal(selector, settings);
+
+	Template.reveal('#section', {
+	  animation: function(section) {                      // animate function
+		section.animate({
+		  opacity: [0, 1],
+		  transform: ['translateY(2rem)', 'translateY(0rem)']
+		}, {
+		  duration: 1000,
+		  iterations: 1,
+		  easing: "ease-out"
+		});
+	  },
+	  beforeShow: function(section) {                     // callback before showing element (called once)
+		console.log(section);
+	  },
+	  onShow: function(section) {                         // callback when element is shown (called every time the element shows)
+		console.log(section);
+	  },
+	  onHide: function(section) {                         // callback when element is hidden (called every time the element is hidden)
+		console.log(section);
 	  }
 	});
 	
-| Config   | Value                                                    | Description                                |
-|----------|----------------------------------------------------------|--------------------------------------------|
-| rename   | 'Username'                                               | Rename to human readable name              |
-| rules    | ['required', 'email']                                    | Validation rules (see table below)         |
-| custom   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
-| messages | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
+| Config       | Value                          | Description                                  |
+|--------------|--------------------------------|----------------------------------------------|
+| selector     | #id                            | Target element                               |
+| animation    | fade-in                        | Custom animation                             |
+| beforeShow   | function(target){}             | Callback before the target shows             |
+| onShow       | function(target){}             | Callback when the target shows               |
+| onHide       | function(target){}             | Callback when the target is hidden           |
 
-# Validate
-Validate a form
-	
-	Template.validate(selector, rules);
-	
-	Template.validate('#form', {
-	  email: {
-		rename: 'Username',
-		rules: ['required', 'email', 'min:8']
+## Children Reveal
+Animate the children of a dom element when revealed
+
+	Template.childrenReveal(selector, settings);
+
+	Template.childrenReveal('#section', {
+	  children: 'li',                           // child element to be animated
+	  duration: 100,                            // interval for every child animation
+	  animation: function(section) {            // animate function
+		section.animate({
+		  opacity: [0, 1],
+		  transform: ['translateY(2rem)', 'translateY(0rem)']
+		}, {
+		  duration: 1000,
+		  iterations: 1,
+		  easing: "ease-out"
+		});
 	  },
-	  password: {
-		rename: 'Password',
-		rules: 'required|min:8|pci',
-		custom: {
-		  pci: function(val) {
-			return val.match(/^(?=^.{6,99}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%*-_=+.])(?!.*?(.)\1{1,})^.*$/)
-			  ? true
-			  : false;
-		  }
-		},
-		messages: {
-		  required: function(val) {
-			return `${val} is a must!`;
-		  },
-		  min: function(val, min) {
-			return `${val} should be at least ${min} characters`;
-		  },
-		  pci: function(val) {
-			return `${val} must contain at least 8 characters, an uppercase letter, a number, and a special character`;
-		  }
-		}
+	  beforeShow: function(parent) {},          // callback before showing element (called once)
+	  onShow: function(parent) {},              // callback when element is shown (called every time the element shows)
+	  onChildShow: function(child) {            // callback when a child is shown (called every time a child is shown)
+		console.log(child);
+	  },
+	  onHide: function(parent) {}               // callback when element is hidden (called every time the element is hidden)
+	});
+
+| Config       | Value                          | Description                                  |
+|--------------|--------------------------------|----------------------------------------------|
+| selector     | #id                            | Target element                               |
+| children     | li                             | Children selector                            |
+| animation    | fade-in                        | Custom animation                             |
+| beforeShow   | function(target){}             | Callback before the target shows             |
+| onShow       | function(target){}             | Callback when the target shows               |
+| onChildShow  | function(child){}              | Callback when a child is shown               |
+| onHide       | function(target){}             | Callback when the target is hidden           |
+
+# Infinite Scroll
+Load items indefinitely
+
+	Template.infiniteScroll(selector, settings);
+
+	Template.infiniteScroll('ul', {
+	  children: 'li',           // children to be observed
+	  observerSettings: {},     // intersection observer settings
+	  onTop: function(ul) {},   // callback when scrolling to first item
+	  onBottom: function(ul) {  // callback when scrolling to last item
+		ul.append();            // append new elements
 	  }
 	});
 	
-| Config   | Value                                                    | Description                                |
-|----------|----------------------------------------------------------|--------------------------------------------|
-| selector | #id                                                      | Target form selector                       |
-| rename   | 'Username'                                               | Rename to human readable name              |
-| rules    | ['required', 'email']                                    | Validation rules (see table below)         |
-| custom   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
-| messages | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
-	
-## Live Validation
-Form live validation
-
-	Template.liveValidation(selector, rules, callbacks);
-	
-	Template.liveValidation('#form', {
-	  email: {
-		rename: 'Username',
-		rules: ['required', 'email', 'min:8']
-	  }
-	},
-	{
-	  onValid: function(input) {
-		input.style.border = '4px solid yellow';
-	  },
-	  onError: function(input, errors) {
-		input.style.border = '4px solid red';
-	  },
-	  onNoValidation: function(input) {
-		input.style.border = '';
+	Template.infiniteScroll('tbody', {
+	  children: 'tr',              // children to be observed
+	  observerSettings: {},        // intersection observer settings
+	  onTop: function(tbody) {},   // callback when scrolling to first item
+	  onBottom: function(tbody) {  // callback when scrolling to last item
+		ul.append(tr);             // append new elements
 	  }
 	});
 	
-| Config   | Value                                                        | Description                                  |
-|----------|--------------------------------------------------------------|----------------------------------------------|
-| selector | #id                                                          | Target form selector                         |
-| rename   | 'Username'                                                   | Rename to human readable name                |
-| rules    | ['required', 'email']                                        | Validation rules (see table below)           |
-| custom   | {custom: function(value){ return value ? true : false; }}    | Create your custom validation                |
-| messages | {custom: function(value){ return `${value} is invalid`; }}   | Create your custom error message             |
-	
-## Validation Rules
-
-| Rule       | Sample               | Description                                            |
-|------------|----------------------|--------------------------------------------------------|
-| alpha      | 'alpha'              | Returns false if not alphabetical characters           |
-| alphadash  | 'alphadash'          | Returns false if not alphabetical characters, dash or underscore |
-| alphanum   | 'alphanum'           | Returns false if not alphabetical characters or numbers |
-| array      | 'array'              | Returns false if not an array                          |
-| base64     | 'base64'             | Returns false if not base64 format                     |
-| boolean    | 'boolean'            | Returns false if not true or false                     |
-| decimal    | 'decimal'            | Returns false if not a decimal number                  |
-| differs    | 'differs:password'   | Returns false if same value with or same value as the string itself |
-| email      | 'email'              | Returns false if not a valid email                     |
-| greater    | 'greater:8'          | Returns false if less than the given value              |
-| in         | 'in:Apple,Banana,Orange' | Returns false if the value is not within the array   |
-| integer    | 'integer'            | Returns false if not an integer                        |
-| lesser     | 'lesser:8'           | Returns false if greater than the given value           |
-| matches    | 'matches:password'   | Returns false if not same value with or not same as the string itself |
-| max        | 'max:8'              | Returns false if number of characters are less than the given value |
-| min        | 'min:8'              | Returns false if number of characters are more than the given value |
-| natural    | 'natural'            | Returns false if not a natural number                  |
-| not        | 'not:username'       | Returns false if the same value or same as the string itself |
-| number     | 'number'             | Returns false if not a number                          |
-| phone      | 'phone'              | Returns false if not a valid phone number              |
-| regex      | 'regex'              | Returns false if patterns don't match                  |
-| required   | 'required'           | Returns false if value is empty                        |
-| sometimes  | 'sometimes'          | Validate when present                                  |
-| url        | 'url'                | Returns false if not a valid URL                       |
-| with       | 'with:username,email' | Required with another field                            |
-| without    | 'without:phone,email' | Required without the other field                       |
-
-# Animate
-Animate an element
-
-	Template.animate(selector, settings);
-	
-	Template.animate('#div', {
-	  animation: 'fadeIn',
-	  duration: 1000,
-	  iterations: 1,
-	  easing: 'ease-in-out',
-	  beforeAnimate: function(elem) {
-		console.log(elem);
-		return false;
-	  },
-	  afterAnimate: function(elem) {
-		console.log(elem);
-	  }
-	});
-	
-| Config          | Value                               | Description                        |
-|-----------------|-------------------------------------|------------------------------------|
-| selector        | #id                                 | Target selector                    |
-| animation       | fadeIn                              | Built-in animations                |
-| duration        | 200                                 | Animation duration in milliseconds |
-| iterations      | 1                                   | Animation iterations               |
-| easing          | 'ease-in-out'                       | Animation easing                   |
-| beforeAnimate   | function(elem){return false;}       | Callback before animation          |
-| afterAnimate    | function(elem){}                    | Callback after animation           |
+| Config             | Value                                                                 | Description                                   |
+|--------------------|-----------------------------------------------------------------------|-----------------------------------------------|
+| selector           | #id                                                                   | Target element                                |
+| children           | li                                                                    | Scrollable child elements                     |
+| observerSettings   | {rootMargin: '10px', threshold: [0.25, 0.5, 0.75]}                    | IntersectionObserver additional settings      |
+| onTop              | function(){}                                                          | Callback when top child is shown              |
+| onBottom           | function(target){ target.append(newChild) }                           | Callback when bottom child is shown           |
 
 # Paginate
 Create pagination
