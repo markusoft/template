@@ -3,17 +3,17 @@
 
 # Easy Peasy Summary
 
-[Constants](#constants)
+[**Constants**](#constants)
 | Constant           | Output                 | Description              |
 |--------------------|------------------------|--------------------------|
 | **BASE_URL**           | http://your-domain.com | Base URL of your website |
 
-[Number Helpers](#number-helpers)
+[**Number Helpers**](#number-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Number.pad(size)](#pad)        | Number(3).pad(3)                                            | 003             | Adds zero padding to numbers                      |
 
-[String Helpers](#string-helpers)
+[**String Helpers**](#string-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [String.trim()](#trim)                   | ' Sample Text '.trim()                                      | Sample Text     | Removes trailing and leading white spaces          |
@@ -23,7 +23,7 @@
 | [String.cleanCapitalizeAll()](#clean-capitalize-all)     | 'sample text'.cleanCapitalizeAll()                          | SampleText      | Capitalizes all words and removes dashes/underscores |
 | [String.deCapitalize()](#decapitalize)           | 'Sample Text'.deCapitalize()                                | sample Text     | De-capitalizes the first letter of a word or phrase |
 | [String.deCapitalizeAll()](#decapitalize-all)        | 'Sample Text'.deCapitalizeAll()                             | sample text     | De-capitalizes all words in a phrase              |
-| [<strong>String Case Conversions</strong>](#string-case-conversions) ||||
+| [**String Case Conversions**](#string-case-conversions) ||||
 | [String.toDash()](#to-dash)                 | 'sample text'.toDash()                                      | sample-text     | Converts spaces and underscores to dash           |
 | [String.toUnderscore()](#to-underscore)           | 'sample text'.toUnderscore()                                | sample_text     | Converts spaces and dashes to underscore          |
 | [String.toSnake()](#to-snake)                | 'sample text'.toSnake()                                     | sample_text     | Converts spaces and dashes to underscore          |
@@ -31,111 +31,110 @@
 | [String.toCamelCase()](#to-camel-case)            | 'sample text'.toCamelCase()                                 | sampleText      | Converts string to camel case                     |
 | [String.changeCase('camel')](#change-case)      | 'Sample Text'.changeCase('dash')                            | sample-text     | Converts string to specified case                 |
 
-[Array Helpers](#array-helpers)
+[**Array Helpers**](#array-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Array.random()](#random)                  | ['a','b','c','d','e'].random()                              | 'a'             | Retrieves a random element from an array          |
 | [Array.random(items)](#random)             | ['a','b','c','d','e'].random(2)                             | ['b','e']       | Retrieves random elements from an array           |
 | [Array.joinLast(', ', 'and')](#join-last)     | ['a','b','c'].joinLast(', ', 'and')                         | a, b and c      | Joins array with a custom last conjunction        |
 
-[Local Storage](#local-storage)
+[**Local Storage**](#local-storage)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Storage.setObject('key', value)](#set-object) | Storage.setObject('key', json)                              |                 | Stores a JSON object in local storage             |
 | [Storage.getObject('key')](#get-object)        | Storage.getObject('key')                                    | {'json': 'object'} | Retrieves a JSON object from local storage     |
 
-[Getters](#getters)
+[**Getters**](#getters)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.getConfig('item')](#get-config)      | Template.getConfig('prefix')                                | -tpl            | Retrieves a configuration item                    |
 | [Template.getCssVar('--css-var')](#get-css-var) | Template.getCssVar('--font-size')                           | 14px            | Retrieves a CSS variable                          |
 
-[Event Handlers](#event-handlers)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.on(type, selector, callback, options)](#on)               |                                                             |                 | Adds an event listener to an element              |
-| [Template.don(type, selector, callback, options)](#don)              |                                                             |                 | Adds an event listener to the document            |
-| [Template.addEventListener(type, selector, callback, options)](#add-event-listener) |                                                             |                 | Adds an event listener                            |
+[**Event Handlers**](#event-handlers)
+| Function                        | Usage                                                       | Description                                       |
+|-------------------------------------|-------------------------------------------------------------|---------------------------------------------------|
+| [Template.on(type, selector, callback, options)](#on)               | Template.on('click', '#id', function(e){}, {bubbles: true})                                      | Adds an event listener to an element              |
+| [Template.don(type, selector, callback, options)](#don)              | Template.don('click', '#id', function(e){}, {bubbles: true})                                                            | Adds an event listener to the document            |
+| [Template.addEventListener(type, selector, callback, options)](#add-event-listener) | Template.addEventListener('click', '#id', function(e){}, {bubbles: true})                                                            | Adds an event listener                            |
 
-[Animate](#animate)
+[**Animate**](#animate)
 | Constant           | Output                 | Description              |
 |--------------------|------------------------|--------------------------|
 | [Template.animate(selector, settings)](#animate) | Template.animate('#id', {animation: 'tada'}) | Animate elements |
 
-[Sort](#sort)
+[**Sort**](#sort)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.sort(parent, children, sortAndOrder)](#sort)                 | Template.sort('#tbody', 'tr', {'innerText': 'asc'})        | ascending table rows | Sorts table rows                               |
 | [Template.sort(parent, children, sortAndOrder)](#sort)                 | Template.sort('#ul', 'li', {'innerText': 'desc'})           | descending list items | Sorts list elements                              |
 
-[Search and Filter](#search-and-filter)
+[**Search and Filter**](#search-and-filter)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.filter(parent, settings)](#search-and-filter)          | Template.filter('#tbody', {filter:'tr', search: 'Mark', searchAttributes: ['innerText']} | searched rows | Searches table rows                              |
 | [Template.filter(parent, settings)](#search-and-filter)          | Template.filter('#ul', {filter:'li', search: 'Mark', searchAttributes: ['innerText']} | searched lists | Searches list items                              |
 
-[JSON and Forms](#json-and-forms)
+[**JSON and Forms**](#json-and-forms)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.flattenJson(json)](#flatten-json)         | Template.flattenJson({'a': {'b': 'c'}})                               | {'a.b': 'c'}               | Flatten JSON to a single layer with dot notation keys |
-| [Template.unflattenJson(json)](#unflatten-json)         | Template.flattenJson({'a.b': 'c'})                               | {'a': {'b': 'c'}}               | Unflatten JSON from single to multiple layers |
+| [Template.unflattenJson(json)](#unflatten-json)         | Template.unflattenJson({'a.b': 'c'})                               | {'a': {'b': 'c'}}               | Unflatten JSON from single to multiple layers |
 | [Template.formToJson(form)](#form-to-json)           | Template.formToJson('#form')                                           | {'form': 'value'}          | Convert form values to JSON                          |
 | [Template.jsonToForm(json, form)](#json-to-form)     | Template.jsonToForm(json, '#form')                                     | Populated form             | Populate form with JSON values                       |
 | [Template.formToSerialized(form)](#form-to-serialized)           | Template.formToSerialized('#form')                                           | 'form=value'         | Convert form values to serialized text                          |
 | [Template.serializedToForm(json, form)](#serialized-to-form)     | Template.serializedToForm(serialized, '#form')                                     | Populated form             | Populate form with serialized text                       |
-| [<strong>Form Validations</strong>](#form-validations)   ||||
+| [**Form Validations**](#form-validations)   ||||
 | [Template.valid(value, validations)](#valid)  | Template.valid(3, 'integer')                                           | true                       | Check if a value is valid                            |
 | [Template.validate('#form', rules)](#validate)   | Template.validate('#form', {username: {'rules': ['required', 'email']}}) | true                       | Form validation                                     |
 | [Template.liveValidation('#form', rules, callbacks)](#live-validation)  | Template.liveValidation('#form', rules, {onError: function()}) |                            | Live form validation                                |
 | [Template.getValidationErrors()](#get-validation-errors)      | Template.getValidationErrors()                                         | {username: {'email': 'Must be a valid email'}} | Retrieve validation errors                           |
 
-[Fakers](#fakers)
+[**Fakers**](#fakers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | [Template.fake('anything')](#faker)          | Template.fake('email')                                                 | markangelo@gmail.com       | Generate a fake email                                |
 | [Template.fake('anything')](#faker)          | Template.fake('lorem')                                                 | lorem ipsum dolor          | Generate lorem ipsum text                            |
 | [Template.faker()](#faker)                   | Template.faker()                                                        | Populate a form with fake contents | Hold Alt + Shift and click              |
 
-[Blockers](#blockers)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.block(settings)](#block)           | Template.block()                                                        |                            | Blocks the UI                                       |
-| [Template.loader(settings)](#loader)          | Template.loader()                                                       |                            | Blocks the UI with a loader                          |
-| [Template.unblock('#id')](#unblock)            | Template.unblock()                                                      |                            | Unblocks the UI                                     |
+[**Blockers**](#blockers)
+| Function                        | Usage                                                       | Description                                       |
+|---------------------------------|-------------------------------------------------------------|---------------------------------------------------|
+| [Template.block(settings)](#block)           | Template.block()                                                        | Blocks the UI                                       |
+| [Template.loader(settings)](#loader)          | Template.loader()                                                       | Blocks the UI with a loader                          |
+| [Template.unblock('#id')](#unblock)            | Template.unblock()                                                      | Unblocks the UI                                     |
 
-[Modals and Dialogs](#modals-and-dialogs)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.dialog(settings)](#dialog)          | Template.dialog({'message': 'Are you sure?'}).open()                   |                            | Open a confirm dialog modal                          |
-| [Template.overlay('#id', settings)](#overlay)  | Template.overlay('#login').open()                                       |                            | Overlay a DOM element                                |
-| [Template.modal(settings)](#modal)           | Template.modal({'content': 'Any Content'}).open()                       |                            | Open a custom modal                                  |
+[**Modals and Dialogs**](#modals-and-dialogs)
+| Function                                  | Usage                                                 | Description                      |
+|-------------------------------------------|-------------------------------------------------------|----------------------------------|
+| [Template.dialog(settings)](#dialog)       | Template.dialog({'message': 'Are you sure?'}).open()  | Open a confirm dialog modal      |
+| [Template.overlay('#id', settings)](#overlay)  | Template.overlay('#login').open()                       | Overlay a DOM element         |
+| [Template.modal(settings)](#modal)         | Template.modal({'content': 'Any Content'}).open()     | Open a custom modal              |
 
-[Lazy Loading](#lazy-loading)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.lazyLoad(img)](#lazy-load)          | Template.lazyLoad('.tpl-img')                               |                 | Only loads images when shown, also known as Template loading |
+[**Lazy Loading**](#lazy-loading)
+| Function                        | Usage                                                       | Description                                       |
+|---------------------------------|-------------------------------------------------------------|---------------------------------------------------|
+| [Template.lazyLoad(img)](#lazy-load)          | Template.lazyLoad('.tpl-img')                               | Only loads images when shown, also known as Template loading |
 
-[Reveals](#reveals)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.reveal(id, settings)](#reveal)      | Template.reveal('#id', {animation: 'fade-in'})                          |                            | Animate object on reveal                             |
-| [Template.childrenReveal(id, settings)](#reveal) | Template.childrenReveal('#ul')                                       |                            | Animate children on reveal                           |
+[**Reveals**](#reveals)
+| Function                                | Usage                                            | Description                      |
+|-----------------------------------------|--------------------------------------------------|----------------------------------|
+| [Template.reveal(id, settings)](#reveal)      | Template.reveal('#id', {animation: 'fade-in'})   | Animate object on reveal         |
+| [Template.childrenReveal(id, settings)](#reveal) | Template.childrenReveal('#ul')                  | Animate children on reveal       |
 
-[Infinite Scroll](#infinite-scroll)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.infiniteScroll(selector, settings)](#infinite-scroll) | Template.infiniteScroll('#ul', {onBottom: function()})          |                            | Add items when the bottom is reached for infinite scroll |
+[**Infinite Scroll**](#infinite-scroll)
+| Function                                                | Usage                                                    | Description                                               |
+|---------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------------|
+| [Template.infiniteScroll(selector, settings)](#infinite-scroll) | Template.infiniteScroll('#ul', {onBottom: function()}) | Add items when the bottom is reached for infinite scroll  |
 
-[Paginate](#paginate)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.paginate(selector, settings)](#paginate) | Template.paginate('#ul', {items: 'li', itemsPerPage: 20})  | | Paginate DOM element |
+[**Paginate**](#paginate)
+| Function                                      | Usage                                                 | Description                           |
+|-----------------------------------------------|-------------------------------------------------------|---------------------------------------|
+| [Template.paginate(selector, settings)](#paginate) | Template.paginate('#ul', {items: 'li', itemsPerPage: 20}) | Paginate DOM element                   |
 
-
-[SVG Map](#svg-map)
-| Function                        | Usage                                                       | Output          | Description                                       |
-|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| [Template.svgMap(selector, settings)](#svg-map) | Template.svgMap('#svg', {max: 1})  | | Add events to SVG Map |
+[**SVG Map**](#svg-map)
+| Function                                     | Usage                                          | Description                        |
+|----------------------------------------------|------------------------------------------------|------------------------------------|
+| [Template.svgMap(selector, settings)](#svg-map) | Template.svgMap('#svg', {max: 1})          | Add events to SVG Map               |
 
 # Table of Contents
 - [What is Template](#what-is-template)
@@ -273,24 +272,24 @@ Set default library configurations
 	  }
 	};
 	
-| Config              | Value                                                                                                       | Description                                        |
+| **Config**          | Value                                                                                                       | Description                                        |
 |---------------------|-------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| license             |                                                                                                             | A license is required for a single domain           |
-| name                | Template                                                                                                    | You can use your company name as the template name  |
-| prefix              | tpl-                                                                                                        | Prefix used for classes                             |
-| animations          | animations: {fadeIn: {opacity: [0, 1]}}                                                                      | Built-in animations                                |
-| block               | {'content': 'Loading'}                                                                                      | Default block configurations                       |
-| loader              | {'message': 'Loading'}                                                                                      | Default loader configurations                      |
-| dialog              | {'message': 'Are you sure?'}                                                                                 | Default dialog configurations                      |
-| modal               | {'content': 'Modal Content'}                                                                                 | Default modal configurations                       |
-| overlay             | {'closeButton': false}                                                                                       | Default overlay configurations                     |
-| modalHeaders        | {default: '\<div>Modal Header\</div>'}                                                                         | Custom modal headers                               |
-| modalFooters        | {custom: function(opt){`\<button class="${opt.prefix}modal-ok">Ok</button>`}}                                 | Custom modal footers                               |
-| paginate            | {itemsPerPage: 5}                                                                                            | Default pagination configurations                   |
-| validationRules     | {max: function(val, max){ return val.length <= max; }}                                                       | Validation rules                                   |
-| validationMessages  | {max: function(val, max){ return `${val} should not exceed ${max} characters`; }}                            | Validation messages                                |
-| fake                | {mobile: function(){ return Math.floor(Math.random() * 1000000000); }}                                       | Fake generators                                    |
-| fakers              | {firstNames: ['Mark', 'Angelo']}                                                                             | Fake values                                        |
+| **license**         |                                                                                                             | A license is required for a single domain           |
+| **name**            | Template                                                                                                    | You can use your company name as the template name  |
+| **prefix**          | tpl-                                                                                                        | Prefix used for classes                             |
+| **animations**      | animations: {fadeIn: {opacity: [0, 1]}}                                                                      | Built-in animations                                |
+| **block**           | {'content': 'Loading'}                                                                                      | Default block configurations                       |
+| **loader**          | {'message': 'Loading'}                                                                                      | Default loader configurations                      |
+| **dialog**          | {'message': 'Are you sure?'}                                                                                 | Default dialog configurations                      |
+| **modal**           | {'content': 'Modal Content'}                                                                                 | Default modal configurations                       |
+| **overlay**         | {'closeButton': false}                                                                                       | Default overlay configurations                     |
+| **modalHeaders**    | {default: '\<div>Modal Header\</div>'}                                                                         | Custom modal headers                               |
+| **modalFooters**    | {custom: function(opt){`\<button class="${opt.prefix}modal-ok">Ok</button>`}}                                 | Custom modal footers                               |
+| **paginate**        | {itemsPerPage: 5}                                                                                            | Default pagination configurations                   |
+| **validationRules** | {max: function(val, max){ return val.length <= max; }}                                                       | Validation rules                                   |
+| **validationMessages** | {max: function(val, max){ return `${val} should not exceed ${max} characters`; }}                            | Validation messages                                |
+| **fake**            | {mobile: function(){ return Math.floor(Math.random() * 1000000000); }}                                       | Fake generators                                    |
+| **fakers**          | {firstNames: ['Mark', 'Angelo']}                                                                             | Fake values                                        |
 	
 # Constants
 The base URL is the starting point or root of a website's address
@@ -558,15 +557,15 @@ Animate an element
 	  }
 	});
 	
-| Config          | Value                               | Description                        |
-|-----------------|-------------------------------------|------------------------------------|
-| selector        | #id                                 | Target selector                    |
-| animation       | fadeIn                              | Built-in animations                |
-| duration        | 200                                 | Animation duration in milliseconds |
-| iterations      | 1                                   | Animation iterations               |
-| easing          | 'ease-in-out'                       | Animation easing                   |
-| beforeAnimate   | function(elem){return false;}       | Callback before animation          |
-| afterAnimate    | function(elem){}                    | Callback after animation           |
+| **Config**       | Value                               | Description                        |
+|------------------|-------------------------------------|------------------------------------|
+| **selector**     | #id                                 | Target selector                    |
+| **animation**    | fadeIn                              | Built-in animations                |
+| **duration**     | 200                                 | Animation duration in milliseconds |
+| **iterations**   | 1                                   | Animation iterations               |
+| **easing**       | 'ease-in-out'                       | Animation easing                   |
+| **beforeAnimate**| function(elem){return false;}       | Callback before animation          |
+| **afterAnimate** | function(elem){}                    | Callback after animation           |
 
 ## Built-in Animations
 
@@ -682,29 +681,29 @@ Search and Filter any dom elements
 	  }
 	});
 
-| Config                | Value                                                                | Description                                      |
+| **Config**                | Value                                                                | Description                                      |
 |-----------------------|----------------------------------------------------------------------|--------------------------------------------------|
-| selector              | #ul                                                                  | Target element                                   |
-| filter                | li                                                                   | Child elements to be filtered                     |
-| caseSensitiveSearch   | false                                                                | Case sensitive search                             |
-| caseSensitiveFilter   | false                                                                | Case sensitive filter                             |
-| caseSensitiveLike     | false                                                                | Case sensitive "like" comparison                  |
-| search                | string or array                                                      | Search strings                                    |
-| andSearch             | string or array                                                      | And search strings                                |
-| orSearch              | string or array                                                      | Or search strings                                 |
-| searchAttributes      | ['innerText', 'data.first-name']                                      | Child attributes to be searched                   |
-| filters               | {'data.status': 'active'}                                             | Object filters (key = attribute, value = filter value) |
-| andFilters            | {'data.status': 'active'}                                             | And filters                                      |
-| orFilters             | {'data.status': 'active'}                                             | Or filters                                       |
-| likes                 | {'data.first-name': 'ar'}                                             | Object finds in string LIKE                        |
-| andLikes              | {'data.first-name': 'ar'}                                             | And "like" filters                                |
-| orLikes               | {'data.first-name': 'ar'}                                             | Or "like" filters                                 |
-| matches               | {'data.first-name': /^M[\w]+/gi}                                      | Regex match filters                               |
-| andMatches            | {'data.first-name': /^M[\w]+/gi}                                      | And regex match filters                           |
-| orMatches             | {'data.first-name': /^M[\w]+/gi}                                      | Or regex match filters                            |
-| andCustom             | {'data.first-name': function(attribute) {return attribute.startsWith('M');}} | And custom filters                            |
-| orCustom              | {'data.first-name': function(attribute) {return attribute.startsWith('M');}} | Or custom filters                             |
-| custom                | function(child) { const text = child.innerText; return text === 'Your Text';} | Custom filter function                         |
+| **selector**              | #ul                                                                  | Target element                                   |
+| **filter**                | li                                                                   | Child elements to be filtered                     |
+| **caseSensitiveSearch**   | false                                                                | Case sensitive search                             |
+| **caseSensitiveFilter**   | false                                                                | Case sensitive filter                             |
+| **caseSensitiveLike**     | false                                                                | Case sensitive "like" comparison                  |
+| **search**                | string or array                                                      | Search strings                                    |
+| **andSearch**             | string or array                                                      | And search strings                                |
+| **orSearch**              | string or array                                                      | Or search strings                                 |
+| **searchAttributes**      | ['innerText', 'data.first-name']                                      | Child attributes to be searched                   |
+| **filters**               | {'data.status': 'active'}                                             | Object filters (key = attribute, value = filter value) |
+| **andFilters**            | {'data.status': 'active'}                                             | And filters                                      |
+| **orFilters**             | {'data.status': 'active'}                                             | Or filters                                       |
+| **likes**                 | {'data.first-name': 'ar'}                                             | Object finds in string LIKE                        |
+| **andLikes**              | {'data.first-name': 'ar'}                                             | And "like" filters                                |
+| **orLikes**               | {'data.first-name': 'ar'}                                             | Or "like" filters                                 |
+| **matches**               | {'data.first-name': /^M[\w]+/gi}                                      | Regex match filters                               |
+| **andMatches**            | {'data.first-name': /^M[\w]+/gi}                                      | And regex match filters                           |
+| **orMatches**             | {'data.first-name': /^M[\w]+/gi}                                      | Or regex match filters                            |
+| **andCustom**             | {'data.first-name': function(attribute) {return attribute.startsWith('M');}} | And custom filters                            |
+| **orCustom**              | {'data.first-name': function(attribute) {return attribute.startsWith('M');}} | Or custom filters                             |
+| **custom**                | function(child) { const text = child.innerText; return text === 'Your Text';} | Custom filter function                         |
 
 # JSON and Forms
 
@@ -729,11 +728,11 @@ Saves form values to a json file
 	  }
 	});
 
-| Config   | Value                                  | Description                                  |
+| **Config**   | Value                                  | Description                                  |
 |----------|----------------------------------------|----------------------------------------------|
-| selector | #id                                    | Target element                               |
-| case     | dash, underscore, camel, pascal        | Form name cases                              |
-| mutator  | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before retrieving |
+| **selector** | #id                                    | Target element                               |
+| **case**     | dash, underscore, camel, pascal        | Form name cases                              |
+| **mutator**  | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before retrieving |
 
 ## JSON to Form
 Populate a form with json values
@@ -746,12 +745,12 @@ Populate a form with json values
 	  }
 	});
 
-| Config   | Value                                  | Description                                  |
+| **Config**   | Value                                  | Description                                  |
 |----------|----------------------------------------|----------------------------------------------|
-| json     | {username: 'Username'}                 | JSON object                                  |
-| selector | #form                                  | Target form                                  |
-| case     | dash, underscore, camel, pascal        | Form name cases                              |
-| mutator   | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before inserting |
+| **json**     | {username: 'Username'}                 | JSON object                                  |
+| **selector** | #form                                  | Target form                                  |
+| **case**     | dash, underscore, camel, pascal        | Form name cases                              |
+| **mutator**   | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before inserting |
 
 ## Form to Serialized
 Saves form values to serialized text
@@ -793,12 +792,12 @@ Checks if a record is valid
 	  }
 	});
 	
-| Config   | Value                                                    | Description                                |
+| **Config**   | Value                                                    | Description                                |
 |----------|----------------------------------------------------------|--------------------------------------------|
-| rename   | 'Username'                                               | Rename to human readable name              |
-| rules    | ['required', 'email']                                    | Validation rules (see table below)         |
-| custom   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
-| messages | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
+| **rename**   | 'Username'                                               | Rename to human readable name              |
+| **rules**    | ['required', 'email']                                    | Validation rules (see table below)         |
+| **custom**   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
+| **messages** | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
 
 ## Validate
 Validate a form
@@ -836,11 +835,11 @@ Validate a form
 	
 | Config   | Value                                                    | Description                                |
 |----------|----------------------------------------------------------|--------------------------------------------|
-| selector | #id                                                      | Target form selector                       |
-| rename   | 'Username'                                               | Rename to human readable name              |
-| rules    | ['required', 'email']                                    | Validation rules (see table below)         |
-| custom   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
-| messages | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
+| **selector** | #id                                                      | Target form selector                       |
+| **rename**   | 'Username'                                               | Rename to human readable name              |
+| **rules**    | ['required', 'email']                                    | Validation rules (see table below)         |
+| **custom**   | {custom: function(value){ return value ? true : false; }}| Create your custom validation              |
+| **messages** | {custom: function(value){return `${value} is invalid`; }}| Create your custom error message           |
 	
 ## Live Validation
 Form live validation
@@ -865,44 +864,44 @@ Form live validation
 	  }
 	});
 	
-| Config   | Value                                                        | Description                                  |
+| **Config**   | Value                                                        | Description                                  |
 |----------|--------------------------------------------------------------|----------------------------------------------|
-| selector | #id                                                          | Target form selector                         |
-| rename   | 'Username'                                                   | Rename to human readable name                |
-| rules    | ['required', 'email']                                        | Validation rules (see table below)           |
-| custom   | {custom: function(value){ return value ? true : false; }}    | Create your custom validation                |
-| messages | {custom: function(value){ return `${value} is invalid`; }}   | Create your custom error message             |
+| **selector** | #id                                                          | Target form selector                         |
+| **rename**   | 'Username'                                                   | Rename to human readable name                |
+| **rules**    | ['required', 'email']                                        | Validation rules (see table below)           |
+| **custom**   | {custom: function(value){ return value ? true : false; }}    | Create your custom validation                |
+| **messages** | {custom: function(value){ return `${value} is invalid`; }}   | Create your custom error message             |
 	
 ## Validation Rules
 
-| Rule       | Sample               | Description                                            |
-|------------|----------------------|--------------------------------------------------------|
-| alpha      | 'alpha'              | Returns false if not alphabetical characters           |
-| alphadash  | 'alphadash'          | Returns false if not alphabetical characters, dash or underscore |
-| alphanum   | 'alphanum'           | Returns false if not alphabetical characters or numbers |
-| array      | 'array'              | Returns false if not an array                          |
-| base64     | 'base64'             | Returns false if not base64 format                     |
-| boolean    | 'boolean'            | Returns false if not true or false                     |
-| decimal    | 'decimal'            | Returns false if not a decimal number                  |
-| differs    | 'differs:password'   | Returns false if same value with or same value as the string itself |
-| email      | 'email'              | Returns false if not a valid email                     |
-| greater    | 'greater:8'          | Returns false if less than the given value              |
-| in         | 'in:Apple,Banana,Orange' | Returns false if the value is not within the array   |
-| integer    | 'integer'            | Returns false if not an integer                        |
-| lesser     | 'lesser:8'           | Returns false if greater than the given value           |
-| matches    | 'matches:password'   | Returns false if not same value with or not same as the string itself |
-| max        | 'max:8'              | Returns false if number of characters are less than the given value |
-| min        | 'min:8'              | Returns false if number of characters are more than the given value |
-| natural    | 'natural'            | Returns false if not a natural number                  |
-| not        | 'not:username'       | Returns false if the same value or same as the string itself |
-| number     | 'number'             | Returns false if not a number                          |
-| phone      | 'phone'              | Returns false if not a valid phone number              |
-| regex      | 'regex'              | Returns false if patterns don't match                  |
-| required   | 'required'           | Returns false if value is empty                        |
-| sometimes  | 'sometimes'          | Validate when present                                  |
-| url        | 'url'                | Returns false if not a valid URL                       |
-| with       | 'with:username,email' | Required with another field                            |
-| without    | 'without:phone,email' | Required without the other field                       |
+| **Rule**       | Sample               | Description                                            |
+|----------------|----------------------|--------------------------------------------------------|
+| **alpha**      | 'alpha'              | Returns false if not alphabetical characters           |
+| **alphadash**  | 'alphadash'          | Returns false if not alphabetical characters, dash or underscore |
+| **alphanum**   | 'alphanum'           | Returns false if not alphabetical characters or numbers |
+| **array**      | 'array'              | Returns false if not an array                          |
+| **base64**     | 'base64'             | Returns false if not base64 format                     |
+| **boolean**    | 'boolean'            | Returns false if not true or false                     |
+| **decimal**    | 'decimal'            | Returns false if not a decimal number                  |
+| **differs**    | 'differs:password'   | Returns false if same value with or same value as the string itself |
+| **email**      | 'email'              | Returns false if not a valid email                     |
+| **greater**    | 'greater:8'          | Returns false if less than the given value              |
+| **in**         | 'in:Apple,Banana,Orange' | Returns false if the value is not within the array   |
+| **integer**    | 'integer'            | Returns false if not an integer                        |
+| **lesser**     | 'lesser:8'           | Returns false if greater than the given value           |
+| **matches**    | 'matches:password'   | Returns false if not same value with or not same as the string itself |
+| **max**        | 'max:8'              | Returns false if number of characters are less than the given value |
+| **min**        | 'min:8'              | Returns false if number of characters are more than the given value |
+| **natural**    | 'natural'            | Returns false if not a natural number                  |
+| **not**        | 'not:username'       | Returns false if the same value or same as the string itself |
+| **number**     | 'number'             | Returns false if not a number                          |
+| **phone**      | 'phone'              | Returns false if not a valid phone number              |
+| **regex**      | 'regex'              | Returns false if patterns don't match                  |
+| **required**   | 'required'           | Returns false if value is empty                        |
+| **sometimes**  | 'sometimes'          | Validate when present                                  |
+| **url**        | 'url'                | Returns false if not a valid URL                       |
+| **with**       | 'with:username,email' | Required with another field                            |
+| **without**    | 'without:phone,email' | Required without the other field                       |
 
 ## Get Validation Errors
 Retrieves validation errors
@@ -947,13 +946,13 @@ Block the UI
 	});
 
 
-| Config          | Value                          | Description                           |
+| **Config**          | Value                          | Description                           |
 |-----------------|--------------------------------|---------------------------------------|
-| block           | #id                            | Block a target element                 |
-| content         | 'Loading'                      | Add content to block                   |
-| addClass        | {block: 'my-blocker'}          | Add classes to the blocker             |
-| styles          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
-| contentStyles   | {color: 'white'}               | Add styles to the content              |
+| **block**           | #id                            | Block a target element                 |
+| **content**         | 'Loading'                      | Add content to block                   |
+| **addClass**        | {block: 'my-blocker'}          | Add classes to the blocker             |
+| **styles**          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
+| **contentStyles**   | {color: 'white'}               | Add styles to the content              |
 
 ## Loader
 Block the UI with a loader
@@ -975,14 +974,14 @@ Block the UI with a loader
 	  spinnerStyles: {}                                      // CSS styles applied to the spinner element
 	});
 	
-| Config          | Value                          | Description                           |
+| **Config**          | Value                          | Description                           |
 |-----------------|--------------------------------|---------------------------------------|
-| block           | #id                            | Block a target element                 |
-| message         | 'Loading'                      | Loading message                        |
-| addClass        | {block: 'my-blocker'}          | Add classes to the blocker             |
-| styles          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
-| spinnerStyles   | {color: 'white'}               | Add styles to the spinner              |
-| messageStyles   | {color: 'white'}               | Add styles to the message              |
+| **block**           | #id                            | Block a target element                 |
+| **message**         | 'Loading'                      | Loading message                        |
+| **addClass**        | {block: 'my-blocker'}          | Add classes to the blocker             |
+| **styles**          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
+| **spinnerStyles**   | {color: 'white'}               | Add styles to the spinner              |
+| **messageStyles**   | {color: 'white'}               | Add styles to the message              |
 
 ## Block and Loader
 
@@ -1024,19 +1023,19 @@ Block the UI with a loader
 	  }
 	});
 	
-| Config          | Value                            | Description                            |
+| **Config**          | Value                            | Description                            |
 |-----------------|----------------------------------|----------------------------------------|
-| block           | #id                              | Block a target element                  |
-| id              | new id                           | Add ID to the blocking element          |
-| addClass        | 'my-block'                       | Add classes to the blocking element     |
-| autoClose       | 2000                             | Auto close in 2 seconds                 |
-| enterAnimation  | 'fadeIn'                         | Add Enter animation                     |
-| exitAnimation   | function(){this.animate}         | Add exit animation                      |
-| message         | 'Loading'                        | Loading message                         |
-| addClass        | {block: 'my-blocker'}            | Add classes to the blocker              |
-| styles          | {backgroundColor: 'blue'}        | Add styles to the blocker               |
-| spinnerStyles   | {color: 'white'}                 | Add styles to the spinner               |
-| messageStyles   | {color: 'white'}                 | Add styles to the message               |
+| **block**           | #id                              | Block a target element                  |
+| **id**              | new id                           | Add ID to the blocking element          |
+| **addClass**        | 'my-block'                       | Add classes to the blocking element     |
+| **autoClose**       | 2000                             | Auto close in 2 seconds                 |
+| **enterAnimation**  | 'fadeIn'                         | Add Enter animation                     |
+| **exitAnimation**   | function(){this.animate}         | Add exit animation                      |
+| **message**         | 'Loading'                        | Loading message                         |
+| **addClass**        | {block: 'my-blocker'}            | Add classes to the blocker              |
+| **styles**          | {backgroundColor: 'blue'}        | Add styles to the blocker               |
+| **spinnerStyles**   | {color: 'white'}                 | Add styles to the spinner               |
+| **messageStyles**   | {color: 'white'}                 | Add styles to the message               |
 	
 ## Unblock
 Unblocks the UI
@@ -1064,16 +1063,16 @@ Create a dialog modal
 	  }
 	}).open();                                 // open dialog
 
-| Config       | Value                          | Description                              |
-|--------------|--------------------------------|------------------------------------------|
-| closable     | false                          | Dialog cannot be closed by right click    |
-| closeButton  | false                          | Close button                             |
-| header       | 'Confirm Dialog'               | Header text                              |
-| message      | 'Are you sure?'                | Dialog message                           |
-| ok           | 'Ok'                           | Ok button text                           |
-| cancel       | 'Cancel'                       | Cancel button text                       |
-| onOk         | function(){}                   | Callback function for ok                  |
-| onCancel     | function(){this.close();}      | Callback function for cancel              |
+| **Config**       | Value                          | Description                              |
+|------------------|--------------------------------|------------------------------------------|
+| **closable**     | false                          | Dialog cannot be closed by right click    |
+| **closeButton**  | false                          | Close button                             |
+| **header**       | 'Confirm Dialog'               | Header text                              |
+| **message**      | 'Are you sure?'                | Dialog message                           |
+| **ok**           | 'Ok'                           | Ok button text                           |
+| **cancel**       | 'Cancel'                       | Cancel button text                       |
+| **onOk**         | function(){}                   | Callback function for ok                  |
+| **onCancel**     | function(){this.close();}      | Callback function for cancel              |
 
 ## Overlay
 Overlay DOM element as modal
@@ -1085,10 +1084,10 @@ Overlay DOM element as modal
 	  header: 'My Modal'
 	}).open();
 	
-| Config   | Value | Description                     |
-|----------|-------|---------------------------------|
-| selector | #login | Target overlay element          |
-| display  | flex  | Target display when shown        |
+| **Config**   | Value | Description                     |
+|--------------|-------|---------------------------------|
+| **selector** | #login | Target overlay element          |
+| **display**  | flex  | Target display when shown        |
 
 ## Modal
 Create a modal
@@ -1097,9 +1096,9 @@ Create a modal
 	  content: 'Content'    // ok|cancel|custom - modal content
 	}).open();
 	
-| Config | Value |  Description |
-|--------|-------|--------------|
-| content | html | Modal Content |
+| **Config**  | Value |  Description  |
+|-------------|-------|---------------|
+| **content** | html  | Modal Content |
 
 	Template.dialogOrModalOrOverlay({
 	  id: false,                                       // add id
@@ -1172,35 +1171,35 @@ Create a modal
 	  }
 	});
 
-| Config           | Value                                 | Description                                     |
-|------------------|---------------------------------------|-------------------------------------------------|
-| content          | html                                  | Modal Content                                   |
-| id               | my-modal                              | Add an ID to the modal                          |
-| addClass         | {backdrop: 'my-backdrop', header: 'my-header'} | Add classes                             |
-| autoClose        | 200                                   | Autoclose modal in milliseconds                |
-| closable         | false                                 | Cannot close by right click                     |
-| draggable        | false                                 | Draggable                                       |
-| closeButton      | false                                 | Close button                                    |
-| backdrop         | true                                  | Backdrop                                        |
-| header           | title                                 | Modal header to be used                         |
-| footer           | false                                 | Modal footer to be used                         |
-| enterAnimation   | fadeIn                                | Modal enter animation                           |
-| exitAnimation    | fadeOut                               | Modal exit animation                            |
-| animationDuration| 200                                   | Animation duration in milliseconds             |
-| styles           | {border: '1px solid red'}             | Style the modal container                       |
-| backdropStyles   | {color: 'blue'}                       | Style the backdrop                              |
-| closeStyles      | {color: 'white'}                      | Style the close button                          |
-| headerStyles     | {color: 'black'}                      | Style the header                                |
-| bodyStyles       | {color: 'black'}                      | Style the body                                  |
-| footerStyles     | {color: 'black'}                      | Style the footer                                |
-| ok               | Ok                                    | Ok button text                                  |
-| cancel           | Cancel                                | Cancel button text                              |
-| beforeOpen       | function(){return false}              | Callback before opening the modal               |
-| onOpen           | function(){}                          | Callback when the modal opens                   |
-| beforeClose      | function(){return false}              | Callback before the modal closes                |
-| onClose          | function(){}                          | Callback when the modal closes                  |
-| onOk             | function(){}                          | Callback when the ok button is pressed          |
-| onCancel         | function(){this.close();}             | Callback when the cancel button is pressed      |
+| **Config**           | Value                                 | Description                                     |
+|----------------------|---------------------------------------|-------------------------------------------------|
+| **content**          | html                                  | Modal Content                                   |
+| **id**               | my-modal                              | Add an ID to the modal                          |
+| **addClass**         | {backdrop: 'my-backdrop', header: 'my-header'} | Add classes                             |
+| **autoClose**        | 200                                   | Autoclose modal in milliseconds                |
+| **closable**         | false                                 | Cannot close by right click                     |
+| **draggable**        | false                                 | Draggable                                       |
+| **closeButton**      | false                                 | Close button                                    |
+| **backdrop**         | true                                  | Backdrop                                        |
+| **header**           | title                                 | Modal header to be used                         |
+| **footer**           | false                                 | Modal footer to be used                         |
+| **enterAnimation**   | fadeIn                                | Modal enter animation                           |
+| **exitAnimation**    | fadeOut                               | Modal exit animation                            |
+| **animationDuration**| 200                                   | Animation duration in milliseconds             |
+| **styles**           | {border: '1px solid red'}             | Style the modal container                       |
+| **backdropStyles**   | {color: 'blue'}                       | Style the backdrop                              |
+| **closeStyles**      | {color: 'white'}                      | Style the close button                          |
+| **headerStyles**     | {color: 'black'}                      | Style the header                                |
+| **bodyStyles**       | {color: 'black'}                      | Style the body                                  |
+| **footerStyles**     | {color: 'black'}                      | Style the footer                                |
+| **ok**               | Ok                                    | Ok button text                                  |
+| **cancel**           | Cancel                                | Cancel button text                              |
+| **beforeOpen**       | function(){return false}              | Callback before opening the modal               |
+| **onOpen**           | function(){}                          | Callback when the modal opens                   |
+| **beforeClose**      | function(){return false}              | Callback before the modal closes                |
+| **onClose**          | function(){}                          | Callback when the modal closes                  |
+| **onOk**             | function(){}                          | Callback when the ok button is pressed          |
+| **onCancel**         | function(){this.close();}             | Callback when the cancel button is pressed      |
 
 # Lazy Loading
 Load images only when shown also known as lazy loading
@@ -1215,11 +1214,11 @@ Load images only when shown also known as lazy loading
 	  onFinishLoading: function() {}  // callback after loading
 	});
 	
-| Config           | Value                             | Description                                   |
-|------------------|-----------------------------------|-----------------------------------------------|
-| beforeLoad       | function(){ return false; }       | Callback before loading, return false to cancel Template loading |
-| onLoad           | function(){}                      | Callback on load                              |
-| onFinishLoading  | function(){}                      | Callback on loading finish                    |
+| **Config**           | Value                             | Description                                   |
+|----------------------|-----------------------------------|-----------------------------------------------|
+| **beforeLoad**       | function(){ return false; }       | Callback before loading, return false to cancel Template loading |
+| **onLoad**           | function(){}                      | Callback on load                              |
+| **onFinishLoading**  | function(){}                      | Callback on loading finish                    |
 
 # Reveals
 
@@ -1250,13 +1249,13 @@ Animate a dom element when revealed
 	  }
 	});
 	
-| Config       | Value                          | Description                                  |
-|--------------|--------------------------------|----------------------------------------------|
-| selector     | #id                            | Target element                               |
-| animation    | fade-in                        | Custom animation                             |
-| beforeShow   | function(target){}             | Callback before the target shows             |
-| onShow       | function(target){}             | Callback when the target shows               |
-| onHide       | function(target){}             | Callback when the target is hidden           |
+| **Config**       | Value                          | Description                                  |
+|------------------|--------------------------------|----------------------------------------------|
+| **selector**     | #id                            | Target element                               |
+| **animation**    | fade-in                        | Custom animation                             |
+| **beforeShow**   | function(target){}             | Callback before the target shows             |
+| **onShow**       | function(target){}             | Callback when the target shows               |
+| **onHide**       | function(target){}             | Callback when the target is hidden           |
 
 ## Children Reveal
 Animate the children of a dom element when revealed
@@ -1284,15 +1283,15 @@ Animate the children of a dom element when revealed
 	  onHide: function(parent) {}               // callback when element is hidden (called every time the element is hidden)
 	});
 
-| Config       | Value                          | Description                                  |
-|--------------|--------------------------------|----------------------------------------------|
-| selector     | #id                            | Target element                               |
-| children     | li                             | Children selector                            |
-| animation    | fade-in                        | Custom animation                             |
-| beforeShow   | function(target){}             | Callback before the target shows             |
-| onShow       | function(target){}             | Callback when the target shows               |
-| onChildShow  | function(child){}              | Callback when a child is shown               |
-| onHide       | function(target){}             | Callback when the target is hidden           |
+| **Config**       | Value                          | Description                                  |
+|------------------|--------------------------------|----------------------------------------------|
+| **selector**     | #id                            | Target element                               |
+| **children**     | li                             | Children selector                            |
+| **animation**    | fade-in                        | Custom animation                             |
+| **beforeShow**   | function(target){}             | Callback before the target shows             |
+| **onShow**       | function(target){}             | Callback when the target shows               |
+| **onChildShow**  | function(child){}              | Callback when a child is shown               |
+| **onHide**       | function(target){}             | Callback when the target is hidden           |
 
 # Infinite Scroll
 Load items indefinitely
@@ -1317,13 +1316,13 @@ Load items indefinitely
 	  }
 	});
 	
-| Config             | Value                                                                 | Description                                   |
-|--------------------|-----------------------------------------------------------------------|-----------------------------------------------|
-| selector           | #id                                                                   | Target element                                |
-| children           | li                                                                    | Scrollable child elements                     |
-| observerSettings   | {rootMargin: '10px', threshold: [0.25, 0.5, 0.75]}                    | IntersectionObserver additional settings      |
-| onTop              | function(){}                                                          | Callback when top child is shown              |
-| onBottom           | function(target){ target.append(newChild) }                           | Callback when bottom child is shown           |
+| **Config**             | Value                                                                 | Description                                   |
+|------------------------|-----------------------------------------------------------------------|-----------------------------------------------|
+| **selector**           | #id                                                                   | Target element                                |
+| **children**           | li                                                                    | Scrollable child elements                     |
+| **observerSettings**   | {rootMargin: '10px', threshold: [0.25, 0.5, 0.75]}                    | IntersectionObserver additional settings      |
+| **onTop**              | function(){}                                                          | Callback when top child is shown              |
+| **onBottom**           | function(target){ target.append(newChild) }                           | Callback when bottom child is shown           |
 
 # Paginate
 Create pagination
@@ -1425,48 +1424,48 @@ Create pagination
 	.redraw()                           // redraws buttons and navigations
 	.destroy();                         // removes pagination
 
-| Config                  | Value                   | Description                                      |
-|-------------------------|-------------------------|--------------------------------------------------|
-| items                   | 'li'                    | Page items                                       |
-| addClass                | false                   | Add class to pagination                          |
-| itemsPerPage            | 1                       | Items to be shown per page                       |
-| loop                    | false                   | Loop pages                                       |
-| header                  | false                   | Header per page                                  |
-| autoPlay                | false                   | Auto play pages                                  |
-| autoPlayDuration        | 5000                    | Auto play interval                               |
-| navigation              | true                    | Navigation buttons                               |
-| submit                  | false                   | Show last next button                            |
-| styles                  | {}                      | Additional pagination styles                     |
-| headerStyles            | {}                      | Header styles                                    |
-| previousButtonStyles    | {}                      | Previous button styles                           |
-| nextButtonStyles        | {}                      | Next button styles                               |
-| navigationStyles        | {}                      | Navigation styles                               |
-| navigationButtonStyles  | {}                      | Navigation button styles                         |
-| enterAnimation          | function(item)          | Page enter animation                             |
-| exitAnimation           | function(item)          | Page exit animation                              |
-| nextEnterAnimation      | false                   | Next enter animation override enter animation    |
-| nextExitAnimation       | false                   | Next exit animation override exit animation      |
-| previousEnterAnimation  | false                   | Previous enter animation override enter animation |
-| previousExitAnimation   | false                   | Previous exit animation override exit animation   |
-| animationDuration       | 400                     | Animation durations                              |
-| next                    | 'Next'                  | Next button text                                 |
-| previous                | 'Previous'              | Previous button text                             |
-| onFirst                 | function(event, data){} | Callback for first page                          |
-| beforeNext              | function(event, data){} | Callback before next                             |
-| onNext                  | function(event, data){} | Callback on next                                 |
-| beforePrevious          | function(event, data){} | Callback before previous                         |
-| onPrevious              | function(event, data){} | Callback on previous                             |
-| beforeChange            | function(event, data){} | Callback before page change                      |
-| onChange                | function(event, data){} | Callback on page change                          |
-| onScroll                | function(event, data){} | Callback on scroll                               |
-| onLast                  | function(event, data){} | Callback for last page                           |
+| **Config**                  | Value                   | Description                                      |
+|-----------------------------|-------------------------|--------------------------------------------------|
+| **items**                   | 'li'                    | Page items                                       |
+| **addClass**                | false                   | Add class to pagination                          |
+| **itemsPerPage**            | 1                       | Items to be shown per page                       |
+| **loop**                    | false                   | Loop pages                                       |
+| **header**                  | false                   | Header per page                                  |
+| **autoPlay**                | false                   | Auto play pages                                  |
+| **autoPlayDuration**        | 5000                    | Auto play interval                               |
+| **navigation**              | true                    | Navigation buttons                               |
+| **submit**                  | false                   | Show last next button                            |
+| **styles**                  | {}                      | Additional pagination styles                     |
+| **headerStyles**            | {}                      | Header styles                                    |
+| **previousButtonStyles**    | {}                      | Previous button styles                           |
+| **nextButtonStyles**        | {}                      | Next button styles                               |
+| **navigationStyles**        | {}                      | Navigation styles                               |
+| **navigationButtonStyles**  | {}                      | Navigation button styles                         |
+| **enterAnimation**          | function(item)          | Page enter animation                             |
+| **exitAnimation**           | function(item)          | Page exit animation                              |
+| **nextEnterAnimation**      | false                   | Next enter animation override enter animation    |
+| **nextExitAnimation**       | false                   | Next exit animation override exit animation      |
+| **previousEnterAnimation**  | false                   | Previous enter animation override enter animation |
+| **previousExitAnimation**   | false                   | Previous exit animation override exit animation   |
+| **animationDuration**       | 400                     | Animation durations                              |
+| **next**                    | 'Next'                  | Next button text                                 |
+| **previous**                | 'Previous'              | Previous button text                             |
+| **onFirst**                 | function(event, data){} | Callback for first page                          |
+| **beforeNext**              | function(event, data){} | Callback before next                             |
+| **onNext**                  | function(event, data){} | Callback on next                                 |
+| **beforePrevious**          | function(event, data){} | Callback before previous                         |
+| **onPrevious**              | function(event, data){} | Callback on previous                             |
+| **beforeChange**            | function(event, data){} | Callback before page change                      |
+| **onChange**                | function(event, data){} | Callback on page change                          |
+| **onScroll**                | function(event, data){} | Callback on scroll                               |
+| **onLast**                  | function(event, data){} | Callback for last page                           |
 	
-| Functions     | Value                        | Description                      |
-|---------------|------------------------------|----------------------------------|
-| play(duration)| paginated.play(3000)         | Autoplay in milliseconds         |
-| stop()        | paginated.stop()             | Stop autoplay                    |
-| redraw()      | paginated.redraw()           | Redraws paginations              |
-| destroy()     | paginated.destroy()          | Remove paginations               |
+| **Functions**     | Value                        | Description                      |
+|-------------------|------------------------------|----------------------------------|
+| **play(duration)**| paginated.play(3000)         | Autoplay in milliseconds         |
+| **stop()**        | paginated.stop()             | Stop autoplay                    |
+| **redraw()**      | paginated.redraw()           | Redraws paginations              |
+| **destroy()**     | paginated.destroy()          | Remove paginations               |
 
 	
 # SVG Map
@@ -1494,23 +1493,23 @@ Add events to SVG Map
 	.select(['Item'])
 	.clear();
 	
-| Config    | Value                                  | Description                          |
-|-----------|----------------------------------------|--------------------------------------|
-| selector  | #svg                                   | Target svg selector                   |
-| max       | 1                                      | Max item selected                     |
-| readonly  | false                                  | Disable selection                     |
-| onSelect  | function(path){return false;}          | Callback for when path is selected    |
-| onDeSelect| function(path){return false;}          | Callback for deselecting a path       |
-| onMax     | function(){}                           | Callback when max selections are reached |
+| **Config**    | Value                                  | Description                          |
+|---------------|----------------------------------------|--------------------------------------|
+| **selector**  | #svg                                   | Target svg selector                   |
+| **max**       | 1                                      | Max item selected                     |
+| **readonly**  | false                                  | Disable selection                     |
+| **onSelect**  | function(path){return false;}          | Callback for when path is selected    |
+| **onDeSelect**| function(path){return false;}          | Callback for deselecting a path       |
+| **onMax**     | function(){}                           | Callback when max selections are reached |
 
 
-| Functions            | Value                     | Description                          |
-|----------------------|---------------------------|--------------------------------------|
-| changeMax(max)       | svgMap.changeMax(3)       | Update number of max selections      |
-| readOnly()           | svgMap.readOnly()         | Disable selection                    |
-| disable()            | svgMap.disable()          | Disable selection                    |
-| enable()             | svgMap.enable()           | Enable selection                     |
-| select(items)        | svgMap.select(['Item'])   | Highlight items                      |
-| clear()              | svgMap.clear()            | Clear selections                     |
-| getValues()          | svgMap.getValues()        | Retrieves selected values            |
-| getSelectedPaths()   | svgMap.getSelectedPaths() | Retrieves selected paths             |
+| **Functions**            | Value                     | Description                          |
+|--------------------------|---------------------------|--------------------------------------|
+| **changeMax(max)**       | svgMap.changeMax(3)       | Update number of max selections      |
+| **readOnly()**           | svgMap.readOnly()         | Disable selection                    |
+| **disable()**            | svgMap.disable()          | Disable selection                    |
+| **enable()**             | svgMap.enable()           | Enable selection                     |
+| **select(items)**        | svgMap.select(['Item'])   | Highlight items                      |
+| **clear()**              | svgMap.clear()            | Clear selections                     |
+| **getValues()**          | svgMap.getValues()        | Retrieves selected values            |
+| **getSelectedPaths()**   | svgMap.getSelectedPaths() | Retrieves selected paths             |
