@@ -805,8 +805,6 @@ document.addEventListener('DOMContentLoaded', function (){
                 Lazy.dialog({
                     title: 'Modal Dialog',
                     message: 'Do you agree?',
-                    enterAnimation: 'flip',
-                    
                     onOk: function() {
                         alert('Agreed!');
                         this.close();
