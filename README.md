@@ -1,5 +1,5 @@
 # What is Template
-[Template](https://github.com/markusoft/template) is a collection of useful UI/UX and helper functions accumulated through decades of passionate web development. Created by developers for developers because we understand your needs.
+[Template](https://github.com/markusoft/template) is a collection of useful UI/UX and helper functions accumulated through decades of passionate web development. Created by developers for developers because we understand your needs. [See it in action](https://markusoft.github.io/template/)
 
 # Easy Peasy Summary
 
@@ -211,7 +211,7 @@
 - [SVG Map](#svg-map)
 
 # Installation
-Download the [library](#) and add it to your hmtl file
+Download the [library](https://github.com/markusoft/dev-tools/raw/main/Template.zip) and add it to your html file
 
   ```
   <script src="template.js"></script>
@@ -755,12 +755,37 @@ Populate a form with json values
 ## Form to Serialized
 Saves form values to serialized text
 
-	Template.formToSerialized(form);
+	Template.formToSerialized(form, case, mutator);
+	
+	Template.formToSerialized('#form', 'camel', {
+	  firstName: function(value) {
+	    return value.capitalizeAll();
+	  }
+	});
+
+| **Config**   | Value                                  | Description                                  |
+|----------|----------------------------------------|----------------------------------------------|
+| **selector** | #id                                    | Target element                               |
+| **case**     | dash, underscore, camel, pascal        | Form name cases                              |
+| **mutator**  | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before retrieving |
 
 ## Serialized to Form
 Populate a form with serialized text
 
-	Template.serializedToForm(serialized, form);
+	Template.serializedToForm(serialized, form, case, mutator);
+	
+	Template.serializedToForm(json, form, 'snake', {
+	  phone: function(value) {
+	    return Template.phoneFormat(value);
+	  }
+	});
+
+| **Config**   | Value                                  | Description                                  |
+|----------|----------------------------------------|----------------------------------------------|
+| **serialized**     | username=Username               | Serialized text                                  |
+| **selector** | #form                                  | Target form                                  |
+| **case**     | dash, underscore, camel, pascal        | Form name cases                              |
+| **mutator**   | {firstName: function(value) {return value.capitalizeAll();}} | Process the value before inserting |
 
 # Form Validations
 	
