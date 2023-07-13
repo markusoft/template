@@ -1,90 +1,213 @@
 # What is Template
-Template is a collection of useful UI/UX and helper functions accumulated through decades of passionate web development. Created by developers for developers because we understand your needs.
+[Template](https://github.com/markusoft/template) is a collection of useful UI/UX and helper functions accumulated through decades of passionate web development. Created by developers for developers because we understand your needs.
 
 # Easy Peasy Summary
 
+[Constants](#constants)
+| Constant           | Output                 | Description              |
+|--------------------|------------------------|--------------------------|
+| BASE_URL           | http://your-domain.com | Base URL of your website |
+|
+
+[Number Helpers](#number-helpers)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
-| Constants                       ||||
-| BASE_URL                        | BASE_URL                                                    | http://your-domain.com | Base URL of your website                          |
-| [Number Helpers](#number-helpers) ||||
 | [Number.pad(size)](#pad)        | Number(3).pad(3)                                            | 003             | Adds zero padding to numbers                      |
-| [String Helpers](#string-helpers) ||||
-| String.trim()                   | ' Sample Text '.trim()                                      | Sample Text     | Removes trailing and leading white spaces          |
-| String.trimAll()                | ' Sample Text '.trimAll()                                   | SampleText      | Removes all white spaces                          |
-| String.capitalize()             | 'sample text'.capitalize()                                  | Sample text     | Capitalizes the first letter of a word or phrase   |
-| String.capitalizeAll()          | 'sample-text'.cleanCapitalizeAll()                          | Sample Text     | Capitalizes all words in a phrase                 |
-| String.cleanCapitalizeAll()     | 'sample text'.cleanCapitalizeAll()                          | SampleText      | Capitalizes all words and removes dashes/underscores |
-| String.deCapitalize()           | 'Sample Text'.deCapitalize()                                | sample Text     | De-capitalizes the first letter of a word or phrase |
-| String.deCapitalizeAll()        | 'Sample Text'.deCapitalizeAll()                             | sample text     | De-capitalizes all words in a phrase              |
-| String Case Conversions         ||||
-| String.toDash()                 | 'sample text'.toDash()                                      | sample-text     | Converts spaces and underscores to dash           |
-| String.toUnderscore()           | 'sample text'.toUnderscore()                                | sample_text     | Converts spaces and dashes to underscore          |
-| String.toSnake()                | 'sample text'.toSnake()                                     | sample_text     | Converts spaces and dashes to underscore          |
-| String.toPascalCase()           | 'sample text'.toPascalCase()                                | SampleText      | Converts string to Pascal case                    |
-| String.toCamelCase()            | 'sample text'.toCamelCase()                                 | sampleText      | Converts string to camel case                     |
-| String.changeCase('camel')      | 'Sample Text'.changeCase('dash')                            | sample-text     | Converts string to specified case                 |
-| Array Helpers                   ||||
-| Array.random()                  | ['a','b','c','d','e'].random()                              | 'a'             | Retrieves a random element from an array          |
-| Array.random(items)             | ['a','b','c','d','e'].random(2)                             | ['b','e']       | Retrieves random elements from an array           |
-| Array.joinLast(', ', 'and')     | ['a','b','c'].joinLast(', ', 'and')                         | a, b and c      | Joins array with a custom last conjunction        |
-| Local Storage Helpers           ||||
-| Storage.setObject('key', value) | Storage.setObject('key', json)                              |                 | Stores a JSON object in local storage             |
-| Storage.getObject('key')        | Storage.getObject('key')                                    | {'json': 'object'} | Retrieves a JSON object from local storage        |
-| Template                        ||||
-| Template.getConfig('item')      | Template.getConfig('prefix')                                | -tpl            | Retrieves a configuration item                    |
-| Template.getCssVar('--css-var') | Template.getCssVar('--font-size')                           | 14px            | Retrieves a CSS variable                          |
-| Template Event Listeners         ||||
-| Template.on(type, selector, callback, options)               |                                                             |                 | Adds an event listener to an element              |
-| Template.don(type, selector, callback, options)              |                                                             |                 | Adds an event listener to the document            |
-| Template.addEventListener(type, selector, callback, options) |                                                             |                 | Adds an event listener                            |
-| Search, Sort and Filter         ||||
+|
+
+[String Helpers](#string-helpers)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [String.trim()](#trim)                   | ' Sample Text '.trim()                                      | Sample Text     | Removes trailing and leading white spaces          |
+| [String.trimAll()](#trim-all)                | ' Sample Text '.trimAll()                                   | SampleText      | Removes all white spaces                          |
+| [String.capitalize()](#capitalize)             | 'sample text'.capitalize()                                  | Sample text     | Capitalizes the first letter of a word or phrase   |
+| [String.capitalizeAll()](#capitalize-all)          | 'sample-text'.cleanCapitalizeAll()                          | Sample Text     | Capitalizes all words in a phrase                 |
+| [String.cleanCapitalizeAll()](#clean-capitalize-all)     | 'sample text'.cleanCapitalizeAll()                          | SampleText      | Capitalizes all words and removes dashes/underscores |
+| [String.deCapitalize()](#decapitalize)           | 'Sample Text'.deCapitalize()                                | sample Text     | De-capitalizes the first letter of a word or phrase |
+| [String.deCapitalizeAll()](#decapitalize-all)        | 'Sample Text'.deCapitalizeAll()                             | sample text     | De-capitalizes all words in a phrase              |
+| [<strong>String Case Conversions</strong>](#string-case-conversions) ||||
+| [String.toDash()](#to-dash)                 | 'sample text'.toDash()                                      | sample-text     | Converts spaces and underscores to dash           |
+| [String.toUnderscore()](#to-underscore)           | 'sample text'.toUnderscore()                                | sample_text     | Converts spaces and dashes to underscore          |
+| [String.toSnake()](#to-snake)                | 'sample text'.toSnake()                                     | sample_text     | Converts spaces and dashes to underscore          |
+| [String.toPascalCase()](#to-pascal)           | 'sample text'.toPascalCase()                                | SampleText      | Converts string to Pascal case                    |
+| [String.toCamelCase()](#to-camel-case)            | 'sample text'.toCamelCase()                                 | sampleText      | Converts string to camel case                     |
+| [String.changeCase('camel')](#change-case)      | 'Sample Text'.changeCase('dash')                            | sample-text     | Converts string to specified case                 |
+|
+
+[Array Helpers](#array-helpers)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Array.random()](#random)                  | ['a','b','c','d','e'].random()                              | 'a'             | Retrieves a random element from an array          |
+| [Array.random(items)](#random)             | ['a','b','c','d','e'].random(2)                             | ['b','e']       | Retrieves random elements from an array           |
+| [Array.joinLast(', ', 'and')](#join-last)     | ['a','b','c'].joinLast(', ', 'and')                         | a, b and c      | Joins array with a custom last conjunction        |
+|
+
+[Local Storage](#local-storage)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Storage.setObject('key', value)](#set-object) | Storage.setObject('key', json)                              |                 | Stores a JSON object in local storage             |
+| [Storage.getObject('key')](#get-object)        | Storage.getObject('key')                                    | {'json': 'object'} | Retrieves a JSON object from local storage     |
+|
+
+[Getters](#getters)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Template.getConfig('item')](#get-config)      | Template.getConfig('prefix')                                | -tpl            | Retrieves a configuration item                    |
+| [Template.getCssVar('--css-var')](#get-css-var) | Template.getCssVar('--font-size')                           | 14px            | Retrieves a CSS variable                          |
+|
+
+[Event Listeners](#event-listeners)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Template.on(type, selector, callback, options)](#on)               |                                                             |                 | Adds an event listener to an element              |
+| [Template.don(type, selector, callback, options)](#don)              |                                                             |                 | Adds an event listener to the document            |
+| [Template.addEventListener(type, selector, callback, options)](#add-event-listener) |                                                             |                 | Adds an event listener                            |
+|
+
+## Search, Sort and Filter
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Template.filter(parent, settings)                             | Template.filter('#tbody', {filter:'tr', search: 'Mark', searchAttributes: ['innerText']} | searched rows | Searches table rows                              |
 | Template.filter(parent, settings)                             | Template.filter('#ul', {filter:'li', search: 'Mark', searchAttributes: ['innerText']} | searched lists | Searches list items                              |
 | Template.sort(parent, children, sortAndOrder)                 | Template.sort('#tbody', 'tr', {'innerText': 'asc'})        | ascending table rows | Sorts table rows                               |
 | Template.sort(parent, children, sortAndOrder)                 | Template.sort('#ul', 'li', {'innerText': 'desc'})           | descending list items | Sorts list elements                              |
-| JSON and Forms                  ||||
+|
+
+## JSON and Forms
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Template.flattenJson(json)         | Template.flattenJson({'a': {'b': 'c'}})                               | {'a.b': 'c'}               | Flatten JSON to a single array with dot notation keys |
 | Template.formToJson(form)          | Template.formToJson('#form')                                           | {'form': 'value'}          | Convert form values to JSON                          |
 | Template.jsonToForm(json, form)    | Template.jsonToForm(json, '#form')                                     | Populated form             | Populate form with JSON values                       |
-| Form Validations                   ||||
+| Template.formToSerialized(form)          | Template.formToSerialized('#form')                                           | 'form=value'         | Convert form values to serialized text                          |
+| Template.serializedToForm(json, form)    | Template.serializedToForm(serialized, '#form')                                     | Populated form             | Populate form with serialized text                       |
+| <strong>Form Validations</strong>  ||||
 | Template.valid(value, validations) | Template.valid(3, 'integer')                                           | true                       | Check if a value is valid                            |
 | Template.validate('#form', rules)  | Template.validate('#form', {username: {'rules': ['required', 'email']}}) | true                       | Form validation                                     |
 | Template.liveValidation('#form', rules, callbacks) | Template.liveValidation('#form', rules, {onError: function()}) |                            | Live form validation                                |
 | Template.getValidationErrors()     | Template.getValidationErrors()                                         | {username: {'email': 'Must be a valid email'}} | Retrieve validation errors                           |
-| Fakers                             ||||
+|
+
+## Fakers
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Template.fake('anything')          | Template.fake('email')                                                 | markangelo@gmail.com       | Generate a fake email                                |
 | Template.fake('anything')          | Template.fake('lorem')                                                 | lorem ipsum dolor          | Generate lorem ipsum text                            |
 | Template.faker()                   | Template.faker()                                                        | Populate a form with fake contents | Hold Alt + Shift and click              |
+
+## Blockers
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Blockers and Loaders               ||||
 | Template.block(settings)           | Template.block()                                                        |                            | Blocks the UI                                       |
 | Template.loader(settings)          | Template.loader()                                                       |                            | Blocks the UI with a loader                          |
 | Template.unblock('#id')            | Template.unblock()                                                      |                            | Unblocks the UI                                     |
-| Modals and Dialogs                 ||||
+
+## Modals and Dialogs
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Template.dialog(settings)          | Template.dialog({'message': 'Are you sure?'}).open()                   |                            | Open a confirm dialog modal                          |
 | Template.overlay('#id', settings)  | Template.overlay('#login').open()                                       |                            | Overlay a DOM element                                |
 | Template.modal(settings)           | Template.modal({'content': 'Any Content'}).open()                       |                            | Open a custom modal                                  |
-| Template Loading                   ||||
-| Template.TemplateLoad(img)         | Template.TemplateLoad('.tpl-img')                                       |                            | Only loads images when shown, also known as Template loading |
-| Reveal                             ||||
+
+## Lazy Loading
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| Template.lazyLoad(img)          | Template.lazyLoad('.tpl-img')                               |                 | Only loads images when shown, also known as Template loading |
+|
+
+## Reveal
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Template.reveal(id, settings)      | Template.reveal('#id', {animation: 'fade-in'})                          |                            | Animate object on reveal                             |
 | Template.childrenReveal(id, settings) | Template.childrenReveal('#ul')                                       |                            | Animate children on reveal                           |
-| Infinite Scroll                    ||||
+
+[Infinite Scroll](#infinite-scroll)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
 | Template.infiniteScroll(selector, settings) | Template.infiniteScroll('#ul', {onBottom: function()})          |                            | Add items when the bottom is reached for infinite scroll |
-| SVG Map                            ||||
-| Template.svgMap(selector, settings) | Template.svgMap('#svg', {max: 1})  
+
+[SVG Map](#svg-map)
+| Function                        | Usage                                                       | Output          | Description                                       |
+|---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| Template.svgMap(selector, settings) | Template.svgMap('#svg', {max: 1})  | | Add events to SVG Map |
+
 
 # Table of Contents
 - [What is Template](#what-is-template)
 - [Easy Peasy Summary](#easy-peasy-summary)
+	- [Search, Sort and Filter](#search-sort-and-filter)
+	- [JSON and Forms](#json-and-forms)
+	- [Fakers](#fakers)
+	- [Blockers](#blockers)
+	- [Modals and Dialogs](#modals-and-dialogs)
+	- [Lazy Loading](#lazy-loading)
+	- [Reveal](#reveal)
+- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Constants](#constants)
+- [Number Helpers](#number-helpers)
+	- [Pad](#pad)
+- [String Helpers](#string-helpers)
+	- [Trim](#trim)
+	- [Trim All](#trim-all)
+	- [Capitalize](#capitalize)
+	- [Capitalize All](#capitalize-all)
+	- [Clean Capitalize All](#clean-capitalize-all)
+	- [Decapitalize](#decapitalize)
+	- [Decapitalize All](#decapitalize-all)
+- [String Case Conversions](#string-case-conversions)
+	- [To Dash](#to-dash)
+	- [To Underscore](#to-underscore)
+	- [To Snake](#to-snake)
+	- [To Pascal](#to-pascal)
+	- [To Camel](#to-camel)
+	- [Change Case](#change-case)
+- [Array Helpers](#array-helpers)
+	- [Random](#random)
+	- [Join Last](#join-last)
+- [Local Storage](#local-storage)
+	- [Set Object](#set-object)
+	- [Get Object](#get-object)
+- [Getters](#getters)
+	- [Get Config](#get-config)
+	- [Get Css Var](#get-css-var)
+- [Event Handlers](#event-handlers)
+	- [On](#on)
+	- [Don](#don)
+	- [Add Event Listener](#add-event-listener)
+- [Lazy Loading](#lazy-loading-1)
+- [Infinite Scroll](#infinite-scroll)
+- [Reveal](#reveal-1)
+- [Children Reveal](#children-reveal)
+- [Form to JSON](#form-to-json)
+- [JSON to Form](#json-to-form)
+- [Search and Filter](#search-and-filter)
+- [Block](#block)
+- [Loader](#loader)
+- [Block and Loader](#block-and-loader)
+- [Unblock](#unblock)
+- [Dialogs](#dialogs)
+- [Overlay](#overlay)
+- [Modal](#modal)
+- [Fake](#fake)
+- [Faker](#faker)
+- [Validations](#validations)
+	- [Valid](#valid)
+- [Validate](#validate)
+	- [Live Validation](#live-validation)
+	- [Validation Rules](#validation-rules)
+- [Animate](#animate)
+- [Paginate](#paginate)
+- [SVG Map](#svg-map)
 
 # Installation
 Download the library and add it to your hmtl file
 
+  ```
   <script src="template.js"></script>
+  ```
 
 # Configuration
 Set default library configurations
@@ -152,8 +275,8 @@ Set default library configurations
 | dialog              | {'message': 'Are you sure?'}                                                                                 | Default dialog configurations                      |
 | modal               | {'content': 'Modal Content'}                                                                                 | Default modal configurations                       |
 | overlay             | {'closeButton': false}                                                                                       | Default overlay configurations                     |
-| modalHeaders        | {default: '<div>Modal Header</div>'}                                                                         | Custom modal headers                               |
-| modalFooters        | {custom: function(opt){`<button class="${opt.prefix}modal-ok">Ok</button>`}}                                 | Custom modal footers                               |
+| modalHeaders        | {default: '\<div>Modal Header\</div>'}                                                                         | Custom modal headers                               |
+| modalFooters        | {custom: function(opt){`\<button class="${opt.prefix}modal-ok">Ok</button>`}}                                 | Custom modal footers                               |
 | paginate            | {itemsPerPage: 5}                                                                                            | Default pagination configurations                   |
 | validationRules     | {max: function(val, max){ return val.length <= max; }}                                                       | Validation rules                                   |
 | validationMessages  | {max: function(val, max){ return `${val} should not exceed ${max} characters`; }}                            | Validation messages                                |
@@ -174,16 +297,219 @@ Add zero padding to a number
 	
 # String Helpers
 
-## 
+## Trim
+Removes trailing and leading white spaces
 
-# On
+	String.trim();
+
+Sample Usage
+
+	' Sample Text '.trim();
+	'Sample Text' // output
+
+## Trim All
+Removes all white spaces
+
+	String.trimAll();
+
+Sample Usage
+
+	' Sample Text '.trimAll();
+	'SampleText' // output
+
+## Capitalize
+Capitalizes the first letter of a word or phrase
+
+	String.capitalize();
+
+Sample Usage
+
+	'sample text'.capitalize();
+	'Sample text' // output
+
+## Capitalize All
+Capitalizes all words in a phrase
+
+	String.capitalizeAll();
+
+Sample Usage
+
+	'sample-text'.cleanCapitalizeAll();
+	' Sample Text' // output
+
+## Clean Capitalize All
+Capitalizes all words and removes dashes/underscores
+
+	String.cleanCapitalizeAll();
+
+Sample Usage
+
+	'sample text'.cleanCapitalizeAll();
+	'SampleText' // output
+
+## Decapitalize
+De-capitalizes the first letter of a word or phrase
+
+	String.deCapitalize();
+
+Sample Usage
+
+	'Sample Text'.deCapitalize();
+	'sample Text' // output
+
+## Decapitalize All
+De-capitalizes all words in a phrase
+
+	String.deCapitalizeAll();
+
+Sample Usage
+
+	'Sample Text'.deCapitalizeAll();
+	'sample text' // output
+
+# String Case Conversions
+
+## To Dash
+Converts spaces and underscores to dash
+
+	String.toDash();
+
+Sample Usage
+
+	'sample text'.toDash();
+	'sample-text' // output
+
+## To Underscore
+Converts spaces and dashes to underscore
+
+	String.toUnderscore();
+
+Sample Usage
+
+	'sample text'.toUnderscore();
+	'sample_text' // output
+
+## To Snake
+Converts spaces and dashes to underscore
+
+	String.toSnake();
+
+Sample Usage
+
+	'sample text'.toSnake();
+	'sample_text' // output
+
+## To Pascal
+Converts string to Pascal case
+
+	String.toPascalCase();
+
+Sample Usage
+
+	'sample text'.toPascalCase();
+	'SampleText' // output
+
+## To Camel
+Converts string to camel case
+
+	String.toCamelCase();
+
+Sample Usage
+
+	'sample text'.toCamelCase();
+	'sampleText' // output
+
+## Change Case
+
+	String.changeCase('camel');
+
+Sample Usage
+
+	'sample text'.changeCase('dash);
+	'sample-text' // output
+	'sample text'.changeCase('pascal);
+	'SampleText' // output
+
+# Array Helpers
+
+## Random
+Retrieves random elements from an array
+
+	Array.random();
+	Array.random(items);
+
+Sample Usage
+
+	['a','b','c','d','e'].random();
+	'a' // output
+	['a','b','c','d','e'].random(2);
+	['b','e'] // output
+
+## Join Last
+Joins array with a custom last conjunction
+
+	Array.joinLast(', ', 'and')
+
+Sample Usage
+
+	['a','b','c'].joinLast(', ', 'and');
+	a, b and c // output
+
+# Local Storage
+
+## Set Object
+Stores a JSON object in local storage
+
+	Storage.setObject('key', value);
+
+Sample Usage
+
+	Storage.setObject('key', {'json': 'object'});
+
+## Get Object
+Retrieves a JSON object from local storage
+
+	Storage.getObject('key');
+
+Sample Usage
+
+	Storage.getObject('key');
+
+# Getters
+
+## Get Config
+Retrieves a configuration item
+
+	Template.getConfig('item');
+
+Sample Usage
+
+	Template.getConfig('prefix');
+	'-tpl' // output
+
+## Get Css Var
+Retrieves a CSS variable
+
+	Template.getCssVar('--css-var');
+
+Sample Usage
+
+	Template.getCssVar('--font-size');
+	'14px' // output
+
+
+
+
+# Event Handlers
+
+## On
 Add event listener to a dom element
 	
   Template.on('click', '#my-button', function(event){
     event.preventDefault();
   });
 	
-# Don
+## Don
 Add event listener to the document
 	
 	// add custom event
@@ -195,6 +521,17 @@ Add event listener to the document
 	Template.don('custom-event', function(e){                           
 	  console.log(e.target);
 	});
+
+## Add Event Listener
+Adds an event listener
+
+	Template.addEventListener(type, selector, callback, options);
+
+Sample Usage
+
+	Template.addEventListener('click', '#id', function(e){
+		e.preventDefault();
+	}, {bubbles: true});
 
 # Lazy Loading
 Load images only when shown also known as lazy loading
