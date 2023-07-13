@@ -158,7 +158,7 @@
                     </section>
                     
                     <section id="horizontal-page">
-                        <h3><span>Horizontal</span></h3>
+                        <h3><span>Horizontal Scroll</span></h3>
                         <div id="horizontal-container">
                             <div id="horizontal-pagination">
                                 <div>1</div>
@@ -188,6 +188,37 @@
                                 <div>25</div>
                             </div>
                         </div>
+                        
+                        <div id="horizontal-single-container">
+                            <div id="horizontal-single-pagination">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                <div>10</div>
+                                <div>11</div>
+                                <div>12</div>
+                                <div>13</div>
+                                <div>14</div>
+                                <div>15</div>
+                                <div>16</div>
+                                <div>17</div>
+                                <div>18</div>
+                                <div>19</div>
+                                <div>20</div>
+                                <div>21</div>
+                                <div>21</div>
+                                <div>23</div>
+                                <div>24</div>
+                                <div>25</div>
+                            </div>
+                        </div>
+                        
                     </section>
                     
                     <section id="paginate-grid">
@@ -658,8 +689,16 @@
                 <section id="animations">
                     <h2><span>Animations</span></h2>
                     
-                    <section id="animation-controls">
-                        <h3><span>Animation Controls</span></h3>
+                    <section id="css-animations">
+                        <h3><span>CSS Animations</span></h3>
+                        <button class="tpl-btn"><span>appear-top</span></button>
+                        <button class="tpl-btn"><span>disappear-top</span></button>
+                        <button class="tpl-btn"><span>appear-bottom</span></button>
+                        <button class="tpl-btn"><span>disappear-bottom</span></button>
+                        <button class="tpl-btn"><span>appear-left</span></button>
+                        <button class="tpl-btn"><span>disappear-left</span></button>
+                        <button class="tpl-btn"><span>appear-right</span></button>
+                        <button class="tpl-btn"><span>disappear-right</span></button>
                         <button class="tpl-btn"><span>fade-in</span></button>
                         <button class="tpl-btn"><span>fade-out</span></button>
                         <button class="tpl-btn"><span>collapse</span></button>
@@ -676,6 +715,17 @@
                         <button class="tpl-btn"><span>slide-to-bottom</span></button>
                         <button class="tpl-btn"><span>slide-from-right</span></button>
                         <button class="tpl-btn"><span>slide-to-right</span></button>
+                        <button class="tpl-btn"><span>flip</span></button>
+                        <button class="tpl-btn"><span>tada</span></button>
+                    </section>
+                    
+                    <section id="animation-item">
+                        <h3><span>Animate Me</span></h3>
+                        <div id="animate">&nbsp;</div>
+                    </section>
+                    
+                    <section id="javascript-animations">
+                        <h3><span>Javascript Animations</span></h3>
                         <button class="tpl-btn"><span>appear-top</span></button>
                         <button class="tpl-btn"><span>disappear-top</span></button>
                         <button class="tpl-btn"><span>appear-bottom</span></button>
@@ -684,12 +734,24 @@
                         <button class="tpl-btn"><span>disappear-left</span></button>
                         <button class="tpl-btn"><span>appear-right</span></button>
                         <button class="tpl-btn"><span>disappear-right</span></button>
+                        <button class="tpl-btn"><span>fade-in</span></button>
+                        <button class="tpl-btn"><span>fade-out</span></button>
+                        <button class="tpl-btn"><span>collapse</span></button>
+                        <button class="tpl-btn"><span>expand</span></button>
+                        <button class="tpl-btn"><span>scale-to-large</span></button>
+                        <button class="tpl-btn"><span>large-to-scale</span></button>
+                        <button class="tpl-btn"><span>scale-to-small</span></button>
+                        <button class="tpl-btn"><span>small-to-scale</span></button>
+                        <button class="tpl-btn"><span>slide-from-top</span></button>
+                        <button class="tpl-btn"><span>slide-to-top</span></button>
+                        <button class="tpl-btn"><span>slide-from-left</span></button>
+                        <button class="tpl-btn"><span>slide-to-left</span></button>
+                        <button class="tpl-btn"><span>slide-from-bottom</span></button>
+                        <button class="tpl-btn"><span>slide-to-bottom</span></button>
+                        <button class="tpl-btn"><span>slide-from-right</span></button>
+                        <button class="tpl-btn"><span>slide-to-right</span></button>
+                        <button class="tpl-btn"><span>flip</span></button>
                         <button class="tpl-btn"><span>tada</span></button>
-                    </section>
-                    
-                    <section id="animation-item">
-                        <h3><span>Animate Me</span></h3>
-                        <div id="animate">&nbsp;</div>
                     </section>
                     
                 </section>
@@ -716,6 +778,8 @@
                         <button id="btn-validate" class="tpl-btn"><span>validate()</span></button>
                         <button id="btn-json-to-form" class="tpl-btn"><span>jsonToForm()</span></button>
                         <button id="btn-form-to-json" class="tpl-btn"><span>formToJson()</span></button>
+                        <button id="btn-form-to-serialized" class="tpl-btn"><span>formToSerialized()</span></button>
+                        <button id="btn-serialized-to-form" class="tpl-btn"><span>serializedToForm()</span></button>
                         <button id="btn-faker" class="tpl-btn"><span>faker()</span></button>
                         <button id="btn-multiform" class="tpl-btn"><span>.multiform()</span></button>
                         <button id="btn-multiform-previous" class="tpl-btn"><span>previous()</span></button>
@@ -938,24 +1002,19 @@
                     </section>
                     
                     <section id="form-json">
-                        <h3><span>Json</span></h3>
-                        <textarea id="json-text" rows="27" cols="55" class="tpl-input" placeholder="JSON text">
+                        <h3><span>Output</span></h3>
+                        <textarea id="json-text" rows="27" cols="55" class="tpl-input" placeholder="Output text">
 {
-  "text": "Fine Child",
-  "number": "82",
-  "email": "betterstudy@aol.com",
-  "password": "vlhzHcUDS",
+  "text": "Various Service",
+  "number": "7",
+  "email": "poorerika@aol.com",
+  "password": "JAC98V44B",
   "url": "http://yahoo.com",
-  "tel": "590620611",
-  "search": "Gladys",
-  "date": "2023-06-14",
-  "date-format": "2023-06-21",
-  "datetime-local": "2023-06-22T13:14",
-  "time": "03:11",
-  "week": "123",
-  "month": "123",
-  "file": {},
-  "color": "#000000",
+  "tel": "636094317",
+  "search": "Patricia",
+  "date": "1930-07-31",
+  "time": "13:11",
+  "color": "#86b7d2",
   "range": "50",
   "textarea": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "select": "3",
@@ -965,10 +1024,14 @@
     "3",
     "4",
     "5",
-    "6",
-    "7"
+    "9"
   ],
-  "list": "Old Air"
+  "list": "Final Room",
+  "gender": "Female",
+  "shift": [
+    "Lunch",
+    "Dinner"
+  ]
 }
                         </textarea>
                         <button id="btn-clear-json-text" class="tpl-btn"><span>Clear</span></button>

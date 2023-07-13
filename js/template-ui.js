@@ -38,23 +38,36 @@ document.addEventListener('DOMContentLoaded', function (){
             Lazy.don('click', '#btn-clear-json-text', e => {
                 document.querySelector('#json-text').value = '';
             });
-            
-//            let par = document.querySelector('#scroll-me');
-//            par.scrollTo({
-//                top: document.querySelector('#gg').offsetLeft,
-//                left: document.querySelector('#gg').offsetLeft,
-//                behavior: 'smooth'
-//            });
-            
         };
         
         let initAnimations = function() {
-            [].forEach.call(document.querySelectorAll('#animation-controls > button'), button => {
+           
+            [].forEach.call(document.querySelectorAll('#css-animations > button'), button => {
                 button.addEventListener('click', () => {
                     let animation = button.querySelector(':scope > span').innerText;
-                    Lazy.animate('#animate', {
+                    Lazy.animateCss('#animate', {
                         animation: animation,
-                        duration: 800
+                        duration: 800,
+                        direction: 'normal',
+                        fill: 'none',
+                        easing: "ease-in-out"
+                    });
+                });
+            });
+            
+            [].forEach.call(document.querySelectorAll('#javascript-animations > button'), button => {
+                button.addEventListener('click', () => {
+                    let animation = button.querySelector(':scope > span').innerText;
+                    animation = animation.toCamelCase();
+                    
+                    console.log(animation);
+                    
+                    Lazy.animateJs('#animate', {
+                        animation: animation,
+                        duration: 800,
+                        direction: 'normal',
+                        fill: 'none',
+                        easing: "ease-in-out"
                     });
                 });
             });
@@ -65,6 +78,10 @@ document.addEventListener('DOMContentLoaded', function (){
             let carousel = Lazy.paginate('#list-carousel', {
                 items: 'li',
                 loop: true,
+//                
+//                enterAnimation: 'tada',
+//                exitAnimation: 'tada'
+//                
                 previousEnterAnimation: function(item) {
                     item.style.display = '';
                     item.animate({opacity: [0, 1], transform: ['translateX(-100%)', 'translateX(0%)']}, {duration: 400, iterations: 1, easing: 'ease-out'});
@@ -97,6 +114,18 @@ document.addEventListener('DOMContentLoaded', function (){
                 navigation: false,
                 enterAnimation: function(){},
                 exitAnimation: function(){}
+            });
+            
+            let horizontalSingle = Lazy.paginate('#horizontal-single-pagination', {
+                items: 'div',
+                navigation: false,
+                itemsPerPage: 1,
+                scrollOffsetX: -30,
+                enterAnimation: function(){},
+                exitAnimation: function(){},
+                onScroll: function(data) {
+                    horizontalSingle.goto(data.nextIndex);
+                }
             });
             
             let list = Lazy.paginate('#list-paginate', {
@@ -157,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function (){
                         grid.play(3000);
                         vertical.play(3000);
                         horizontal.play(3000);
+                        horizontalSingle.play(3000);
                         this.close();
                     }
                 }).open();
@@ -180,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function (){
                         grid.stop();
                         vertical.stop();
                         horizontal.stop();
+                        horizontalSingle.stop();
                         this.close();
                     }
                 }).open();
@@ -193,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 grid.next();
                 vertical.next();
                 horizontal.next();
+                horizontalSingle.next();
             });
             
             Lazy.don('click', '#btn-paginate-previous', () => {
@@ -203,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 grid.previous();
                 vertical.previous();
                 horizontal.previous();
+                horizontalSingle.previous();
             });
             
             Lazy.don('click', '#btn-paginate-goto', () => {
@@ -213,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 grid.goto(2);
                 vertical.goto(2);
                 horizontal.goto(2);
+                horizontalSingle.goto(2);
             });
             
             Lazy.don('click', '#btn-paginate-destroy', () => {
@@ -223,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 grid.destroy();
                 vertical.destroy();
                 horizontal.destroy();
+                horizontalSingle.destroy();
             });
             
             Lazy.don('click', '#btn-paginate-redraw', () => {
@@ -253,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 grid.redraw();
                 vertical.redraw();
                 horizontal.redraw();
+                horizontalSingle.redraw();
             });
         };
         
@@ -613,6 +649,39 @@ document.addEventListener('DOMContentLoaded', function (){
                 jsonText.value = JSON.stringify(json, null, 2);
             });
             
+            Lazy.don('click', '#btn-form-to-serialized', e => {
+                let jsonText = document.querySelector('#json-text');
+                jsonText.value = '';
+                let serialized = Lazy.formToSerialized('#form-basic');
+                jsonText.value = serialized;
+            });
+            
+            Lazy.don('click', '#btn-serialized-to-form', e => {
+                let jsonText = document.querySelector('#json-text');
+                let value = jsonText.value.trim();
+                let serializedModal = Lazy.modal({
+                    closable: false,
+                    closeButton: false,
+                    title: 'Invalid Serialized',
+                    content: '<div style="padding: 1rem">Invalid serialized text',
+                    footer: 'ok',
+                    onOk: function() {
+                        this.close();
+                    }
+                });
+                
+                if ( value !== '') {
+                    try {
+                        Lazy.serializedToForm(value, '#form-basic');
+                    } catch (error) {
+                        serializedModal.open();
+                    }
+                } else {
+                     serializedModal.open();
+                }
+                
+            });
+            
             Lazy.don('click', '#btn-faker', e => {
                 Lazy.faker();
                 Lazy.modal({
@@ -736,6 +805,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 Lazy.dialog({
                     title: 'Modal Dialog',
                     message: 'Do you agree?',
+                    enterAnimation: 'flip',
+                    
                     onOk: function() {
                         alert('Agreed!');
                         this.close();

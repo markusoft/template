@@ -380,6 +380,7 @@ section:target ~ #banner strong {
     max-width: 70px;
 }
 
+#horizontal-single-container,
 #horizontal-container,
 #vertical-container {
     display: flex;
@@ -391,13 +392,19 @@ section:target ~ #banner strong {
     max-width: 70px;
 }
 
+#horizontal-single-container {
+    margin-top: 1rem;
+}
+
+#horizontal-single-container .tpl-page-previous,
 #horizontal-container .tpl-page-previous,
 #vertical-container .tpl-page-previous {
     order: -1;
 }
 
 #vertical-pagination,
-#horizontal-pagination {
+#horizontal-pagination,
+#horizontal-single-pagination {
     position: relative;
     display: flex;
     gap: .2rem;
@@ -421,7 +428,17 @@ section:target ~ #banner strong {
     margin: 0 .2rem;
 }
 
+#horizontal-single-pagination {
+    flex-flow: row;
+    width: 240px;
+    height: 180px;
+    overflow: scroll;
+    margin: 0 .2rem;
+    
+}
+
 #vertical-pagination > div,
+#horizontal-single-pagination > div,
 #horizontal-pagination > div {
     display: flex;
     justify-content: center;
@@ -429,6 +446,10 @@ section:target ~ #banner strong {
     min-width: 60px;
     min-height: 60px;
     background-color: var(--secondary-1-500);
+}
+
+#horizontal-single-pagination > div {
+    min-width: 180px;
 }
 
 #list-paginate li {
@@ -962,17 +983,48 @@ section:target ~ #banner strong {
     gap: 1rem;
 }
 
-#animation-controls {
-    display: flex;
-    flex-flow: column;
+#animations > section {
+    flex: 1;
 }
 
-#animation-controls > button > span {
+#javascript-animations,
+#css-animations {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 290px;
+}
+
+#animation-item > h3,
+#javascript-animations > h3,
+#css-animations > h3 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#javascript-animations > button,
+#css-animations > button {
+    min-width: 140px;
+}
+
+#javascript-animations > button > span,
+#css-animations > button > span {
     text-transform: none;
+}
+
+#animation-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 #animate {
     width: 200px;
     height: 200px;
     background-color: var(--secondary-1-500);
+    margin-top: auto;
+    margin-bottom: auto;
 }

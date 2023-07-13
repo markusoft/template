@@ -34,15 +34,23 @@ Storage.getObject('key');                               // retrieve JSON object 
 Template.on(type, selector, callback, options);         // add event listener to element
 Template.don(type, selector, callback, options);        // add event listener to document
 Template.addEventListener(type, selector, callback, options);    // add event listener
+Template.getConfig('config');                           // retrieves configuration item             // Template.getConfig('prefix');    // tpl-
 Template.getCssVar('--css-var');                        // retrieve css variable                    // Template.getCssVar(--text-color);
 Template.draggable(dom);                                // make dom element draggable                   
+
+Template.animate(elem, settings);                       // animate an element                       // Template.animate('#id', {animation: "fadeIn"});  
+Template.animateCss(elem, settings);                    // animate an element using css keyframes   // Template.animateCss('#id', {animation: "tada"});  
+Template.animateJs(elem, settings);                     // animate an element using javascript      // Template.animateJs('#id', {animation: "appearFromTop"});  
 
 Template.sort(parent, children, sortAndOrder);          // sort elements                            // Template.sort('#tbody", 'tr', {'innerText': 'asc', 'data.id': 'desc'});
 Template.filter(parent, settings);                      // filter elements                          // Template.filter('#tbody', {filter:'tr', search: 'John', searchAttributes: ['innerText', 'data.first-name']}
 
 Template.flattenJson(json, 'underscore');               // flatten JSON to single array with dot notation keys
-Template.formToJson(form);                              // convert form to json
-Template.jsonToForm(json, form);                        // populate form with json
+Template.formToJson(form, stringCase, mutator);                              // convert form values to json
+Template.jsonToForm(json, form, stringCase, mutator);                        // populate form with json
+
+Template.formToSerialized(form, stringCase, mutator);                        // convert form values to serialized text   // Template.formToSerialized('#form');
+Template.serializedToForm(serialized, form, stringCase, mutator);            // populate form with serialized text       // Template.serializedToForm('serialized=text', '#form')
 
 Template.fake('anything');                                    // generates fake content                   // Template.fake('email');
 Template.faker();                                            // hold alt + shift then click form to populate
@@ -88,6 +96,20 @@ Template.don('custom-event', '.new-buttons', function(e){           // add custo
 });
 Template.don('custom-event', function(e){                           // catch custom event
     console.log(e.target);
+});
+
+Template.animate('#id', {
+    animation = 'fadeIn',                                           // built-in animation or function
+    duration = 800,                                                 // animation dutaion
+    delay = 0,                                                      // animation delay
+    iterations = 1,                                                 // animation iterations
+    direction = 'normal',                                           // direction
+    fill = 'forwards',                                              // fill
+    easing = 'ease-in-out',                                         // easing
+    beforeAnimate = function(){                                     // callback before animation
+        return false;                                               // return false to cancel animation
+    },
+    afterAnimate = function(elem){}                                 // callback after animation
 });
 
 Template.lazyLoad('.tpl-lazy',{                                     // lazy load images
@@ -159,6 +181,20 @@ Template.formToJson(form, 'camel', {        // convert form to json
 
 // json to form
 Template.jsonToForm(json, form, 'snake', {  // populate form with json
+    phone: function(value) {
+        return Template.phoneFormat(value);
+    }
+});
+
+// form to serialized
+Template.formToSerialized(form, 'camel', {        // convert form to serialized text
+    firstName: function(value) {
+        return value.capitalizeAll();
+    }
+});
+
+// serialized to form
+Template.serializedToForm(json, form, 'snake', {  // populate form with serialized text
     phone: function(value) {
         return Template.phoneFormat(value);
     }
@@ -393,6 +429,7 @@ Template.dialogOrModalOrOverlay({           // dialog|modal|overlay complete set
     },
     onOpen = function(){
         // called when modal opens
+        // return false to cancel opening modal
     },
     beforeClose = function(){
         // called before modal closes
@@ -400,6 +437,7 @@ Template.dialogOrModalOrOverlay({           // dialog|modal|overlay complete set
     },
     onClose = function(){
         // called when modal closes
+        // return false to cancel closing modal
     },
     onOk  = function(){
         // called when modal-ok is clicked
@@ -549,6 +587,9 @@ Lazy.paginate('#form',
     header: false,                          // header per page
     autoPlay: false,                        // auto play pages
     autoPlayDuration: 5000,                 // auto play interval
+    scrollOffset: 0,                        // scroll offset top and left
+    scrollOffsetX: false,                   // scroll offset left
+    scrollOffsetY: false,                   // scroll offset top
     navigation: true,                       // navigation buttons
     submit: false,                          // show last next button
     styles: {},                             // additional pagination styles

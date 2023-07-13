@@ -4,19 +4,22 @@ TemplateConfig = {
 //    prefix: 'prsft-',
     animations: {
         fadeIn: {opacity: [0, 1]},
-        fadeOut: {opacity: [1, 0]},
-        zoomIn: {transform: ['scale(.5)', 'scale{1}']},
-        zoomOut: {transform: ['scale(1)', 'scale{.5}']},
-        slideIn: {left: ['100%', '0']},
-        slideOut: {left: ['0', '100%']},
         flip: {transform: ['rotateY(0deg)', 'rotateY(180deg)']},
-        tada: {}
+        tada: [
+            { transform: 'scale(1)' },
+            { transform: 'scale(0.9) rotate(-3deg)' },
+            { transform: 'scale(1.1) rotate(3deg)' },
+            { transform: 'scale(1.1) rotate(-3deg)' },
+            { transform: 'scale(1.1) rotate(3deg)' },
+            { transform: 'scale(1)' }
+        ]
     },
     block: {},
     loader: {},
     dialog: {},
     modal: {},
     overlay: {},
+    paginate: {},
     modalHeaders: {
         custom: function(opt) {
             return `<button class="${opt.prefix}btn ${opt.prefix}modal-cancel"  aria-label="${opt.cancel}"><span>${opt.cancel}</span></button><div class="${opt.prefix}modal-title">${opt.title}</div><button class="${opt.prefix}btn ${opt.prefix}modal-ok" aria-label="${opt.ok}"><span>${opt.ok}</span></button>`;
