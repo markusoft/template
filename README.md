@@ -77,6 +77,7 @@
 [**JSON and Forms**](#json-and-forms)
 | Function                        | Usage                                                       | Output          | Description                                       |
 |---------------------------------|-------------------------------------------------------------|-----------------|---------------------------------------------------|
+| [Template.jsonToDom(json, settings)](#json-to-dom)         | Template.jsonToDom(json, {parent: 'ul', markup: function(){}})                               | DOM               | Markup JSON object to DOM Object |
 | [Template.flattenJson(json)](#flatten-json)         | Template.flattenJson({'a': {'b': 'c'}})                               | {'a.b': 'c'}               | Flatten JSON to a single layer with dot notation keys |
 | [Template.unflattenJson(json)](#unflatten-json)         | Template.unflattenJson({'a.b': 'c'})                               | {'a': {'b': 'c'}}               | Unflatten JSON from single to multiple layers |
 | [Template.formToJson(form)](#form-to-json)           | Template.formToJson('#form')                                           | {'form': 'value'}          | Convert form values to JSON                          |
@@ -179,6 +180,7 @@
 	- [Search](#search-and-filter)
 	- [Filter](#search-and-filter)
 - [JSON and Forms](#json-and-forms)
+	- [JSON to DOM](#json-to-dom)
 	- [Flatten JSON](#flatten-json)
 	- [Form to JSON](#form-to-json)
 	- [JSON to Form](#json-to-form)
@@ -706,6 +708,157 @@ Search and Filter any dom elements
 | **custom**                | function(child) { const text = child.innerText; return text === 'Your Text';} | Custom filter function                         |
 
 # JSON and Forms
+
+## JSON to DOM
+Markup JSON object to DOM object
+
+	Template.jsonToDom(json, settings);
+	
+	Template.jsonToDom(json, {                                      // markup JSON object to DOM elements
+		parent: 'ul',                                               // parent markup
+		markup: function(record){                                   // markup function
+			let li = document.createElement('li');
+			li.innerText = record.name;
+			return li;
+		},
+		recursive = false                                           // recursive child elements
+	});
+	
+| **Config**   | Value                                  | Description                                  |
+|----------|----------------------------------------|----------------------------------------------|
+| **json** | JSON                                    | JSON object                               |
+| **parent**     | string, array or function       | Parent DOM element/s                              |
+| **markup**  | string, array or function | Child DOM element/s |
+| **recursive**  | false or string | Recursive child elements |
+
+Sample Usage
+
+	let json = {categories: [{
+		  "id": "1",
+		  "name": "Automotive and Industrial",
+		  "categories": [{
+			  "id": "8",
+			  "name": "Car Parts and Accessories"
+			},
+			{
+			  "id": "9",
+			  "name": "Machines and Robots"
+			}]
+		},
+		{
+		  "id": "2",
+		  "name": "Beauty and Health",
+		  "categories": [{
+			  "id": "10",
+			  "name": "Cosmetics"
+			},
+			{
+			  "id": "11",
+			  "name": "Gym Supplements"
+			}]
+		},
+		{
+		  "id": "3",
+		  "name": "Books",
+		  "categories": [{
+			  "id": "12",
+			  "name": "Educational"
+			},
+			{
+			  "id": "13",
+			  "name": "Fiction"
+			}]
+		},
+		{
+		  "id": "4",
+		  "name": "Clothing, Shoes and Jewelry",
+		  "categories": [{
+			  "id": "14",
+			  "name": "Men"
+			},
+			{
+			  "id": "15",
+			  "name": "Women"
+			}]
+		}
+	};
+	
+	Template.jsonToDom(json['categories'], {
+		parent: 'ul',
+		markup: function(record){
+			let li = document.createElement('li');
+			li.innerText = record.name;
+			return li;
+		},
+		recursive = 'categories'
+	});
+	
+	// output
+	<ul>
+		<li>Automotive and Industrial
+			<ul>
+				<li>Car Parts and Accessories</li>
+				<li>Machines and Robots</li>
+			</ul>
+		</li>
+		<li>Beauty and Health
+			<ul>
+				<li>Cosmetics</li>
+				<li>Gym Supplements</li>
+			</ul>
+		</li>
+		<li>Books
+			<ul>
+				<li>Educational</li>
+				<li>Fiction</li>
+			</ul>
+		</li>
+		<li>Clothing, Shoes and Jewelry
+			<ul>
+				<li>Men</li>
+				<li>Women</li>
+			</ul>
+		</li>
+	</ul>
+	
+	Template.jsonToDom(json['categories'], {
+		parent: ['select', false],
+		markup: [
+			function(record){                                       
+				let optgroup = document.createElement('optgroup');
+				optgroup.setAttribute('label', record.name);
+				return optgroup;
+			},
+			function(record){
+				let option = document.createElement('option');
+				option.setAttribute('value', record.id);
+				option.innerText = record.name;
+				return option;
+			}
+		],
+		recursive = ['categories', 'categories']
+	});
+	
+	// output
+	<select>
+		<optgroup label="Automotive and Industrial">
+			<option value="8">Car Parts and Accessories</option>
+			<option value="9">Machines and Robots</option>
+		</optgroup>
+		<optgroup label="Beauty and Health">
+			<option value="10">Cosmetics</option>
+			<option value="11">Gym Supplements</option>
+		</optgroup>
+		<optgroup label="Books">
+			<option value="12">Educational</option>
+			<option value="13">Fiction</option>
+		</optgroup>
+		<optgroup label="Clothing, Shoes and Jewelry">
+			<option value="14">Men</option>
+			<option value="15">Women</option>
+		</optgroup>
+	</select>
+	
 
 ## Flatten JSON
 Flatten JSON to single layer with dot notation keys
