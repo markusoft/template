@@ -54,7 +54,9 @@
 | Function                        | Usage                                                       | Description                                       |
 |-------------------------------------|-------------------------------------------------------------|---------------------------------------------------|
 | [Template.on(type, selector, callback, options)](#on)               | Template.on('click', '#id', function(e){}, {bubbles: true})                                      | Adds an event listener to an element              |
+| [Template.off(type, selector, eventHandler)](#off)             		  | Template.off('click', '#id', eventHandler)                                      | Removes an event listener to an element              |
 | [Template.don(type, selector, callback, options)](#don)              | Template.don('click', '#id', function(e){}, {bubbles: true})                                                            | Adds an event listener to the document            |
+| [Template.doff(type, selector, eventHandler)](#doff)              | Template.doff('click', '#id', eventHandler)                                                            | Removes an event listener to the document            |
 | [Template.addEventListener(type, selector, callback, options)](#add-event-listener) | Template.addEventListener('click', '#id', function(e){}, {bubbles: true})                                                            | Adds an event listener                            |
 
 [**Animate**](#animate)
@@ -100,9 +102,9 @@
 [**Blockers**](#blockers)
 | Function                        | Usage                                                       | Description                                       |
 |---------------------------------|-------------------------------------------------------------|---------------------------------------------------|
-| [Template.block(settings)](#block)           | Template.block()                                                        | Blocks the UI                                       |
-| [Template.loader(settings)](#loader)          | Template.loader()                                                       | Blocks the UI with a loader                          |
-| [Template.unblock('#id')](#unblock)            | Template.unblock()                                                      | Unblocks the UI                                     |
+| [Template.block(selector, settings)](#block)           | Template.block()                                                        | Blocks the UI                                       |
+| [Template.loader(selector, settings)](#loader)          | Template.loader()                                                       | Blocks the UI with a loader                          |
+| [Template.unblock(selector)](#unblock)            | Template.unblock()                                                      | Unblocks the UI                                     |
 
 [**Modals and Dialogs**](#modals-and-dialogs)
 | Function                                  | Usage                                                 | Description                      |
@@ -136,6 +138,11 @@
 | Function                                     | Usage                                          | Description                        |
 |----------------------------------------------|------------------------------------------------|------------------------------------|
 | [Template.svgMap(selector, settings)](#svg-map) | Template.svgMap('#svg', {max: 1})          | Add events to SVG Map               |
+
+[**Drag and Drop**](#drag-and-drop)
+| Function                                     | Usage                                          | Description                        |
+|----------------------------------------------|------------------------------------------------|------------------------------------|
+| [Template.draggable(selector, settings)](#draggable) | Template.draggable('#ul > li', {dropZone: '#ul2'})          | Make anything draggable               |
 
 # Table of Contents
 - [What is Template](#what-is-template)
@@ -175,6 +182,8 @@
 	- [Don](#don)
 	- [Add Event Listener](#add-event-listener)
 - [Animate](#animate)
+- [Drag and Drop](#drag-and-drop)
+	- [Draggable](#draggable)
 - [Sort](#sort)
 - [Search and Filter](#search-and-filter)
 	- [Search](#search-and-filter)
@@ -512,9 +521,18 @@ Sample Usage
 ## On
 Add event listener to a dom element
 	
-  Template.on('click', '#my-button', function(event){
-    event.preventDefault();
-  });
+	Template.on('click', '#my-button', function(event){
+	  event.preventDefault();
+	});
+  
+## Off
+Removes event listener to a dom element
+	
+	let eventHandler = Template.on('click', '#my-button', function(event){
+	  event.preventDefault();
+	});
+	
+	Template.off('click', '#my-button', eventHandler);
 	
 ## Don
 Add event listener to the document
@@ -528,6 +546,15 @@ Add event listener to the document
 	Template.don('custom-event', function(e){                           
 	  console.log(e.target);
 	});
+	
+## Doff
+Remove event listener to the document
+
+	let eventHandler = Template.don('custom-event', '.new-buttons', function(e){
+	  console.log(e.currentTarget);
+	});
+	
+	Template.doff('custom-event', eventHandler);
 
 ## Add Event Listener
 Adds an event listener
@@ -599,6 +626,92 @@ Animate an element
 | slide-to-bottom |
 | flip |
 | tada |
+
+# Drag and Drop
+
+## Draggable
+Make anything draggable
+
+	Template.draggable(selector, settings);
+	
+	let draggables = Template.draggable('#id', {
+	  clone: false,                                               // clone element
+	  dragHandle: false,                                          // drag handle
+	  dropZone: ['#list-zone-1', '#list-dad', '#table-dad'],      // drop zone
+	  multiple: 'li.selected',                                    // drag multiple elements
+	  disable: 'disabled',                                        // disabled element class name without the dot
+	  placeholder: 'div',                                         // default placeholder div
+	  nestable: ':scope li > *:first-child',                      // true or selector of nestable elements
+	  nestableParent: 'ul',                                       // nestable parent
+	  nestableElement: 'li',                                      // nestable elements
+	  indention: '2rem',                                          // nest indention
+	  maxDepth: false,                                            // max nest depth (Fixed the assignment operator)
+	  // drag events
+	  dragStart: function(event) {                                // override dragStart called on mousedown start dragging
+		event.preventDefault();                                   // prevent default enables dragging
+	  },
+	  drag: function(event) {},                                   // override drag called while dragging the element
+	  dragEnd: function(event) {},                                // override drag end called on mouseup stop dragging
+	  // drop events
+	  dragEnter: function(event) {},                              // override drag enter called when dragged element enters a drop zone
+	  dragOver: function(event) {},                               // override drag over called everytime the dragged element is hovering on a drop zone
+	  dragLeave: function(event) {},                              // override drag leave called when the dragged element leaves a drop zone
+	  drop: function(event) {                                     // override drop called when the dragged element is dropped on a drop zone
+		event.preventDefault();                                   // prevent default enables dropping
+	  },
+	  // drag callback events
+	  onDragStart: function(e, drag) {},						  // callback on drag start, called on mousedown start dragging
+	  onDrag: function(e, drag) {},								  // callback on drag, called while dragging the element
+	  onDragEnd: function(e, drag) {},							  // callback on drag end, called on mouseup stop dragging
+	  // drop callback events
+	  onDragEnter: function(e, drag, drop){},					  // callback on drag enter, called when dragged element enters a drop zone
+	  onDragOver: function(e, drag){},							  // callback on drag over, called everytime the dragged element is hovering on a drop zone
+	  onDragLeave: function(e, drag, drop){},					  // callback on drag leave, called when the dragged element leaves a drop zone
+	  onDrop: function(e, drag, drop) {}						  // callback on drop, called when the dragged element is dropped on a drop zone
+	});
+	
+	draggables.destroy();
+	
+| **Config**    		| Value                                  | Description                          |
+|-----------------------|----------------------------------------|--------------------------------------|
+| **selector**  		| #ul > li                               | Target draggable selector         	|
+| **clone**     		| false                                  | Clone draggable                      |
+| **dragHandle** 		| .handle                                | Drag handle selector              	|
+| **dropZone**  		| ['ul.dropzone-1', 'ul.dropzone-2']     | Dropzone selector    				|
+| **multiple**			| li.selected          					 | Multiple draggable selector       	|
+| **disable**   		| disabled                           	 | Disabled class name without the dot 	|
+| **placeholder**   	| div                           		 | Placholder tag 						|
+| **nestable**   		| true or ':scope li > *:first-child'    | Nestable selector 					|
+| **nestableParent**   	| ul                           			 | Nestable parent tag 					|
+| **nestableElement**   | li                           			 | Nestable child tag 					|
+| **indention**   		| 2rem                           		 | Nest indention 						|
+| **maxDepth**   		| 3                           			 | Max number of nests 					|
+
+
+| **Config Functions**     | Value                    	 | Description                          |
+|--------------------------|-----------------------------|--------------------------------------|
+| **dragStart(event)**     | e => { e.preventDefault() } | Override drag start, called on mousedown start dragging, Prevent default enable dragging      |
+| **drag(event)**          | function(){} 				 | Override drag, called while dragging the element                    |
+| **dragEnd(event)**       | function(){} 				 | Override drag end, called on mouseup stop dragging                    |
+| **dragEnter(event)**     | function(){} } 			 | Override drag enter, called when dragged element enters a drop zone                     |
+| **dragOver(event)**      | function(){} } 			 | Override drag over, called everytime the dragged element is hovering on a drop zone                      |
+| **dragLeave(event)**     | function(){} } 			 | Override drag leave, called when the dragged element leaves a drop zone                     |
+| **drop(event)**          | e => { e.preventDefault() } | Override drop, called when the dragged element is dropped on a drop zone. Prevent default enable dropping            |
+
+
+| **Callbacks**            		 | Value                     | Description                          |
+|--------------------------------|---------------------------|--------------------------------------|
+| **onDragStart(e, drag)**       | svgMap.changeMax(3)       | Callback on drag start      			|
+| **onDrag(e, drag)**            | svgMap.readOnly()         | Callback on drag                     |
+| **onDragEnd(e, drag)**         | svgMap.disable()          | Callback on drag end                 |
+| **onDragEnter(e, drag, drop)** | svgMap.enable()           | Callback on drag enter a drop zone   |
+| **onDragOver(e, drag)**        | svgMap.select(['Item'])   | Callback on drag over a drop zone    |
+| **onDragLeave(e, drag, drop)** | svgMap.clear()            | Callback on drag leaving a drop zone |
+| **onDrop(e, drag, drop)**      | svgMap.getValues()        | Callback on dropping on a drop zone  |
+
+| **Functions**     | Value                    	 		  | Description                          |
+|-------------------|-------------------------------------|--------------------------------------|
+| **destroy()**     | Template.draggable('#id').destroy() | Destroys drag and drop 				 |
 
 # Sort
 Sort any DOM element
@@ -713,16 +826,16 @@ Search and Filter any dom elements
 Markup JSON object to DOM object
 
 	Template.jsonToDom(json, settings);
-	
+
 	Template.jsonToDom(json, {                                      // markup JSON object to DOM elements
-		parent: 'ul',                                               // parent markup
-		markup: function(record){                                   // markup function
-			let li = document.createElement('li');
-			li.innerText = record.name;
-			return li;
-		},
-		recursive = false                                           // recursive child elements
-	});
+	  parent: 'ul',                                                 // parent markup
+	  markup: function(record){                                     // markup function
+		let li = document.createElement('li');
+		li.innerText = record.name;
+		return li;
+	  },
+	  recursive: false                                              // recursive child elements
+});
 	
 | **Config**   | Value                                  | Description                                  |
 |----------|----------------------------------------|----------------------------------------------|
@@ -734,131 +847,130 @@ Markup JSON object to DOM object
 Sample Usage
 
 	let json = {categories: [{
-		  "id": "1",
-		  "name": "Automotive and Industrial",
-		  "categories": [{
-			  "id": "8",
-			  "name": "Car Parts and Accessories"
-			},
-			{
-			  "id": "9",
-			  "name": "Machines and Robots"
-			}]
-		},
-		{
-		  "id": "2",
-		  "name": "Beauty and Health",
-		  "categories": [{
-			  "id": "10",
-			  "name": "Cosmetics"
-			},
-			{
-			  "id": "11",
-			  "name": "Gym Supplements"
-			}]
-		},
-		{
-		  "id": "3",
-		  "name": "Books",
-		  "categories": [{
-			  "id": "12",
-			  "name": "Educational"
-			},
-			{
-			  "id": "13",
-			  "name": "Fiction"
-			}]
-		},
-		{
-		  "id": "4",
-		  "name": "Clothing, Shoes and Jewelry",
-		  "categories": [{
-			  "id": "14",
-			  "name": "Men"
-			},
-			{
-			  "id": "15",
-			  "name": "Women"
-			}]
-		}
+	  "id": "1",
+	  "name": "Automotive and Industrial",
+	  "categories": [{
+		"id": "8",
+		"name": "Car Parts and Accessories"
+	  },
+	  {
+		"id": "9",
+		"name": "Machines and Robots"
+	  }]
+	},
+	{
+	  "id": "2",
+	  "name": "Beauty and Health",
+	  "categories": [{
+		"id": "10",
+		"name": "Cosmetics"
+	  },
+	  {
+		"id": "11",
+		"name": "Gym Supplements"
+	  }]
+	},
+	{
+	  "id": "3",
+	  "name": "Books",
+	  "categories": [{
+		"id": "12",
+		"name": "Educational"
+	  },
+	  {
+		"id": "13",
+		"name": "Fiction"
+	  }]
+	},
+	{
+	  "id": "4",
+	  "name": "Clothing, Shoes and Jewelry",
+	  "categories": [{
+		"id": "14",
+		"name": "Men"
+	  },
+	  {
+		"id": "15",
+		"name": "Women"
+	  }]
+	}
 	};
-	
+
 	Template.jsonToDom(json['categories'], {
-		parent: 'ul',
-		markup: function(record){
-			let li = document.createElement('li');
-			li.innerText = record.name;
-			return li;
-		},
-		recursive = 'categories'
+	  parent: 'ul',
+	  markup: function(record){
+		let li = document.createElement('li');
+		li.innerText = record.name;
+		return li;
+	  },
+	  recursive: 'categories'
 	});
 	
 	// output
 	<ul>
-		<li>Automotive and Industrial
-			<ul>
-				<li>Car Parts and Accessories</li>
-				<li>Machines and Robots</li>
-			</ul>
-		</li>
-		<li>Beauty and Health
-			<ul>
-				<li>Cosmetics</li>
-				<li>Gym Supplements</li>
-			</ul>
-		</li>
-		<li>Books
-			<ul>
-				<li>Educational</li>
-				<li>Fiction</li>
-			</ul>
-		</li>
-		<li>Clothing, Shoes and Jewelry
-			<ul>
-				<li>Men</li>
-				<li>Women</li>
-			</ul>
-		</li>
+	  <li>Automotive and Industrial
+		<ul>
+		  <li>Car Parts and Accessories</li>
+		  <li>Machines and Robots</li>
+		</ul>
+	  </li>
+	  <li>Beauty and Health
+		<ul>
+		  <li>Cosmetics</li>
+		  <li>Gym Supplements</li>
+		</ul>
+	  </li>
+	  <li>Books
+		<ul>
+		  <li>Educational</li>
+		  <li>Fiction</li>
+		</ul>
+	  </li>
+	  <li>Clothing, Shoes and Jewelry
+		<ul>
+		  <li>Men</li>
+		  <li>Women</li>
+		</ul>
+	  </li>
 	</ul>
 	
 	Template.jsonToDom(json['categories'], {
-		parent: ['select', false],
-		markup: [
-			function(record){                                       
-				let optgroup = document.createElement('optgroup');
-				optgroup.setAttribute('label', record.name);
-				return optgroup;
-			},
-			function(record){
-				let option = document.createElement('option');
-				option.setAttribute('value', record.id);
-				option.innerText = record.name;
-				return option;
-			}
-		],
-		recursive = ['categories', 'categories']
+	  parent: ['select', false],
+	  markup: [
+		function(record){                                       
+		  let optgroup = document.createElement('optgroup');
+		  optgroup.setAttribute('label', record.name);
+		  return optgroup;
+		},
+		function(record){
+		  let option = document.createElement('option');
+		  option.setAttribute('value', record.id);
+		  option.innerText = record.name;
+		  return option;
+		}
+	  ],
+	  recursive: ['categories', 'categories']
 	});
 	
 	// output
 	<select>
-		<optgroup label="Automotive and Industrial">
-			<option value="8">Car Parts and Accessories</option>
-			<option value="9">Machines and Robots</option>
-		</optgroup>
-		<optgroup label="Beauty and Health">
-			<option value="10">Cosmetics</option>
-			<option value="11">Gym Supplements</option>
-		</optgroup>
-		<optgroup label="Books">
-			<option value="12">Educational</option>
-			<option value="13">Fiction</option>
-		</optgroup>
-		<optgroup label="Clothing, Shoes and Jewelry">
-			<option value="14">Men</option>
-			<option value="15">Women</option>
-		</optgroup>
+	  <optgroup label="Automotive and Industrial">
+		<option value="8">Car Parts and Accessories</option>
+		<option value="9">Machines and Robots</option>
+	  </optgroup>
+	  <optgroup label="Beauty and Health">
+		<option value="10">Cosmetics</option>
+		<option value="11">Gym Supplements</option>
+	  </optgroup>
+	  <optgroup label="Books">
+		<option value="12">Educational</option>
+		<option value="13">Fiction</option>
+	  </optgroup>
+	  <optgroup label="Clothing, Shoes and Jewelry">
+		<option value="14">Men</option>
+		<option value="15">Women</option>
+	  </optgroup>
 	</select>
-	
 
 ## Flatten JSON
 Flatten JSON to single layer with dot notation keys
@@ -1106,10 +1218,9 @@ Populate form with fake contents. Hold alt + shift and click the form to populat
 Block the UI
 
 	Template.block();							// blocks the document body
-	Template.block(settings);					
+	Template.block(selector, settings);					
 	
-	Template.block({
-	  block: '#element-id',                          // id or DOM element to block
+	Template.block('#element-id', {
 	  content: 'Text/HTML',                          // additional content
 	  addClass: {                                    // individual classes
 		block: 'my-blocker',
@@ -1126,7 +1237,7 @@ Block the UI
 
 | **Config**          | Value                          | Description                           |
 |-----------------|--------------------------------|---------------------------------------|
-| **block**           | #id                            | Block a target element                 |
+| **selector**        | #id                            | Block a target element                 |
 | **content**         | 'Loading'                      | Add content to block                   |
 | **addClass**        | {block: 'my-blocker'}          | Add classes to the blocker             |
 | **styles**          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
@@ -1135,8 +1246,7 @@ Block the UI
 ## Loader
 Block the UI with a loader
 
-	Template.loader({
-	  block: '#element-id',                                  // id or DOM element to block
+	Template.loader('#element-id', {
 	  message: 'Loading',                                    // message
 	  spinner: '<i class="fa fa-spinner"></i>',              // HTML or custom spinner icon
 	  addClass: {                                            // individual classes
@@ -1154,7 +1264,7 @@ Block the UI with a loader
 	
 | **Config**          | Value                          | Description                           |
 |-----------------|--------------------------------|---------------------------------------|
-| **block**           | #id                            | Block a target element                 |
+| **selector**        | #id                            | Block a target element                 |
 | **message**         | 'Loading'                      | Loading message                        |
 | **addClass**        | {block: 'my-blocker'}          | Add classes to the blocker             |
 | **styles**          | {backgroundColor: 'blue'}      | Add styles to the blocker              |
